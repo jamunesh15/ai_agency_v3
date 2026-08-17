@@ -1,0 +1,216 @@
+/* ============================================================
+   aa-motion.css — AIAgency motion primitives
+   No dependencies. Pairs with aa-motion.js.
+
+   Rules this library holds itself to:
+   - opacity + small translate only. never scale/rotate/blur stacks.
+   - 150-450ms. standard easing. no bounce, no overshoot.
+   - reveals fire once and stay put.
+   - ambient loops only where they explain something.
+   - prefers-reduced-motion turns everything off.
+   ============================================================ */
+
+:root {
+  --aa-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --aa-dur: 420ms;
+  --aa-dur-fast: 200ms;
+  --aa-rise: 10px;
+  --aa-stagger: 70ms;
+}
+
+/* ---------- 1. reveal --------------------------------------- */
+
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(var(--aa-rise));
+  transition:
+    opacity var(--aa-dur) var(--aa-ease),
+    transform var(--aa-dur) var(--aa-ease);
+  transition-delay: var(--aa-delay, 0ms);
+  will-change: opacity, transform;
+}
+
+[data-reveal].aa-in {
+  opacity: 1;
+  transform: none;
+}
+
+/* once it has landed, stop reserving a compositor layer */
+[data-reveal].aa-done {
+  will-change: auto;
+}
+
+/* ---------- 2. reveal-group (staggered children) ------------- */
+/* delays are written to --aa-delay by aa-motion.js, capped at 6 */
+
+/* ---------- 3. draw (svg line fills itself in) --------------- */
+
+/* aa-motion.js stamps pathLength="1000" on every animated path, so all
+   the dash numbers below are plain constants on a normalised path.
+   Never reintroduce calc() or var() into these values: a calc() will not
+   interpolate against a plain length and the animation silently degrades
+   to a discrete snap at the halfway point. */
+
+[data-draw] {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  transition: stroke-dashoffset 900ms var(--aa-ease);
+  transition-delay: var(--aa-delay, 0ms);
+}
+
+[data-draw].aa-in {
+  stroke-dashoffset: 0;
+}
+
+/* ---------- 4. flow (pulse travels along the wire) ----------- */
+/* a dash chases the path. no motion-path, no coordinate math, so it
+   survives any viewBox and ports straight into React. 120 of 1000 means
+   the comet is always 12% of the wire, whatever its real length.      */
+
+[data-flow] {
+  stroke-dasharray: 120 1000;
+  stroke-dashoffset: 1120;
+  opacity: 0;
+}
+
+[data-flow].aa-in {
+  opacity: 1;
+  animation: aa-flow var(--aa-flow-dur, 3.2s) linear infinite;
+  animation-delay: var(--aa-delay, 0ms);
+}
+
+@keyframes aa-flow {
+  from { stroke-dashoffset: 1120; }
+  to   { stroke-dashoffset: 0; }
+}
+
+/* ---------- 5. orbit (one slow ring, used once) -------------- */
+
+[data-orbit] {
+  transform-box: fill-box;
+  transform-origin: center;
+  opacity: 0;
+  transition: opacity var(--aa-dur) var(--aa-ease);
+}
+
+[data-orbit].aa-in {
+  opacity: 1;
+  animation: aa-orbit var(--aa-orbit-dur, 26s) linear infinite;
+}
+
+@keyframes aa-orbit {
+  to { transform: rotate(360deg); }
+}
+
+/* ---------- 6. count ----------------------------------------- */
+/* purely js-driven. tabular figures so the layout doesn't jitter
+   while the digits change.                                        */
+
+[data-count] {
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- 6b. marquee -------------------------------------- */
+/* runs continuously and never pauses, including on hover */
+
+[data-marquee] { overflow: hidden; }
+
+[data-marquee] > * {
+  display: flex;
+  width: max-content;
+  animation: aa-mq-left var(--aa-mq-dur, 40s) linear infinite;
+}
+
+[data-marquee="right"] > * {
+  animation-name: aa-mq-right;
+}
+
+@keyframes aa-mq-left {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+@keyframes aa-mq-right {
+  from { transform: translateX(-50%); }
+  to   { transform: translateX(0); }
+}
+
+/* ---------- 7. nav (shrink on scroll) ------------------------ */
+
+[data-nav] {
+  transition:
+    height var(--aa-dur-fast) var(--aa-ease),
+    background-color var(--aa-dur-fast) var(--aa-ease),
+    border-color var(--aa-dur-fast) var(--aa-ease);
+}
+
+[data-nav] .aa-nav-mark {
+  transition: transform var(--aa-dur-fast) var(--aa-ease);
+}
+
+[data-nav].aa-stuck .aa-nav-mark {
+  transform: scale(0.86);
+}
+
+/* ---------- 8. accordion ------------------------------------- */
+
+[data-accordion] .aa-acc-body {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows var(--aa-dur) var(--aa-ease);
+}
+
+[data-accordion] .aa-acc-body > div {
+  overflow: hidden;
+}
+
+[data-accordion].aa-open .aa-acc-body {
+  grid-template-rows: 1fr;
+}
+
+[data-accordion] .aa-acc-sign {
+  transition: transform var(--aa-dur-fast) var(--aa-ease);
+}
+
+[data-accordion].aa-open .aa-acc-sign {
+  transform: rotate(45deg);
+}
+
+/* ---------- reduced motion: everything off ------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal],
+  [data-reveal].aa-in {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  [data-draw],
+  [data-draw].aa-in {
+    stroke-dasharray: none;
+    stroke-dashoffset: 0;
+    transition: none;
+  }
+
+  [data-flow] {
+    display: none;
+  }
+
+  [data-orbit],
+  [data-orbit].aa-in {
+    opacity: 1;
+    animation: none;
+  }
+
+  [data-marquee] > * {
+    animation: none;
+    transform: none;
+  }
+
+  [data-nav],
+  [data-accordion] .aa-acc-body,
+  [data-accordion] .aa-acc-sign {
+    transition: none;
+  }
+}

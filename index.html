@@ -1,0 +1,569 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>AIAgency | AI systems, built end to end</title>
+<meta name="description" content="AIAgency designs and ships production AI and automation systems for businesses. Full projects, not prototypes.">
+<link rel="canonical" href="https://aiagency.so/">
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://aiagency.so/">
+<meta property="og:title" content="AIAgency | AI systems, built end to end">
+<meta property="og:description" content="AIAgency designs and ships production AI and automation systems for businesses. Full projects, not prototypes.">
+<meta property="og:image" content="https://aiagency.so/og.png">
+<meta name="twitter:card" content="summary_large_image">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "AIAgency",
+  "url": "https://aiagency.so/",
+  "logo": "https://aiagency.so/logo.svg",
+  "description": "AI and automation systems built end to end for businesses."
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="aa-motion.css">
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="nav" data-nav="20">
+  <div class="container">
+    <div class="nav-shell">
+      <a class="brand" href="index.html" aria-label="AIAgency home">
+        <img class="aa-nav-mark" src="aiagency_logo.png" alt="" width="30" height="30">
+        <span class="brand-name">AIAgency</span>
+      </a>
+
+      <nav class="nav-links" aria-label="Primary">
+        <a href="index.html" aria-current="page">Home</a>
+        <a href="services.html">Services</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="blog.html">Blog</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+
+      <div class="nav-cta">
+        <a class="btn btn--primary btn--sm" href="contact.html">Book a call</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ============================================================
+     HERO. single column, network map underneath.
+     PLACEHOLDER COPY: needs the CEO's real positioning line.
+
+     Map wiring lives in the markup:
+       node: data-node="wf" data-mx="230" data-my="190"
+       link: class="map-live" data-link="wf ag"
+     Hovering a node lights the dots near it, draws its links green,
+     and darkens the nodes it reaches.
+     ============================================================ -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-copy" data-reveal-group="70">
+      <p class="label" data-reveal>AI systems, built end to end</p>
+
+      <h1 class="display" data-reveal>
+        We build the AI systems your business actually runs on.
+      </h1>
+
+      <p class="lede" data-reveal style="text-align:center;">
+        We scope it, build it, and hand it over. No pilots that go nowhere.
+      </p>
+
+      <div class="hero-actions" data-reveal>
+        <a class="btn btn--primary" href="contact.html">
+          Book a call <i class="btn-arrow" data-lucide="arrow-right"></i>
+        </a>
+        <a class="btn btn--ghost" href="#process">
+          <i data-lucide="play"></i> See how we work
+        </a>
+      </div>
+    </div>
+
+    <div class="map-scroll">
+      <div class="map-wrap" data-reveal>
+        <svg class="map-field" data-dotmap viewBox="0 0 1280 560" aria-hidden="true">
+          <g data-dotmap-field></g>
+
+          <g>
+            <path class="map-link" d="M230 190 Q 430 108 655 140"   data-draw style="--aa-delay:0ms"/>
+            <path class="map-link" d="M655 140 Q 810 176 900 272"   data-draw style="--aa-delay:320ms"/>
+            <path class="map-link" d="M230 190 Q 286 336 452 392"   data-draw style="--aa-delay:640ms"/>
+            <path class="map-link" d="M655 140 Q 632 238 700 322"   data-draw style="--aa-delay:960ms"/>
+            <path class="map-link" d="M900 272 Q 1006 306 1058 404" data-draw style="--aa-delay:1280ms"/>
+            <path class="map-link" d="M700 322 Q 806 318 900 272"   data-draw style="--aa-delay:1600ms"/>
+            <path class="map-link" d="M452 392 Q 574 398 700 322"   data-draw style="--aa-delay:1920ms"/>
+          </g>
+
+          <g>
+            <path class="map-live" data-link="wf ag"  d="M230 190 Q 430 108 655 140"/>
+            <path class="map-live" data-link="ag di"  d="M655 140 Q 810 176 900 272"/>
+            <path class="map-live" data-link="wf doc" d="M230 190 Q 286 336 452 392"/>
+            <path class="map-live" data-link="ag rep" d="M655 140 Q 632 238 700 322"/>
+            <path class="map-live" data-link="di sup" d="M900 272 Q 1006 306 1058 404"/>
+            <path class="map-live" data-link="rep di" d="M700 322 Q 806 318 900 272"/>
+            <path class="map-live" data-link="doc rep" d="M452 392 Q 574 398 700 322"/>
+          </g>
+        </svg>
+
+        <a class="map-node" style="left:17.97%; top:33.93%;" href="services.html" data-node="wf"  data-mx="230"  data-my="190">
+          <span class="bubble"><i data-lucide="workflow"></i></span>
+          <span class="cap">Workflow<br>automation</span>
+        </a>
+        <a class="map-node" style="left:51.17%; top:25.00%;" href="services.html" data-node="ag"  data-mx="655"  data-my="140">
+          <span class="bubble"><i data-lucide="bot"></i></span>
+          <span class="cap">Custom<br>AI agents</span>
+        </a>
+        <a class="map-node" style="left:70.31%; top:48.57%;" href="services.html" data-node="di"  data-mx="900"  data-my="272">
+          <span class="bubble"><i data-lucide="database"></i></span>
+          <span class="cap">Data<br>integration</span>
+        </a>
+        <a class="map-node" style="left:35.31%; top:70.00%;" href="services.html" data-node="doc" data-mx="452"  data-my="392">
+          <span class="bubble"><i data-lucide="file-search"></i></span>
+          <span class="cap">Document<br>intelligence</span>
+        </a>
+        <a class="map-node" style="left:54.69%; top:57.50%;" href="services.html" data-node="rep" data-mx="700"  data-my="322">
+          <span class="bubble"><i data-lucide="chart-column"></i></span>
+          <span class="cap">Reporting<br>and analytics</span>
+        </a>
+        <a class="map-node" style="left:82.66%; top:72.14%;" href="services.html" data-node="sup" data-mx="1058" data-my="404">
+          <span class="bubble"><i data-lucide="headphones"></i></span>
+          <span class="cap">Support<br>automation</span>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================================================
+     LOGO WALL
+     PLACEHOLDER NAMES: dummies. Replace with real client marks.
+     ============================================================ -->
+<section class="section--afterHero">
+  <div class="container">
+    <p class="label" style="text-align:center; margin-bottom: var(--s-5);">Teams running AIAgency systems in production</p>
+    <div class="logorows" data-reveal>
+      <div data-marquee="left" data-marquee-speed="42">
+        <div>
+          <span class="mq-item">Northbridge</span>
+          <span class="mq-item">Vertex</span>
+          <span class="mq-item">Calder &amp; Co</span>
+          <span class="mq-item">Meridian</span>
+          <span class="mq-item">Kestrel</span>
+          <span class="mq-item">Orsted Foods</span>
+        </div>
+      </div>
+
+      <div data-marquee="right" data-marquee-speed="42">
+        <div>
+          <span class="mq-item">Larkfield</span>
+          <span class="mq-item">Anselm Health</span>
+          <span class="mq-item">Brightpath</span>
+          <span class="mq-item">Tenway</span>
+          <span class="mq-item">Solent Group</span>
+          <span class="mq-item">Hollis &amp; Park</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     LAPTOP SHOWCASE
+     ============================================================ -->
+<section class="section section--band">
+  <div class="container">
+    <div class="section-head section-head--center" data-reveal-group="70">
+      <p class="label" data-reveal>What you end up with</p>
+      <h2 class="h2" data-reveal>One place where the work is visible.</h2>
+    </div>
+
+    <div class="stage" data-reveal>
+      <div class="laptop-lid">
+        <div class="laptop-cam"></div>
+        <div class="laptop-screen">
+
+          <div class="app">
+            <aside class="app-nav">
+              <div class="app-brand">
+                <img src="aiagency_logo.png" alt="" width="20" height="20">
+                AIAgency
+              </div>
+              <a class="on"><i data-lucide="layout-dashboard"></i>Overview</a>
+              <a><i data-lucide="workflow"></i>Workflows</a>
+              <a><i data-lucide="bot"></i>Agents</a>
+              <a><i data-lucide="database"></i>Sources</a>
+              <a><i data-lucide="file-text"></i>Documents</a>
+              <a><i data-lucide="settings"></i>Settings</a>
+            </aside>
+
+            <div class="app-body">
+              <div class="app-head">
+                <div>
+                  <p class="label">Operations</p>
+                  <p class="app-title">Order intake</p>
+                </div>
+                <span class="pill"><i data-lucide="circle-check"></i>Running</span>
+              </div>
+
+              <div class="kpis">
+                <div class="kpi">
+                  <span class="kpi-lab">Processed today</span>
+                  <span class="kpi-val">1,284</span>
+                  <span class="kpi-dlt"><i data-lucide="trending-up"></i>18% vs last week</span>
+                </div>
+                <div class="kpi">
+                  <span class="kpi-lab">Touched by a human</span>
+                  <span class="kpi-val">37</span>
+                  <span class="kpi-dlt"><i data-lucide="trending-down"></i>62% fewer</span>
+                </div>
+                <div class="kpi">
+                  <span class="kpi-lab">Avg. handling time</span>
+                  <span class="kpi-val">11s</span>
+                  <span class="kpi-dlt"><i data-lucide="trending-down"></i>from 6m 40s</span>
+                </div>
+              </div>
+
+              <div class="panel">
+                <div class="panel-hd"><span>Throughput</span><span class="label">Last 30 days</span></div>
+                <svg viewBox="0 0 640 110" preserveAspectRatio="none" style="width:100%; height:104px;" aria-hidden="true">
+                  <path d="M0 90 L48 82 L96 86 L144 68 L192 72 L240 55 L288 59 L336 42 L384 47 L432 31 L480 35 L528 22 L576 26 L640 13 L640 110 L0 110 Z" fill="var(--accent-tint)"/>
+                  <path d="M0 90 L48 82 L96 86 L144 68 L192 72 L240 55 L288 59 L336 42 L384 47 L432 31 L480 35 L528 22 L576 26 L640 13" fill="none" stroke="var(--accent)" stroke-width="2"/>
+                </svg>
+              </div>
+
+              <div class="panel">
+                <div class="panel-hd"><span>Recent runs</span><span class="label">Live</span></div>
+                <div class="rowline"><span class="t">09:42:18</span><span>Invoice parsed and matched to PO</span><span class="s"><i data-lucide="check"></i>Done</span></div>
+                <div class="rowline"><span class="t">09:41:56</span><span>Vendor record updated in CRM</span><span class="s"><i data-lucide="check"></i>Done</span></div>
+                <div class="rowline"><span class="t">09:41:03</span><span>Exception routed to finance</span><span class="s"><i data-lucide="check"></i>Done</span></div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <div class="laptop-base"></div>
+
+      <div class="win--float">
+        <div class="float-hd"><strong>Last run</strong><span class="label">2.4s</span></div>
+        <div class="step-row"><i data-lucide="download"></i>Fetched 42 documents<span class="ms">0.3s</span></div>
+        <div class="step-row"><i data-lucide="scan-text"></i>Extracted line items<span class="ms">0.9s</span></div>
+        <div class="step-row"><i data-lucide="git-compare-arrows"></i>Reconciled against ledger<span class="ms">0.8s</span></div>
+        <div class="step-row"><i data-lucide="send"></i>Pushed to accounting<span class="ms">0.4s</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SERVICES
+     PLACEHOLDER CATEGORIES: confirm the real service list.
+     ============================================================ -->
+<section class="section" id="services">
+  <div class="container">
+    <div class="section-head" data-reveal-group="70">
+      <p class="label" data-reveal>What we do</p>
+      <h2 class="h2" data-reveal>Four ways we put AI to work.</h2>
+    </div>
+
+    <div class="cols" data-reveal-group="70">
+    <article data-reveal>
+      <span class="col-ico"><i data-lucide="workflow"></i></span>
+      <p class="label label--accent">01</p>
+      <h3 class="h3">Workflow automation</h3>
+      <p class="small muted">The repetitive path a task takes through your business, rebuilt so it runs without anyone pushing it along.</p>
+    </article>
+
+    <article data-reveal>
+      <span class="col-ico"><i data-lucide="bot"></i></span>
+      <p class="label label--accent">02</p>
+      <h3 class="h3">Custom AI agents</h3>
+      <p class="small muted">Systems that read, decide and act inside your own tools, with the limits and the audit trail written in from the start.</p>
+    </article>
+
+    <article data-reveal>
+      <span class="col-ico"><i data-lucide="database"></i></span>
+      <p class="label label--accent">03</p>
+      <h3 class="h3">Data and system integration</h3>
+      <p class="small muted">Getting the systems you already pay for to agree with each other, so there is one version of the numbers.</p>
+    </article>
+
+    <article data-reveal>
+      <span class="col-ico"><i data-lucide="compass"></i></span>
+      <p class="label label--accent">04</p>
+      <h3 class="h3">AI strategy and review</h3>
+      <p class="small muted">Where AI is worth the effort in your business and where it is not, before anybody writes code.</p>
+    </article>
+    </div>
+
+    <div style="margin-top: var(--s-6);">
+      <a class="tlink" href="services.html">All services <i data-lucide="arrow-right"></i></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     FLOW DIAGRAM
+     ============================================================ -->
+<section class="section section--band">
+  <div class="container">
+    <div class="section-head" data-reveal-group="70">
+      <p class="label" data-reveal>What an engagement produces</p>
+      <h2 class="h2" data-reveal>Scattered inputs in. One system out.</h2>
+    </div>
+
+    <figure class="diagram-wrap" data-reveal>
+      <div class="diagram-scroll">
+        <svg class="diagram" viewBox="0 0 1060 460" role="img"
+             aria-label="Five scattered business inputs converge into one AIAgency system which produces unified data, automated workflows and reporting.">
+
+          <g class="dg-text" data-reveal-group="60">
+            <g data-reveal><rect class="dg-box dg-box--in" x="40" y="27" width="170" height="46" rx="3"/><text x="58" y="55">CRM records</text></g>
+            <g data-reveal><rect class="dg-box dg-box--in" x="40" y="117" width="170" height="46" rx="3"/><text x="58" y="145">Spreadsheets</text></g>
+            <g data-reveal><rect class="dg-box dg-box--in" x="40" y="207" width="170" height="46" rx="3"/><text x="58" y="235">Inbox</text></g>
+            <g data-reveal><rect class="dg-box dg-box--in" x="40" y="297" width="170" height="46" rx="3"/><text x="58" y="325">Support tickets</text></g>
+            <g data-reveal><rect class="dg-box dg-box--in" x="40" y="387" width="170" height="46" rx="3"/><text x="58" y="415">Documents</text></g>
+          </g>
+
+          <g>
+            <path class="dg-wire" d="M210 50  H360 V230 H536" data-draw style="--aa-delay:0ms"/>
+            <path class="dg-wire" d="M210 140 H400 V230 H536" data-draw style="--aa-delay:180ms"/>
+            <path class="dg-wire" d="M210 230 H536"           data-draw style="--aa-delay:360ms"/>
+            <path class="dg-wire" d="M210 320 H400 V230 H536" data-draw style="--aa-delay:540ms"/>
+            <path class="dg-wire" d="M210 410 H360 V230 H536" data-draw style="--aa-delay:720ms"/>
+
+            <path class="dg-live" d="M210 50  H360 V230 H536" data-measure style="--d:0ms"/>
+            <path class="dg-live" d="M210 140 H400 V230 H536" data-measure style="--d:70ms"/>
+            <path class="dg-live" d="M210 230 H536"           data-measure style="--d:140ms"/>
+            <path class="dg-live" d="M210 320 H400 V230 H536" data-measure style="--d:70ms"/>
+            <path class="dg-live" d="M210 410 H360 V230 H536" data-measure style="--d:0ms"/>
+          </g>
+
+          <circle class="dg-ring" cx="600" cy="230" r="80" data-orbit/>
+          <circle cx="600" cy="230" r="64" fill="var(--canvas)" stroke="var(--ink-3)" stroke-width="1.2"/>
+          <image href="aiagency_logo.png" x="576" y="206" width="48" height="48" data-reveal/>
+          <text class="dg-cap" x="600" y="332" text-anchor="middle">AIAGENCY</text>
+
+          <g>
+            <path class="dg-wire" d="M664 230 H770 V130 H840" data-draw style="--aa-delay:900ms"/>
+            <path class="dg-wire" d="M664 230 H840"           data-draw style="--aa-delay:1020ms"/>
+            <path class="dg-wire" d="M664 230 H770 V330 H840" data-draw style="--aa-delay:1140ms"/>
+
+            <path class="dg-live" d="M664 230 H770 V130 H840" data-measure style="--d:560ms"/>
+            <path class="dg-live" d="M664 230 H840"           data-measure style="--d:560ms"/>
+            <path class="dg-live" d="M664 230 H770 V330 H840" data-measure style="--d:560ms"/>
+          </g>
+
+          <g class="dg-text dg-text--out" data-reveal-group="60">
+            <g data-reveal><rect class="dg-box" x="840" y="104" width="180" height="52" rx="3"/><text x="860" y="135">Unified data</text></g>
+            <g data-reveal><rect class="dg-box" x="840" y="204" width="180" height="52" rx="3"/><text x="860" y="235">Automated workflows</text></g>
+            <g data-reveal><rect class="dg-box" x="840" y="304" width="180" height="52" rx="3"/><text x="860" y="335">Reporting you trust</text></g>
+          </g>
+        </svg>
+      </div>
+    </figure>
+  </div>
+</section>
+
+<!-- ============================================================
+     PROCESS
+     ============================================================ -->
+<section class="section" id="process">
+  <div class="container">
+    <div class="section-head" data-reveal-group="70">
+      <p class="label" data-reveal>Process</p>
+      <h2 class="h2" data-reveal>How a project actually runs.</h2>
+    </div>
+
+    <div class="rail" data-reveal-group="70">
+      <div class="rstep" data-reveal>
+        <span class="rdot">01</span>
+        <span class="rstage">Discovery</span>
+        <h3 class="h3">Map it before touching it</h3>
+        <p class="small muted">We sit with the people who do the work and write down what actually happens, including the parts nobody documented. The map is yours either way.</p>
+      </div>
+
+      <div class="rstep" data-reveal>
+        <span class="rdot">02</span>
+        <span class="rstage">Design</span>
+        <h3 class="h3">Scope agreed in writing</h3>
+        <p class="small muted">What gets built, what it connects to, what working means, and what it costs. No code starts until you have signed that off.</p>
+      </div>
+
+      <div class="rstep" data-reveal>
+        <span class="rdot">03</span>
+        <span class="rstage">Build</span>
+        <h3 class="h3">Shipped weekly, in your stack</h3>
+        <p class="small muted">Working software in front of you every week, running in your own environment rather than a demo of ours.</p>
+      </div>
+
+      <div class="rstep" data-reveal>
+        <span class="rdot">04</span>
+        <span class="rstage">Handover</span>
+        <h3 class="h3">You own it when we leave</h3>
+        <p class="small muted">Documentation, a walkthrough with your team, and the repository in your account. Support afterwards is a choice, not a dependency.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     STATS
+     PLACEHOLDER NUMBERS: replace or cut all four.
+     ============================================================ -->
+<section class="section--tight section--band">
+  <div class="container">
+    <div class="stats" data-reveal>
+      <div class="stat">
+        <span class="stat-num" data-count="24" data-count-suffix="+">0</span>
+        <span class="label">Systems in production</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num" data-count="6" data-count-suffix=" wks">0</span>
+        <span class="label">Median time to first release</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num" data-count="40" data-count-suffix="%">0</span>
+        <span class="label">Manual steps removed, average</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num" data-count="100" data-count-suffix="%">0</span>
+        <span class="label">Code ownership transferred</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     FAQ
+     ============================================================ -->
+<section class="section" id="faq">
+  <div class="container">
+    <div class="section-head section-head--center" data-reveal-group="70">
+      <p class="label" data-reveal>Questions</p>
+      <h2 class="h2" data-reveal>Before you book a call.</h2>
+    </div>
+
+    <div class="faq" data-reveal>
+      <div class="faq-item" data-accordion>
+        <button class="aa-acc-trigger" type="button">Do we own the code you write?<span class="aa-acc-sign" aria-hidden="true"></span></button>
+        <div class="aa-acc-body"><div><p>Yes. The repository sits in your account from the first commit, not ours. There is no license to keep paying and nothing to unlock.</p></div></div>
+      </div>
+
+      <div class="faq-item" data-accordion>
+        <button class="aa-acc-trigger" type="button">How long does a typical project take?<span class="aa-acc-sign" aria-hidden="true"></span></button>
+        <div class="aa-acc-body"><div><p>A focused pilot runs four to six weeks from first call to something running in production. A full build is usually eight to sixteen weeks depending on how many systems it has to touch. We give you a fixed scope and a date before anything starts.</p></div></div>
+      </div>
+
+      <div class="faq-item" data-accordion>
+        <button class="aa-acc-trigger" type="button">Do you work with the tools we already use?<span class="aa-acc-sign" aria-hidden="true"></span></button>
+        <div class="aa-acc-body"><div><p>We build inside your existing stack rather than asking you to move onto ours. Replacing a working system is a decision you should make for your own reasons, not because of how we prefer to work.</p></div></div>
+      </div>
+
+      <div class="faq-item" data-accordion>
+        <button class="aa-acc-trigger" type="button">What happens after launch?<span class="aa-acc-sign" aria-hidden="true"></span></button>
+        <div class="aa-acc-body"><div><p>You can take it from there with the documentation and walkthrough we provide, or keep us on a support retainer. Plenty of clients do the first. We would rather you stay because the next project is worth doing, not because you cannot run the last one without us.</p></div></div>
+      </div>
+
+      <div class="faq-item" data-accordion>
+        <button class="aa-acc-trigger" type="button">How is our data handled?<span class="aa-acc-sign" aria-hidden="true"></span></button>
+        <div class="aa-acc-body"><div><p>Systems run in your own cloud account wherever possible, so your data does not sit with us. Where a third party model provider is involved we tell you exactly which one, what it sees, and what it retains, before you sign anything.</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     CTA
+     ============================================================ -->
+<section class="section section--dark">
+  <div class="container">
+    <div class="cta" data-reveal-group="70">
+      <p class="label" data-reveal>Next step</p>
+      <h2 class="h2" data-reveal>Tell us what is held together by hand.</h2>
+      <p class="lede" data-reveal style="text-align:center;">
+        A first call is a working session, not a pitch. Bring one process that
+        costs you time and we will tell you whether it is worth automating,
+        including when the answer is no.
+      </p>
+      <div class="hero-actions" data-reveal>
+        <a class="btn btn--primary" href="contact.html">Book a call <i class="btn-arrow" data-lucide="arrow-right"></i></a>
+        <!-- REPLACE: real WhatsApp number -->
+        <a class="btn btn--onDark" href="https://wa.me/000000000000"><i data-lucide="message-circle"></i>Message on WhatsApp</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <a class="brand" href="index.html" aria-label="AIAgency home">
+          <img src="aiagency_logo.png" alt="" width="26" height="26">
+          <span class="brand-name">AIAgency</span>
+        </a>
+        <p class="small muted" style="max-width: 34ch;">AI and automation systems, designed and shipped end to end.</p>
+      </div>
+
+      <div class="footer-col">
+        <p class="label">Site</p>
+        <a href="index.html">Home</a>
+        <a href="services.html">Services</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="blog.html">Blog</a>
+        <a href="contact.html">Contact</a>
+      </div>
+
+      <div class="footer-col">
+        <p class="label">Contact</p>
+        <a href="mailto:hello@aiagency.so"><i data-lucide="mail"></i>hello@aiagency.so</a>
+        <a href="https://wa.me/000000000000"><i data-lucide="message-circle"></i>WhatsApp</a>
+        <a href="contact.html"><i data-lucide="calendar"></i>Book a call</a>
+      </div>
+
+      <div class="footer-col">
+        <p class="label">Legal</p>
+        <a href="privacy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span class="small">&copy; 2026 AIAgency</span>
+      <span class="label">aiagency.so</span>
+    </div>
+  </div>
+</footer>
+
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+<script src="aa-map.js" defer></script>
+<script src="aa-motion.js" defer></script>
+<script>
+  window.addEventListener('load', function () {
+    if (window.lucide) lucide.createIcons();
+  });
+</script>
+</body>
+</html>

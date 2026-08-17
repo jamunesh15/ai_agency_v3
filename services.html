@@ -1,0 +1,359 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Services | AIAgency</title>
+<meta name="description" content="Services from AIAgency: workflow automation, custom AI agents, document intelligence, assistants, integrations, AI strategy, web and mobile apps, backend and cloud.">
+<link rel="canonical" href="https://aiagency.so/services">
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://aiagency.so/services">
+<meta property="og:title" content="Services | AIAgency">
+<meta property="og:description" content="AI, automation, and the engineering around it.">
+<meta property="og:image" content="https://aiagency.so/og.png">
+<meta name="twitter:card" content="summary_large_image">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://aiagency.so/" },
+    { "@type": "ListItem", "position": 2, "name": "Services", "item": "https://aiagency.so/services" }
+  ]
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="aa-motion.css">
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="nav" data-nav="20">
+  <div class="container">
+    <div class="nav-shell">
+      <a class="brand" href="index.html" aria-label="AIAgency home">
+        <img class="aa-nav-mark" src="aiagency_logo.png" alt="" width="30" height="30">
+        <span class="brand-name">AIAgency</span>
+      </a>
+
+      <nav class="nav-links" aria-label="Primary">
+        <a href="index.html">Home</a>
+        <a href="services.html" aria-current="page">Services</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="blog.html">Blog</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+
+      <div class="nav-cta">
+        <a class="btn btn--primary btn--sm" href="contact.html">Book a call</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ============================================================
+     PAGE HERO
+     ============================================================ -->
+<section class="page-hero page-hero--wide">
+  <div class="container">
+    <div class="split split--screen">
+      <div data-reveal-group="70">
+        <p class="label" data-reveal>Services</p>
+        <h1 class="display" data-reveal style="margin-top: var(--s-4);">What we provide.</h1>
+        <p class="lede" data-reveal style="margin-top: var(--s-4);">AI, automation, and the engineering around it.</p>
+
+        <div class="split-list" data-reveal-group="70">
+          <div class="split-item" data-reveal><i data-lucide="bot"></i><span>AI agents and automation</span></div>
+          <div class="split-item" data-reveal><i data-lucide="database"></i><span>Data, APIs and integrations</span></div>
+          <div class="split-item" data-reveal><i data-lucide="layout-dashboard"></i><span>Web and mobile products</span></div>
+          <div class="split-item" data-reveal><i data-lucide="cloud"></i><span>Backend, cloud and DevOps</span></div>
+        </div>
+
+        <div class="hero-actions" data-reveal style="justify-content:flex-start; margin-top: var(--s-6);">
+          <a class="btn btn--primary" href="contact.html">Book a call <i class="btn-arrow" data-lucide="arrow-right"></i></a>
+          <a class="btn btn--ghost" href="pricing.html"><i data-lucide="tag"></i> See pricing</a>
+        </div>
+      </div>
+
+      <!-- macOS window with a code panel. the output lines cycle so it
+           reads as something running, with no invented timings. -->
+      <div class="mac" data-reveal>
+        <div class="mac-bar">
+          <span class="mac-lights"><i></i><i></i><i></i></span>
+          <span class="mac-title">order_intake.py</span>
+        </div>
+
+        <div class="mac-code" data-typewriter="38" data-typewriter-rows=".src"
+             data-typewriter-hold="4200" data-typewriter-then=".mac-out">
+          <div class="row"><span class="ln">1</span><span class="src"><span class="tok-k">from</span> aiagency <span class="tok-k">import</span> Agent, Source</span><span class="caret"></span></div>
+          <div class="row"><span class="ln">2</span><span class="src"> </span><span class="caret"></span></div>
+          <div class="row"><span class="ln">3</span><span class="src">agent <span class="tok-p">=</span> Agent<span class="tok-p">(</span></span><span class="caret"></span></div>
+          <div class="row"><span class="ln">4</span><span class="src">    name<span class="tok-p">=</span><span class="tok-s">"order-intake"</span><span class="tok-p">,</span></span><span class="caret"></span></div>
+          <div class="row"><span class="ln">5</span><span class="src">    tools<span class="tok-p">=[</span>erp.lookup, stock.check<span class="tok-p">],</span></span><span class="caret"></span></div>
+          <div class="row"><span class="ln">6</span><span class="src">    escalate<span class="tok-p">=</span><span class="tok-s">"finance"</span><span class="tok-p">,</span>  <span class="tok-c"># humans decide</span></span><span class="caret"></span></div>
+          <div class="row"><span class="ln">7</span><span class="src"><span class="tok-p">)</span></span><span class="caret"></span></div>
+          <div class="row"><span class="ln">8</span><span class="src"> </span><span class="caret"></span></div>
+          <div class="row"><span class="ln">9</span><span class="src">agent.<span class="tok-k">run</span><span class="tok-p">(</span>Source.inbox<span class="tok-p">(</span><span class="tok-s">"orders@"</span><span class="tok-p">))</span></span><span class="caret"></span></div>
+        </div>
+
+        <div class="mac-out">
+          <div style="--d:0ms"    class="dim">&rsaquo; running order-intake</div>
+          <div style="--d:340ms"  class="ok">&check; read 42 documents</div>
+          <div style="--d:680ms"  class="ok">&check; matched 41 to purchase orders</div>
+          <div style="--d:1020ms" class="dim">&rsaquo; 1 exception escalated to finance</div>
+          <div style="--d:1360ms" class="ok">&check; written to the ERP</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     RADIAL SERVICE DIAGRAM
+     Every spoke shares one 3.4s clock and differs only by delay, so
+     each box can darken exactly as its own pulse lands.
+
+     PLACEHOLDER LIST: eight for the design pass. Swap for the CEO's
+     real service names before launch.
+     ============================================================ -->
+<section class="section">
+  <div class="container">
+    <div class="section-head section-head--center" data-reveal-group="70">
+      <p class="label" data-reveal>What we do</p>
+      <h2 class="h2" data-reveal>One team, every layer.</h2>
+    </div>
+
+    <div class="radial" data-reveal>
+      <!-- wires run past the box edge on purpose. the boxes are opaque and
+           sit above, so the overlap hides any rounding mismatch between a
+           percentage-positioned box and a viewBox-positioned line. -->
+      <svg class="radial-svg" viewBox="0 0 1280 660" aria-hidden="true">
+        <g>
+          <path class="rad-wire" d="M640 330 H460 V80  H300" data-draw style="--aa-delay:0ms"/>
+          <path class="rad-wire" d="M640 330 H460 V245 H300" data-draw style="--aa-delay:120ms"/>
+          <path class="rad-wire" d="M640 330 H460 V415 H300" data-draw style="--aa-delay:240ms"/>
+          <path class="rad-wire" d="M640 330 H460 V580 H300" data-draw style="--aa-delay:360ms"/>
+          <path class="rad-wire" d="M640 330 H820 V80  H990" data-draw style="--aa-delay:60ms"/>
+          <path class="rad-wire" d="M640 330 H820 V245 H990" data-draw style="--aa-delay:180ms"/>
+          <path class="rad-wire" d="M640 330 H820 V415 H990" data-draw style="--aa-delay:300ms"/>
+          <path class="rad-wire" d="M640 330 H820 V580 H990" data-draw style="--aa-delay:420ms"/>
+        </g>
+
+        <g>
+          <path class="rad-pulse" d="M640 330 H460 V80  H300" data-measure style="--d:0ms"/>
+          <path class="rad-pulse" d="M640 330 H820 V80  H990" data-measure style="--d:425ms"/>
+          <path class="rad-pulse" d="M640 330 H460 V245 H300" data-measure style="--d:850ms"/>
+          <path class="rad-pulse" d="M640 330 H820 V245 H990" data-measure style="--d:1275ms"/>
+          <path class="rad-pulse" d="M640 330 H460 V415 H300" data-measure style="--d:1700ms"/>
+          <path class="rad-pulse" d="M640 330 H820 V415 H990" data-measure style="--d:2125ms"/>
+          <path class="rad-pulse" d="M640 330 H460 V580 H300" data-measure style="--d:2550ms"/>
+          <path class="rad-pulse" d="M640 330 H820 V580 H990" data-measure style="--d:2975ms"/>
+        </g>
+
+        <circle class="rad-ring" cx="640" cy="330" r="84" data-orbit/>
+      </svg>
+
+      <div class="rad-hub">
+        <img src="aiagency_logo.png" alt="AIAgency" width="56" height="56">
+      </div>
+
+      <!-- left column -->
+      <a class="rad-node" href="contact.html" style="left:14.5%; top:12.12%; --d:0ms">
+        <span class="rad-ico"><i data-lucide="workflow"></i></span>
+        <span><h3>Workflow automation</h3><p>Runs itself, no one pushing</p></span>
+      </a>
+      <a class="rad-node" href="contact.html" style="left:14.5%; top:37.12%; --d:850ms">
+        <span class="rad-ico"><i data-lucide="bot"></i></span>
+        <span><h3>Custom AI agents</h3><p>Systems that decide and act</p></span>
+      </a>
+      <a class="rad-node" href="contact.html" style="left:14.5%; top:62.88%; --d:1700ms">
+        <span class="rad-ico"><i data-lucide="file-search"></i></span>
+        <span><h3>Document intelligence</h3><p>Documents into clean records</p></span>
+      </a>
+      <a class="rad-node" href="contact.html" style="left:14.5%; top:87.88%; --d:2550ms">
+        <span class="rad-ico"><i data-lucide="message-square"></i></span>
+        <span><h3>Assistants and chat</h3><p>Answers from your own content</p></span>
+      </a>
+
+      <!-- right column -->
+      <a class="rad-node" href="contact.html" style="left:85.5%; top:12.12%; --d:425ms">
+        <span class="rad-ico"><i data-lucide="database"></i></span>
+        <span><h3>Data integration</h3><p>One version of the numbers</p></span>
+      </a>
+      <a class="rad-node" href="contact.html" style="left:85.5%; top:37.12%; --d:1275ms">
+        <span class="rad-ico"><i data-lucide="compass"></i></span>
+        <span><h3>AI strategy and review</h3><p>Where AI is worth the effort</p></span>
+      </a>
+      <a class="rad-node" href="contact.html" style="left:85.5%; top:62.88%; --d:2125ms">
+        <span class="rad-ico"><i data-lucide="layout-dashboard"></i></span>
+        <span><h3>Web and mobile apps</h3><p>Products your team will use</p></span>
+      </a>
+      <a class="rad-node" href="contact.html" style="left:85.5%; top:87.88%; --d:2975ms">
+        <span class="rad-ico"><i data-lucide="server"></i></span>
+        <span><h3>Backend and cloud</h3><p>APIs and infrastructure that hold</p></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     ENGAGEMENT TYPES
+     ============================================================ -->
+<section class="section section--band" id="engagements">
+  <div class="container">
+    <div class="section-head section-head--center" data-reveal-group="70">
+      <p class="label" data-reveal>How to start</p>
+      <h2 class="h2" data-reveal>How to work with us.</h2>
+    </div>
+
+    <div class="cols cols--3" data-reveal-group="70">
+      <article data-reveal>
+        <span class="col-ico"><i data-lucide="flask-conical"></i></span>
+        <p class="label label--accent">Pilot</p>
+        <h3 class="h3">One process, proven</h3>
+        <p class="small muted">Fixed scope, short timeline, yours to keep.</p>
+        <a class="tlink" href="pricing.html">See pricing <i data-lucide="arrow-right"></i></a>
+      </article>
+
+      <article data-reveal>
+        <span class="col-ico"><i data-lucide="hammer"></i></span>
+        <p class="label label--accent">Full build</p>
+        <h3 class="h3">The whole system</h3>
+        <p class="small muted">Discovery through handover, end to end.</p>
+        <a class="tlink" href="pricing.html">See pricing <i data-lucide="arrow-right"></i></a>
+      </article>
+
+      <article data-reveal>
+        <span class="col-ico"><i data-lucide="repeat"></i></span>
+        <p class="label label--accent">Ongoing</p>
+        <h3 class="h3">A team on retainer</h3>
+        <p class="small muted">Standing capacity, priced monthly.</p>
+        <a class="tlink" href="pricing.html">See pricing <i data-lucide="arrow-right"></i></a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     PROCESS
+     ============================================================ -->
+<section class="section" id="process">
+  <div class="container">
+    <div class="section-head" data-reveal-group="70">
+      <p class="label" data-reveal>Process</p>
+      <h2 class="h2" data-reveal>How a project actually runs.</h2>
+    </div>
+
+    <div class="rail" data-reveal-group="70">
+      <div class="rstep" data-reveal>
+        <span class="rdot">01</span>
+        <span class="rstage">Discovery</span>
+        <h3 class="h3">Map it before touching it</h3>
+        <p class="small muted">We write down what actually happens.</p>
+      </div>
+
+      <div class="rstep" data-reveal>
+        <span class="rdot">02</span>
+        <span class="rstage">Design</span>
+        <h3 class="h3">Scope agreed in writing</h3>
+        <p class="small muted">Architecture and cost, signed off first.</p>
+      </div>
+
+      <div class="rstep" data-reveal>
+        <span class="rdot">03</span>
+        <span class="rstage">Build</span>
+        <h3 class="h3">Shipped weekly, in your stack</h3>
+        <p class="small muted">Working software in front of you.</p>
+      </div>
+
+      <div class="rstep" data-reveal>
+        <span class="rdot">04</span>
+        <span class="rstage">Handover</span>
+        <h3 class="h3">You own it when we leave</h3>
+        <p class="small muted">Docs, walkthrough, repo in your account.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     CTA
+     ============================================================ -->
+<section class="section section--dark">
+  <div class="container">
+    <div class="cta" data-reveal-group="70">
+      <p class="label" data-reveal>Next step</p>
+      <h2 class="h2" data-reveal>Not sure which one you need?</h2>
+      <p class="lede" data-reveal style="text-align:center;">Bring one process that costs you time.</p>
+      <div class="hero-actions" data-reveal>
+        <a class="btn btn--primary" href="contact.html">Book a call <i class="btn-arrow" data-lucide="arrow-right"></i></a>
+        <!-- REPLACE: real WhatsApp number -->
+        <a class="btn btn--onDark" href="https://wa.me/000000000000"><i data-lucide="message-circle"></i>Message on WhatsApp</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <a class="brand" href="index.html" aria-label="AIAgency home">
+          <img src="aiagency_logo.png" alt="" width="26" height="26">
+          <span class="brand-name">AIAgency</span>
+        </a>
+        <p class="small muted" style="max-width: 34ch;">AI and automation systems, designed and shipped end to end.</p>
+      </div>
+
+      <div class="footer-col">
+        <p class="label">Site</p>
+        <a href="index.html">Home</a>
+        <a href="services.html">Services</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="blog.html">Blog</a>
+        <a href="contact.html">Contact</a>
+      </div>
+
+      <div class="footer-col">
+        <p class="label">Contact</p>
+        <a href="mailto:hello@aiagency.so"><i data-lucide="mail"></i>hello@aiagency.so</a>
+        <a href="https://wa.me/000000000000"><i data-lucide="message-circle"></i>WhatsApp</a>
+        <a href="contact.html"><i data-lucide="calendar"></i>Book a call</a>
+      </div>
+
+      <div class="footer-col">
+        <p class="label">Legal</p>
+        <a href="privacy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span class="small">&copy; 2026 AIAgency</span>
+      <span class="label">aiagency.so</span>
+    </div>
+  </div>
+</footer>
+
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+<script src="aa-motion.js" defer></script>
+<script>
+  window.addEventListener('load', function () {
+    if (window.lucide) lucide.createIcons();
+  });
+</script>
+</body>
+</html>
