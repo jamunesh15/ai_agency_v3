@@ -2716,12 +2716,10 @@ a { color: inherit; }
   padding-bottom: 14px;
   border-bottom: 1px solid var(--line);
   margin-bottom: 6px;
-  font-family: var(--mono);
-  font-size: 10.5px;
+  font-size: 16px;
   font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--ink-2);
+  letter-spacing: -0.01em;
+  color: var(--ink);
 }
 
 .cform-hd span:last-child { color: var(--ink-3); }
@@ -2730,11 +2728,8 @@ a { color: inherit; }
 
 .field label {
   display: block;
-  font-family: var(--mono);
-  font-size: 10.5px;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: 600;
   color: var(--ink);
   margin-bottom: 7px;
 }
@@ -2767,11 +2762,7 @@ a { color: inherit; }
 .cform-note {
   margin-top: 12px;
   text-align: center;
-  font-family: var(--mono);
-  font-size: 10px;
-  font-weight: 500;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+  font-size: 13px;
   color: var(--ink-3);
 }
 
