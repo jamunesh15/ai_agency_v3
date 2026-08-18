@@ -543,10 +543,29 @@ a { color: inherit; }
 
 .ov-bars {
   width: 100%;
-  flex: 1;
-  min-height: 110px;
+  height: 112px;
+  flex: none;
   display: block;
 }
+
+/* recent runs list under the chart, pinned to the panel bottom */
+.ov-runs { margin-top: auto; padding-top: 8px; }
+
+.ov-runs > div {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 7px 0;
+  border-top: 1px dashed var(--line);
+  font-family: var(--mono);
+  font-size: 11px;
+}
+
+.ov-runs .t { color: var(--ink-3); }
+.ov-runs i { margin-left: auto; font-style: normal; color: var(--accent-text); }
+
+/* not enough panel height for the list on smaller screens */
+@media (max-width: 1200px) { .ov-runs { display: none; } }
 
 /* summary row pinned to the panel bottom */
 .ap-more {
