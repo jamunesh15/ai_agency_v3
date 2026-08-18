@@ -174,7 +174,7 @@ button { font: inherit; }
   box-shadow: 0 12px 30px -20px rgba(14,16,15,0.45);
 }
 .brand { display: flex; align-items: center; gap: var(--s-3); }
-.brand-name { font-weight: 600; letter-spacing: -0.022em; font-size: 17px; }
+.brand-name { font-weight: 600; letter-spacing: -0.022em; font-size: 17px; white-space: nowrap; }
 .nav-links { display: flex; gap: var(--s-6); margin-left: auto; font-size: var(--t-small); }
 /* underline grows out from the left on hover, and stays put on the page
    you are actually on */

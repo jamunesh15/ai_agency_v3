@@ -1,5 +1,5 @@
 /* ============================================================
-   aa-motion.js — AIAgency motion primitives
+   aa-motion.js — AI Agency motion primitives
    No dependencies. Pairs with aa-motion.css.
 
    Usage (plain HTML):
