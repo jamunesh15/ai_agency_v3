@@ -1,0 +1,391 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="icon" type="image/png" href="/aiagency_logo.png">
+<link rel="apple-touch-icon" href="/aiagency_logo.png">
+<meta name="theme-color" content="#EDECE9">
+
+<title>Why most AI pilots never reach production | AIAgency</title>
+<meta name="description" content="The model is rarely why an AI pilot dies. The systems around it are: ingestion, permissions, exceptions, logging, and handover. What reaching production actually takes.">
+<link rel="canonical" href="https://aiagency.so/blog/why-ai-pilots-fail">
+
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://aiagency.so/blog/why-ai-pilots-fail">
+<meta property="og:title" content="Why most AI pilots never reach production">
+<meta property="og:description" content="The model is rarely the problem. The unglamorous systems around it are.">
+<meta property="og:image" content="https://aiagency.so/og.png">
+<meta name="twitter:card" content="summary_large_image">
+
+<!-- PLACEHOLDER: swap the Organization author for a real named
+     person when one is decided. A named author helps rankings. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Why most AI pilots never reach production",
+  "description": "The model is rarely why an AI pilot dies. The systems around it are.",
+  "datePublished": "2026-08-18",
+  "dateModified": "2026-08-18",
+  "author": { "@type": "Organization", "name": "AIAgency", "url": "https://aiagency.so/" },
+  "publisher": { "@type": "Organization", "name": "AIAgency", "url": "https://aiagency.so/" },
+  "mainEntityOfPage": "https://aiagency.so/blog/why-ai-pilots-fail"
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://aiagency.so/" },
+    { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://aiagency.so/blog" },
+    { "@type": "ListItem", "position": 3, "name": "Why most AI pilots never reach production", "item": "https://aiagency.so/blog/why-ai-pilots-fail" }
+  ]
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../aa-motion.css">
+<link rel="stylesheet" href="../home.css">
+</head>
+
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<div class="sheet">
+
+<header class="nav" data-nav="20">
+  <div class="wrap">
+    <div class="nav-shell">
+      <a class="brand" href="../index.html" aria-label="AIAgency home">
+        <img class="aa-nav-mark" src="../aiagency_logo.png" alt="" width="28" height="28">
+        <span class="brand-name">AIAgency</span>
+      </a>
+
+      <nav class="nav-links" aria-label="Primary">
+        <a href="../index.html">Home</a>
+        <a href="../services.html">Services</a>
+        <a href="../pricing.html">Pricing</a>
+        <a href="../blog.html" aria-current="page">Blog</a>
+        <a href="../contact.html">Contact</a>
+      </nav>
+
+      <a class="btn btn--primary btn--sm" href="../contact.html">Book a call</a>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ============================================================
+     ARTICLE. this file is the template every post copies.
+     SAMPLE CONTENT: a real draft, review before publishing.
+     ============================================================ -->
+<div class="wrap">
+  <div class="post-hd">
+    <div>
+      <p class="crumbs"><a href="../blog.html">Blog</a> / Engineering</p>
+      <h1>Why most AI pilots never reach production.</h1>
+      <p class="standfirst">
+        The model is rarely the problem. The unglamorous systems around it
+        are, and almost nobody scopes them before the demo gets applause.
+      </p>
+      <!-- PLACEHOLDER: real named author when decided -->
+      <div class="postline">
+        <span class="ava">AA</span>
+        <span class="bmeta">AIAgency &middot; 18 Aug 2026</span>
+      </div>
+    </div>
+
+    <span class="cover" aria-hidden="true">
+      <svg viewBox="0 0 520 330" aria-hidden="true">
+            <path d="M150 120 H210 V80 H270" fill="none" stroke="#92918C" stroke-width="1.2" stroke-dasharray="3 5"/>
+            <path d="M150 190 H210 V230 H270" fill="none" stroke="#92918C" stroke-width="1.2" stroke-dasharray="3 5"/>
+            <path d="M390 80 H430 V155 H470" fill="none" stroke="#92918C" stroke-width="1.2" stroke-dasharray="3 5"/>
+            <rect x="40" y="95" width="110" height="120" fill="#fff" stroke="#5B5B57"/>
+            <rect x="54" y="115" width="76" height="8" rx="4" fill="#ECEBE7"/>
+            <rect x="54" y="133" width="58" height="8" rx="4" fill="rgba(62,207,142,0.45)"/>
+            <rect x="54" y="151" width="68" height="8" rx="4" fill="#ECEBE7"/>
+            <rect x="54" y="169" width="46" height="8" rx="4" fill="#ECEBE7"/>
+            <rect x="54" y="187" width="62" height="8" rx="4" fill="#ECEBE7"/>
+            <rect x="270" y="50" width="120" height="60" fill="rgba(62,207,142,0.12)" stroke="#0F8A57"/>
+            <rect x="284" y="68" width="70" height="7" rx="3.5" fill="rgba(62,207,142,0.5)"/>
+            <rect x="284" y="84" width="52" height="7" rx="3.5" fill="rgba(62,207,142,0.35)"/>
+            <rect x="270" y="200" width="120" height="60" fill="#fff" stroke="#5B5B57"/>
+            <rect x="284" y="218" width="74" height="7" rx="3.5" fill="#ECEBE7"/>
+            <rect x="284" y="234" width="50" height="7" rx="3.5" fill="#ECEBE7"/>
+            <rect x="466" y="151" width="8" height="8" fill="#3ECF8E"/>
+            <rect x="146" y="116" width="8" height="8" fill="#3ECF8E"/>
+            <rect x="146" y="186" width="8" height="8" fill="#3ECF8E"/>
+            <rect x="266" y="76" width="8" height="8" fill="#3ECF8E"/>
+            <rect x="266" y="226" width="8" height="8" fill="#3ECF8E"/>
+          </svg>
+    </span>
+  </div>
+
+  <div class="post-grid">
+    <aside class="toc">
+      <p class="toc-lab">Table of contents</p>
+      <ol>
+        <li><a href="#demo">The demo is not the product</a></li>
+        <li><a href="#systems">The systems nobody scopes</a></li>
+        <li><a href="#exceptions">Exceptions are the real product</a></li>
+        <li><a href="#production">What reaching production takes</a></li>
+      </ol>
+
+      <div class="toc-cta">
+        <b>Planning a first project?</b>
+        <a class="btn btn--primary btn--sm" href="../contact.html">Book a call</a>
+      </div>
+    </aside>
+
+    <article class="post-col">
+  <div class="art-body">
+    <p>
+      Most AI pilots die the same way. The demo goes well, everyone agrees the
+      technology works, and then the project quietly stalls somewhere between
+      the meeting room and the systems where the real work happens. Months
+      later somebody asks what happened to it, and nobody has a precise answer.
+    </p>
+
+    <p>
+      Having watched this cycle from both sides, we think the reason is
+      simpler and less flattering than "the technology was not ready". The
+      pilot was scoped as a model problem. Production is a systems problem.
+    </p>
+
+    <h2 id="demo">The demo is not the product</h2>
+
+    <p>
+      A demo answers one question: can the model do the clever part? It reads
+      a document, drafts a reply, extracts the fields, and the room nods. But
+      the clever part was never the risky part. The risky part is everything
+      the demo skipped: where the documents come from, who is allowed to see
+      them, what happens when the model is wrong, and who finds out.
+    </p>
+
+    <p>
+      The gap between the two is not effort, it is scope. These are different
+      pieces of software that happen to share a model.
+    </p>
+
+    <h2 id="systems">The systems nobody scopes</h2>
+
+    <p>
+      Every pilot that reached production with us needed the same supporting
+      cast, and none of it appears in a demo:
+    </p>
+
+    <ul>
+      <li><b>Ingestion.</b> Work arrives through inboxes, drives, scanners and people. It is late, duplicated, and in the wrong format.</li>
+      <li><b>Permissions.</b> The model sees documents on behalf of people. Somebody has to decide, precisely, which people.</li>
+      <li><b>Exceptions.</b> The cases the system should refuse to decide, and the route those cases take to a person.</li>
+      <li><b>Logging.</b> A record of what was read, what was decided, and why, written for the person who asks about it later.</li>
+      <li><b>Monitoring.</b> Something that notices when quality drifts, before a customer does.</li>
+      <li><b>Handover.</b> Documentation and a walkthrough, so the team can run it without the people who built it.</li>
+    </ul>
+
+    <h2 id="exceptions">Exceptions are the real product</h2>
+
+    <p>
+      Of that list, exceptions deserve the most design attention, because they
+      are where trust is won or lost. A system that only handles the clean
+      cases has not removed the work, it has removed the easy part of the work
+      and left people the residue, with less context than they had before.
+    </p>
+
+    <blockquote>
+      A system that handles the happy path handles nothing yet.
+    </blockquote>
+
+    <p>
+      In practice this means the escalation rule is written before the prompt
+      is. Who receives the doubtful case, what arrives attached to it, and
+      what the system does while it waits. The rule tends to be short. Writing
+      it forces every conversation the pilot postponed.
+    </p>
+
+    <pre><code>on_low_confidence:
+  stop            # do not act on a guess
+  attach: [document, extraction, reason]
+  route: finance-review
+  wait: human_decision</code></pre>
+
+    <h2 id="production">What reaching production actually takes</h2>
+
+    <p>
+      None of this argues against pilots. Small first projects are the sane
+      way to start. It argues for scoping the pilot as a slice of the real
+      system rather than a rehearsal of the demo: real documents from the real
+      source, real permissions, a real person receiving the exceptions, and a
+      log from the first day.
+    </p>
+
+    <p>
+      Scoped that way, the pilot is production, just small. Growing it is a
+      decision about coverage, not a second project with its own risk of
+      stalling. That is the difference between a pilot that becomes
+      infrastructure and one that becomes a slide in somebody's quarterly
+      review.
+    </p>
+
+    <p>
+      If you are planning a first project, start with the process, not the
+      model. Map where the work comes from, who touches it, and where it has
+      to land. The model is the easy third of the build.
+    </p>
+  </div>
+
+    </article>
+  </div>
+</div>
+
+<!-- ============================================================
+     KEEP READING. internal links. PLACEHOLDER targets until the
+     next posts are written.
+     ============================================================ -->
+<section class="section band">
+  <div class="wrap">
+    <div class="sec-head" data-reveal>
+      <div>
+        <p class="kicker">Keep reading</p>
+        <h2 class="h2">More notes.</h2>
+      </div>
+    </div>
+
+    <div class="bgrid">
+
+      <a class="bcard" href="../blog.html">
+        <span class="cover" aria-hidden="true"><svg viewBox="0 0 300 190"><path d="M55 55 H150 V95 H245" fill="none" stroke="#92918C" stroke-width="1.4" stroke-dasharray="3 5"/><path d="M55 135 H150 V95" fill="none" stroke="#92918C" stroke-width="1.4" stroke-dasharray="3 5"/><rect x="50" y="50" width="10" height="10" fill="#3ECF8E"/><rect x="50" y="130" width="10" height="10" fill="#3ECF8E"/><rect x="145" y="90" width="10" height="10" fill="#3ECF8E"/><rect x="240" y="90" width="10" height="10" fill="#3ECF8E"/></svg></span>
+        <span class="bcard-body">
+          <h3>Designing escalation paths for agents</h3>
+          <p class="exc">Knowing when the system should stop deciding and hand the case to a person.</p>
+          <span class="bcard-ft">
+            <span class="bcat">[Agents]</span>
+            <span class="bmeta">4 Aug 2026</span>
+          </span>
+        </span>
+      </a>
+
+      <a class="bcard" href="../blog.html">
+        <span class="cover" aria-hidden="true"><svg viewBox="0 0 300 190"><rect x="70" y="50" width="80" height="8" rx="4" fill="#ECEBE7"/><rect x="90" y="70" width="130" height="8" rx="4" fill="rgba(62,207,142,0.45)"/><rect x="90" y="90" width="100" height="8" rx="4" fill="#ECEBE7"/><rect x="90" y="110" width="70" height="8" rx="4" fill="#ECEBE7"/><rect x="70" y="130" width="50" height="8" rx="4" fill="#ECEBE7"/></svg></span>
+        <span class="bcard-body">
+          <h3>Extraction that survives a bad scan</h3>
+          <p class="exc">Real invoices are crooked, stapled and photographed. The pipeline has to expect that.</p>
+          <span class="bcard-ft">
+            <span class="bcat">[Data]</span>
+            <span class="bmeta">28 Jul 2026</span>
+          </span>
+        </span>
+      </a>
+
+      <a class="bcard" href="../services.html">
+        <span class="cover" aria-hidden="true"><svg viewBox="0 0 300 190"><rect x="100" y="35" width="100" height="120" fill="#fff" stroke="#5B5B57"/><rect x="114" y="55" width="66" height="7" rx="3.5" fill="#ECEBE7"/><rect x="114" y="71" width="48" height="7" rx="3.5" fill="rgba(62,207,142,0.45)"/><rect x="114" y="87" width="58" height="7" rx="3.5" fill="#ECEBE7"/><rect x="114" y="103" width="40" height="7" rx="3.5" fill="#ECEBE7"/><rect x="114" y="119" width="54" height="7" rx="3.5" fill="#ECEBE7"/></svg></span>
+        <span class="bcard-body">
+          <h3>What we provide</h3>
+          <p class="exc">The work we take on, from automation to full builds.</p>
+          <span class="bcard-ft">
+            <span class="bcat">[Services]</span>
+            <span class="bmeta">From the site</span>
+          </span>
+        </span>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+</main>
+
+</div><!-- /sheet -->
+
+<!-- ============================================================
+     FOOTER. same shell as the rest of the site.
+     REPLACE: WhatsApp number, city line.
+     ============================================================ -->
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-cta">
+      <p class="kicker">Next step</p>
+      <h2 class="h2">Planning a first project?</h2>
+      <p class="lede">Bring the process, we will map it with you.</p>
+      <div class="actions">
+        <a class="btn btn--primary" href="../contact.html">Book a call <i data-lucide="arrow-right"></i></a>
+        <!-- REPLACE: real WhatsApp number -->
+        <a class="btn btn--paper" href="https://wa.me/000000000000">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413"/></svg>
+          Message on WhatsApp
+        </a>
+      </div>
+    </div>
+
+    <div class="foot-grid">
+      <div class="foot-col">
+        <a class="brand" href="../index.html" aria-label="AIAgency home">
+          <img src="../aiagency_logo.png" alt="" width="26" height="26">
+          <span class="brand-name">AIAgency</span>
+        </a>
+        <p class="brand-line">AI and automation systems, designed and shipped end to end.</p>
+      </div>
+
+      <div class="foot-col">
+        <p class="label">Site</p>
+        <a href="../index.html">Home</a>
+        <a href="../services.html">Services</a>
+        <a href="../pricing.html">Pricing</a>
+        <a href="../blog.html">Blog</a>
+        <a href="../contact.html">Contact</a>
+      </div>
+
+      <div class="foot-col">
+        <p class="label">Contact</p>
+        <a href="mailto:hello@aiagency.so">hello@aiagency.so</a>
+        <a href="https://wa.me/000000000000">WhatsApp</a>
+        <a href="../contact.html">Book a call</a>
+      </div>
+
+      <div class="foot-col">
+        <p class="label">Legal</p>
+        <a href="../privacy.html">Privacy</a>
+        <a href="../terms.html">Terms</a>
+      </div>
+    </div>
+
+    <div class="foot-bottom">
+      <span>&copy; 2026 AIAgency</span>
+      <!-- REPLACE: real city and country -->
+      <span>City, Country</span>
+      <span class="clock">Asia/Kolkata <b id="aa-clock">--:--:--</b></span>
+    </div>
+  </div>
+</footer>
+
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+<script src="../aa-motion.js" defer></script>
+<script>
+  window.addEventListener('load', function () {
+    if (window.lucide) lucide.createIcons();
+  });
+
+  /* live IST clock in the footer */
+  (function () {
+    var el = document.getElementById('aa-clock');
+    if (!el) return;
+    var fmt = new Intl.DateTimeFormat('en-GB', {
+      timeZone: 'Asia/Kolkata',
+      hour: '2-digit', minute: '2-digit', second: '2-digit',
+      hour12: false
+    });
+    function tick() { el.textContent = fmt.format(new Date()); }
+    tick();
+    setInterval(tick, 1000);
+  })();
+</script>
+</body>
+</html>

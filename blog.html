@@ -6,37 +6,51 @@
 
 <link rel="icon" type="image/png" href="/aiagency_logo.png">
 <link rel="apple-touch-icon" href="/aiagency_logo.png">
-<meta name="theme-color" content="#0E100F">
+<meta name="theme-color" content="#EDECE9">
 
-<title>Engineering notes | AIAgency</title>
-<meta name="description" content="In-depth engineering writing from AIAgency on building AI and automation systems that reach production.">
+<title>Engineering notes on AI systems | AIAgency</title>
+<meta name="description" content="Writing from AIAgency on building AI and automation systems that reach production: agents, document pipelines, integrations, and the engineering around them.">
 <link rel="canonical" href="https://aiagency.so/blog">
 
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://aiagency.so/blog">
-<meta property="og:title" content="Engineering notes | AIAgency">
-<meta property="og:description" content="In-depth writing on building AI systems that reach production.">
+<meta property="og:title" content="Engineering notes on AI systems | AIAgency">
+<meta property="og:description" content="Writing on building AI systems that reach production.">
 <meta property="og:image" content="https://aiagency.so/og.png">
 <meta name="twitter:card" content="summary_large_image">
 
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  "name": "AIAgency engineering notes",
+  "url": "https://aiagency.so/blog",
+  "description": "Writing on building AI and automation systems that reach production.",
+  "publisher": { "@type": "Organization", "name": "AIAgency", "url": "https://aiagency.so/" }
+}
+</script>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="aa-motion.css">
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="home.css">
 </head>
 
 <body>
 <a class="skip" href="#main">Skip to content</a>
 
+<div class="sheet">
+
 <header class="nav" data-nav="20">
-  <div class="container">
+  <div class="wrap">
     <div class="nav-shell">
       <a class="brand" href="index.html" aria-label="AIAgency home">
-        <img class="aa-nav-mark" src="aiagency_logo.png" alt="" width="30" height="30">
+        <img class="aa-nav-mark" src="aiagency_logo.png" alt="" width="28" height="28">
         <span class="brand-name">AIAgency</span>
       </a>
+
       <nav class="nav-links" aria-label="Primary">
         <a href="index.html">Home</a>
         <a href="services.html">Services</a>
@@ -44,129 +58,201 @@
         <a href="blog.html" aria-current="page">Blog</a>
         <a href="contact.html">Contact</a>
       </nav>
-      <div class="nav-cta">
-        <a class="btn btn--primary btn--sm" href="contact.html">Book a call</a>
-      </div>
+
+      <a class="btn btn--primary btn--sm" href="contact.html">Book a call</a>
     </div>
   </div>
 </header>
 
 <main id="main">
 
-<section class="page-hero">
-  <div class="container">
-    <div class="page-hero-inner" data-reveal-group="70">
-      <p class="label" data-reveal>Blog</p>
-      <h1 class="display" data-reveal>Engineering notes.</h1>
-      <p class="lede" data-reveal style="text-align:center;">What we learned building the last thing.</p>
+<!-- ============================================================
+     HERO. compact, no page-name kicker.
+     ============================================================ -->
+<section class="hero hero--blog">
+  <div class="wrap">
+    <div class="hero-copy" data-reveal-group="70">
+      <h1 class="display" data-reveal>
+        The AIAgency blog.
+      </h1>
     </div>
   </div>
 </section>
 
 <!-- ============================================================
-     POSTS
-     PLACEHOLDER: every title, date and read time below is invented
-     to show the layout. Replace with real posts before launch.
-
-     Each post becomes its own markdown file in the Next.js build, so
-     adding one is adding a file, not touching this page.
+     FEATURED POST. links to the real sample article.
+     PLACEHOLDER: dates and read times are samples.
      ============================================================ -->
-<section class="section">
-  <div class="container">
+<section class="section" style="padding-top: clamp(20px, 2.6vw, 36px);">
+  <div class="wrap">
 
-    <article class="post-feature" data-reveal>
-      <div class="post-body">
-        <div class="post-meta">
-          <span class="tag">Engineering</span>
-          <span class="label">12 min read</span>
+    <article class="bfeat" data-reveal>
+      <div>
+        <span class="bcat">[Engineering]</span>
+        <h2><a href="blog/why-ai-pilots-fail.html">Why most AI pilots never reach production.</a></h2>
+        <p class="exc">The model is rarely the problem. The unglamorous systems around it are, and almost nobody scopes them before the demo gets applause.</p>
+        <!-- PLACEHOLDER: real named author -->
+        <div class="postline">
+          <span class="ava">AA</span>
+          <span class="bmeta">AIAgency &middot; 18 Aug 2026</span>
         </div>
-        <h3>Why most AI pilots never reach production.</h3>
-        <p class="muted">The failure is almost never the model. It is the six unglamorous systems around it that nobody scoped.</p>
-        <a class="tlink" href="#">Read the post <i data-lucide="arrow-right"></i></a>
+        <a class="tlink" href="blog/why-ai-pilots-fail.html" style="margin-top:20px; display:inline-flex;">Read the post <i data-lucide="arrow-right"></i></a>
       </div>
+
+      <span class="cover" aria-hidden="true">
+        <svg viewBox="0 0 520 330" aria-hidden="true">
+            <path d="M150 120 H210 V80 H270" fill="none" stroke="#92918C" stroke-width="1.2" stroke-dasharray="3 5"/>
+            <path d="M150 190 H210 V230 H270" fill="none" stroke="#92918C" stroke-width="1.2" stroke-dasharray="3 5"/>
+            <path d="M390 80 H430 V155 H470" fill="none" stroke="#92918C" stroke-width="1.2" stroke-dasharray="3 5"/>
+            <rect x="40" y="95" width="110" height="120" fill="#fff" stroke="#5B5B57"/>
+            <rect x="54" y="115" width="76" height="8" rx="4" fill="#ECEBE7"/>
+            <rect x="54" y="133" width="58" height="8" rx="4" fill="rgba(62,207,142,0.45)"/>
+            <rect x="54" y="151" width="68" height="8" rx="4" fill="#ECEBE7"/>
+            <rect x="54" y="169" width="46" height="8" rx="4" fill="#ECEBE7"/>
+            <rect x="54" y="187" width="62" height="8" rx="4" fill="#ECEBE7"/>
+            <rect x="270" y="50" width="120" height="60" fill="rgba(62,207,142,0.12)" stroke="#0F8A57"/>
+            <rect x="284" y="68" width="70" height="7" rx="3.5" fill="rgba(62,207,142,0.5)"/>
+            <rect x="284" y="84" width="52" height="7" rx="3.5" fill="rgba(62,207,142,0.35)"/>
+            <rect x="270" y="200" width="120" height="60" fill="#fff" stroke="#5B5B57"/>
+            <rect x="284" y="218" width="74" height="7" rx="3.5" fill="#ECEBE7"/>
+            <rect x="284" y="234" width="50" height="7" rx="3.5" fill="#ECEBE7"/>
+            <rect x="466" y="151" width="8" height="8" fill="#3ECF8E"/>
+            <rect x="146" y="116" width="8" height="8" fill="#3ECF8E"/>
+            <rect x="146" y="186" width="8" height="8" fill="#3ECF8E"/>
+            <rect x="266" y="76" width="8" height="8" fill="#3ECF8E"/>
+            <rect x="266" y="226" width="8" height="8" fill="#3ECF8E"/>
+          </svg>
+      </span>
     </article>
 
-    <div class="posts" data-reveal-group="70">
-
-      <article class="post" data-reveal>
-        <div class="post-body">
-          <div class="post-meta"><span class="tag">Architecture</span><span class="label">8 min</span></div>
-          <h3><a href="#">Fine-tuning or retrieval, and how to tell</a></h3>
-          <p class="small muted">A decision most teams make backwards.</p>
-        </div>
-      </article>
-
-      <article class="post" data-reveal>
-        <div class="post-body">
-          <div class="post-meta"><span class="tag">Agents</span><span class="label">10 min</span></div>
-          <h3><a href="#">Designing escalation paths for agents</a></h3>
-          <p class="small muted">Knowing when the system should stop deciding.</p>
-        </div>
-      </article>
-
-      <article class="post" data-reveal>
-        <div class="post-body">
-          <div class="post-meta"><span class="tag">Documents</span><span class="label">9 min</span></div>
-          <h3><a href="#">Extraction that survives a bad scan</a></h3>
-          <p class="small muted">Real invoices are crooked, stapled and photographed.</p>
-        </div>
-      </article>
-
-      <article class="post" data-reveal>
-        <div class="post-body">
-          <div class="post-meta"><span class="tag">Operations</span><span class="label">7 min</span></div>
-          <h3><a href="#">Keeping model costs from quietly tripling</a></h3>
-          <p class="small muted">Where the spend actually goes, measured.</p>
-        </div>
-      </article>
-
-      <article class="post" data-reveal>
-        <div class="post-body">
-          <div class="post-meta"><span class="tag">Testing</span><span class="label">11 min</span></div>
-          <h3><a href="#">Testing a system that is not deterministic</a></h3>
-          <p class="small muted">What a passing test even means here.</p>
-        </div>
-      </article>
-
-      <article class="post" data-reveal>
-        <div class="post-body">
-          <div class="post-meta"><span class="tag">Migration</span><span class="label">6 min</span></div>
-          <h3><a href="#">Turning a spreadsheet process into a service</a></h3>
-          <p class="small muted">The spreadsheet was never the problem.</p>
-        </div>
-      </article>
-
+    <!-- filter tabs. static until the Next.js build adds filtering. -->
+    <div class="tabset" aria-hidden="true">
+      <span class="on">All</span>
+      <span>Engineering</span>
+      <span>Agents</span>
+      <span>Data</span>
+      <span>Testing</span>
+      <span>Operations</span>
     </div>
-  </div>
-</section>
 
-<section class="section section--dark">
-  <div class="container">
-    <div class="cta" data-reveal-group="70">
-      <p class="label" data-reveal>Next step</p>
-      <h2 class="h2" data-reveal>Working on one of these?</h2>
-      <p class="lede" data-reveal style="text-align:center;">Bring it to a call and we will go through it.</p>
-      <div class="hero-actions" data-reveal>
-        <a class="btn btn--primary" href="contact.html">Book a call <i class="btn-arrow" data-lucide="arrow-right"></i></a>
-        <a class="btn btn--onDark" href="services.html"><i data-lucide="layers"></i>See what we provide</a>
-      </div>
+    <!-- ========================================================
+         POST CARDS.
+         PLACEHOLDER: all six are invented to show the layout.
+         Each becomes its own file in blog/ when written, and gets
+         added to sitemap.xml.
+         ======================================================== -->
+    <div class="bgrid">
+
+      <a class="bcard" href="#">
+        <span class="cover" aria-hidden="true"><svg viewBox="0 0 300 190"><rect x="100" y="35" width="100" height="120" fill="#fff" stroke="#5B5B57"/><rect x="114" y="55" width="66" height="7" rx="3.5" fill="#ECEBE7"/><rect x="114" y="71" width="48" height="7" rx="3.5" fill="rgba(62,207,142,0.45)"/><rect x="114" y="87" width="58" height="7" rx="3.5" fill="#ECEBE7"/><rect x="114" y="103" width="40" height="7" rx="3.5" fill="#ECEBE7"/><rect x="114" y="119" width="54" height="7" rx="3.5" fill="#ECEBE7"/></svg></span>
+        <span class="bcard-body">
+          <h3>Fine-tuning or retrieval, and how to tell</h3>
+          <p class="exc">A decision most teams make backwards, and the questions that settle it early.</p>
+          <span class="bcard-ft">
+            <span class="bcat">[Architecture]</span>
+            <span class="bmeta">11 Aug 2026</span>
+          </span>
+        </span>
+      </a>
+
+      <a class="bcard" href="#">
+        <span class="cover" aria-hidden="true"><svg viewBox="0 0 300 190"><path d="M55 55 H150 V95 H245" fill="none" stroke="#92918C" stroke-width="1.4" stroke-dasharray="3 5"/><path d="M55 135 H150 V95" fill="none" stroke="#92918C" stroke-width="1.4" stroke-dasharray="3 5"/><rect x="50" y="50" width="10" height="10" fill="#3ECF8E"/><rect x="50" y="130" width="10" height="10" fill="#3ECF8E"/><rect x="145" y="90" width="10" height="10" fill="#3ECF8E"/><rect x="240" y="90" width="10" height="10" fill="#3ECF8E"/></svg></span>
+        <span class="bcard-body">
+          <h3>Designing escalation paths for agents</h3>
+          <p class="exc">Knowing when the system should stop deciding and hand the case to a person.</p>
+          <span class="bcard-ft">
+            <span class="bcat">[Agents]</span>
+            <span class="bmeta">4 Aug 2026</span>
+          </span>
+        </span>
+      </a>
+
+      <a class="bcard" href="#">
+        <span class="cover" aria-hidden="true"><svg viewBox="0 0 300 190"><rect x="70" y="50" width="80" height="8" rx="4" fill="#ECEBE7"/><rect x="90" y="70" width="130" height="8" rx="4" fill="rgba(62,207,142,0.45)"/><rect x="90" y="90" width="100" height="8" rx="4" fill="#ECEBE7"/><rect x="90" y="110" width="70" height="8" rx="4" fill="#ECEBE7"/><rect x="70" y="130" width="50" height="8" rx="4" fill="#ECEBE7"/></svg></span>
+        <span class="bcard-body">
+          <h3>Extraction that survives a bad scan</h3>
+          <p class="exc">Real invoices are crooked, stapled and photographed. The pipeline has to expect that.</p>
+          <span class="bcard-ft">
+            <span class="bcat">[Data]</span>
+            <span class="bmeta">28 Jul 2026</span>
+          </span>
+        </span>
+      </a>
+
+      <a class="bcard" href="#">
+        <span class="cover" aria-hidden="true"><svg viewBox="0 0 300 190"><rect x="55" y="110" width="24" height="50" rx="3" fill="#3ECF8E" opacity="0.45"/><rect x="91" y="90" width="24" height="70" rx="3" fill="#3ECF8E" opacity="0.6"/><rect x="127" y="120" width="24" height="40" rx="3" fill="#3ECF8E" opacity="0.5"/><rect x="163" y="70" width="24" height="90" rx="3" fill="#3ECF8E" opacity="0.75"/><rect x="199" y="95" width="24" height="65" rx="3" fill="#3ECF8E" opacity="0.9"/><line x1="40" y1="160.5" x2="260" y2="160.5" stroke="#DCDBD6"/></svg></span>
+        <span class="bcard-body">
+          <h3>Keeping model costs from quietly climbing</h3>
+          <p class="exc">Where the spend actually goes, and the habits that keep it visible.</p>
+          <span class="bcard-ft">
+            <span class="bcat">[Operations]</span>
+            <span class="bmeta">21 Jul 2026</span>
+          </span>
+        </span>
+      </a>
+
+      <a class="bcard" href="#">
+        <span class="cover" aria-hidden="true"><svg viewBox="0 0 300 190"><g><rect x="80" y="48" width="16" height="16" rx="3" fill="#0F8A57"/><polyline points="84,56 87,60 92,52" fill="none" stroke="#fff" stroke-width="2"/></g><rect x="108" y="52" width="100" height="8" rx="4" fill="#ECEBE7"/><g><rect x="80" y="86" width="16" height="16" rx="3" fill="#0F8A57"/><polyline points="84,94 87,98 92,90" fill="none" stroke="#fff" stroke-width="2"/></g><rect x="108" y="90" width="80" height="8" rx="4" fill="#ECEBE7"/><g><rect x="80" y="124" width="16" height="16" rx="3" fill="#fff" stroke="#DCDBD6"/></g><rect x="108" y="128" width="90" height="8" rx="4" fill="#ECEBE7"/></svg></span>
+        <span class="bcard-body">
+          <h3>Testing a system that is not deterministic</h3>
+          <p class="exc">What a passing test even means when the output changes between runs.</p>
+          <span class="bcard-ft">
+            <span class="bcat">[Testing]</span>
+            <span class="bmeta">14 Jul 2026</span>
+          </span>
+        </span>
+      </a>
+
+      <a class="bcard" href="#">
+        <span class="cover" aria-hidden="true"><svg viewBox="0 0 300 190"><rect x="70" y="70" width="110" height="8" rx="4" fill="#ECEBE7"/><rect x="70" y="95" width="160" height="10" rx="5" fill="#EFEEEA"/><rect x="70" y="95" width="100" height="10" rx="5" fill="#3ECF8E"/><rect x="70" y="120" width="70" height="8" rx="4" fill="#ECEBE7"/></svg></span>
+        <span class="bcard-body">
+          <h3>Turning a spreadsheet process into a service</h3>
+          <p class="exc">The spreadsheet was never the problem. The copy-paste around it was.</p>
+          <span class="bcard-ft">
+            <span class="bcat">[Automation]</span>
+            <span class="bmeta">7 Jul 2026</span>
+          </span>
+        </span>
+      </a>
+
     </div>
   </div>
 </section>
 
 </main>
 
-<footer class="footer">
-  <div class="container">
-    <div class="footer-grid">
-      <div class="footer-col">
+</div><!-- /sheet -->
+
+<!-- ============================================================
+     FOOTER. same shell as the rest of the site.
+     REPLACE: WhatsApp number, city line.
+     ============================================================ -->
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-cta">
+      <p class="kicker">Next step</p>
+      <h2 class="h2">Working on one of these?</h2>
+      <p class="lede">Bring it to a call and we will go through it together.</p>
+      <div class="actions">
+        <a class="btn btn--primary" href="contact.html">Book a call <i data-lucide="arrow-right"></i></a>
+        <!-- REPLACE: real WhatsApp number -->
+        <a class="btn btn--paper" href="https://wa.me/000000000000">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413"/></svg>
+          Message on WhatsApp
+        </a>
+      </div>
+    </div>
+
+    <div class="foot-grid">
+      <div class="foot-col">
         <a class="brand" href="index.html" aria-label="AIAgency home">
           <img src="aiagency_logo.png" alt="" width="26" height="26">
           <span class="brand-name">AIAgency</span>
         </a>
-        <p class="small muted" style="max-width: 34ch;">AI and automation systems, designed and shipped end to end.</p>
+        <p class="brand-line">AI and automation systems, designed and shipped end to end.</p>
       </div>
-      <div class="footer-col">
+
+      <div class="foot-col">
         <p class="label">Site</p>
         <a href="index.html">Home</a>
         <a href="services.html">Services</a>
@@ -174,21 +260,26 @@
         <a href="blog.html">Blog</a>
         <a href="contact.html">Contact</a>
       </div>
-      <div class="footer-col">
+
+      <div class="foot-col">
         <p class="label">Contact</p>
-        <a href="mailto:hello@aiagency.so"><i data-lucide="mail"></i>hello@aiagency.so</a>
-        <a href="https://wa.me/000000000000"><i data-lucide="message-circle"></i>WhatsApp</a>
-        <a href="contact.html"><i data-lucide="calendar"></i>Book a call</a>
+        <a href="mailto:hello@aiagency.so">hello@aiagency.so</a>
+        <a href="https://wa.me/000000000000">WhatsApp</a>
+        <a href="contact.html">Book a call</a>
       </div>
-      <div class="footer-col">
+
+      <div class="foot-col">
         <p class="label">Legal</p>
         <a href="privacy.html">Privacy</a>
         <a href="terms.html">Terms</a>
       </div>
     </div>
-    <div class="footer-bottom">
-      <span class="small">&copy; 2026 AIAgency</span>
-      <span class="label">aiagency.so</span>
+
+    <div class="foot-bottom">
+      <span>&copy; 2026 AIAgency</span>
+      <!-- REPLACE: real city and country -->
+      <span>City, Country</span>
+      <span class="clock">Asia/Kolkata <b id="aa-clock">--:--:--</b></span>
     </div>
   </div>
 </footer>
@@ -196,7 +287,23 @@
 <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
 <script src="aa-motion.js" defer></script>
 <script>
-  window.addEventListener('load', function () { if (window.lucide) lucide.createIcons(); });
+  window.addEventListener('load', function () {
+    if (window.lucide) lucide.createIcons();
+  });
+
+  /* live IST clock in the footer */
+  (function () {
+    var el = document.getElementById('aa-clock');
+    if (!el) return;
+    var fmt = new Intl.DateTimeFormat('en-GB', {
+      timeZone: 'Asia/Kolkata',
+      hour: '2-digit', minute: '2-digit', second: '2-digit',
+      hour12: false
+    });
+    function tick() { el.textContent = fmt.format(new Date()); }
+    tick();
+    setInterval(tick, 1000);
+  })();
 </script>
 </body>
 </html>

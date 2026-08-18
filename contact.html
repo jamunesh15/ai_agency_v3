@@ -6,7 +6,7 @@
 
 <link rel="icon" type="image/png" href="/aiagency_logo.png">
 <link rel="apple-touch-icon" href="/aiagency_logo.png">
-<meta name="theme-color" content="#0E100F">
+<meta name="theme-color" content="#EDECE9">
 
 <title>Contact | AIAgency</title>
 <meta name="description" content="Book a call with AIAgency, message on WhatsApp, or email us. A first call is a working session, not a pitch.">
@@ -21,22 +21,25 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="aa-motion.css">
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="home.css">
 </head>
 
 <body>
 <a class="skip" href="#main">Skip to content</a>
 
+<div class="sheet">
+
 <header class="nav" data-nav="20">
-  <div class="container">
+  <div class="wrap">
     <div class="nav-shell">
       <a class="brand" href="index.html" aria-label="AIAgency home">
-        <img class="aa-nav-mark" src="aiagency_logo.png" alt="" width="30" height="30">
+        <img class="aa-nav-mark" src="aiagency_logo.png" alt="" width="28" height="28">
         <span class="brand-name">AIAgency</span>
       </a>
+
       <nav class="nav-links" aria-label="Primary">
         <a href="index.html">Home</a>
         <a href="services.html">Services</a>
@@ -44,9 +47,8 @@
         <a href="blog.html">Blog</a>
         <a href="contact.html" aria-current="page">Contact</a>
       </nav>
-      <div class="nav-cta">
-        <a class="btn btn--primary btn--sm" href="#book">Book a call</a>
-      </div>
+
+      <a class="btn btn--primary btn--sm" href="https://cal.com/chirag-lathiya/ai-agency" target="_blank" rel="noopener">Schedule a call</a>
     </div>
   </div>
 </header>
@@ -54,171 +56,175 @@
 <main id="main">
 
 <!-- ============================================================
-     HERO. contact methods left, booking right.
+     HERO. methods left, booking panel right.
      ============================================================ -->
-<section class="page-hero">
-  <div class="container">
-    <div class="split split--wideRight">
-      <div data-reveal-group="70">
-        <p class="label" data-reveal>Contact</p>
-        <h1 class="display" data-reveal style="margin-top: var(--s-4);">Let's talk.</h1>
-        <p class="lede" data-reveal style="margin-top: var(--s-4);">A first call is a working session, not a pitch.</p>
+<section class="hero hero--big">
+  <div class="wrap">
+    <div class="hero-grid">
 
-        <div class="contact-methods" data-reveal-group="70">
-          <!-- REPLACE: real Cal.com link -->
-          <a class="cmethod" href="#book" data-reveal>
-            <span class="ico"><i data-lucide="calendar"></i></span>
-            <span>
-              <h3>Book a call</h3>
-              <p>Pick a slot that suits you, one hour</p>
-            </span>
+      <div class="hero-copy" data-reveal-group="70">
+        <h1 class="display" data-reveal>
+          Let&rsquo;s talk.
+        </h1>
+
+        <p class="lede" data-reveal>
+          A first call is a working session, not a pitch.
+        </p>
+
+        <div class="actions" data-reveal>
+          <a class="btn btn--primary" href="https://cal.com/chirag-lathiya/ai-agency" target="_blank" rel="noopener">
+            Schedule a call <i data-lucide="arrow-up-right"></i>
           </a>
+        </div>
 
+        <div class="cm-list" data-reveal>
           <!-- REPLACE: real WhatsApp number -->
-          <a class="cmethod" href="https://wa.me/000000000000" data-reveal>
-            <span class="ico"><i data-lucide="message-circle"></i></span>
-            <span>
-              <h3>WhatsApp</h3>
-              <p>Quickest way to reach us</p>
-            </span>
+          <a class="cm-row" href="https://wa.me/000000000000">
+            <svg class="cm-ico" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413"/></svg>
+            Quickest way to reach us
+            <i class="go" data-lucide="arrow-up-right"></i>
           </a>
-
-          <a class="cmethod" href="mailto:hello@aiagency.so" data-reveal>
-            <span class="ico"><i data-lucide="mail"></i></span>
-            <span>
-              <h3>hello@aiagency.so</h3>
-              <p>For anything that needs detail</p>
-            </span>
+          <a class="cm-row" href="mailto:hello@aiagency.so">
+            <i class="cm-ico" data-lucide="mail"></i>
+            hello@aiagency.so
+            <i class="go" data-lucide="arrow-up-right"></i>
           </a>
         </div>
       </div>
 
-      <!-- ============================================================
-           REAL CAL.COM EMBED
-
-           Put your Cal link in data-cal-link below, in the form
-           "username/event-slug", for example "chiraglathiya/ai-agency".
-           The script at the bottom of this file then loads the live
-           Cal.com scheduler here, forced to light theme with the site's
-           green as brandColor, so it stops looking like a black widget
-           dropped on a white page.
-
-           While data-cal-link is empty the static calendar stays visible,
-           so the page never renders an empty box.
-
-           If Cal.com changes its loader, take the current snippet from
-           your own dashboard under Event Type, Embed, Inline.
-           ============================================================ -->
-      <div class="booking" id="book" data-reveal data-cal-link="">
-        <div class="booking-hd">
-          <span class="label">Book a call</span>
-          <span class="label">60 min &middot; Asia/Kolkata</span>
-        </div>
-
-        <div id="cal-inline" class="cal-embed" hidden></div>
-
-        <div class="cal-wrap">
-          <div>
-            <div class="cal-hd">
-              <b>August 2026</b>
-              <span class="cal-nav">
-                <span><i data-lucide="chevron-left"></i></span>
-                <span><i data-lucide="chevron-right"></i></span>
-              </span>
-            </div>
-
-            <div class="cal-dow">
-              <span>SUN</span><span>MON</span><span>TUE</span><span>WED</span><span>THU</span><span>FRI</span><span>SAT</span>
-            </div>
-
-            <div class="cal-grid">
-              <span class="off">26</span><span class="off">27</span><span class="off">28</span><span class="off">29</span><span class="off">30</span><span class="off">31</span><span>1</span>
-              <span>2</span><span class="on">3</span><span class="on">4</span><span class="on">5</span><span class="on">6</span><span class="on">7</span><span>8</span>
-              <span>9</span><span class="on">10</span><span class="on">11</span><span class="on">12</span><span class="on">13</span><span class="on">14</span><span>15</span>
-              <span>16</span><span class="on today">17</span><span class="on sel">18</span><span class="on">19</span><span class="on">20</span><span class="on">21</span><span>22</span>
-              <span>23</span><span class="on">24</span><span class="on">25</span><span class="on">26</span><span class="on">27</span><span class="on">28</span><span>29</span>
-              <span>30</span><span class="on">31</span><span class="off">1</span><span class="off">2</span><span class="off">3</span><span class="off">4</span><span class="off">5</span>
-            </div>
+      <!-- ========================================================
+           CONTACT FORM.
+           REPLACE: create a free Formspree form pointing at
+           hello@aiagency.so and put its endpoint in action="".
+           Until then submissions do not send, so keep the REPLACE
+           marker until it is wired.
+           ======================================================== -->
+      <div class="hero-shot hero-shot--fit">
+        <form class="cform" id="form" action="https://formspree.io/f/REPLACE" method="POST">
+          <div class="cform-hd">
+            <span>Send a message</span>
           </div>
 
-          <!-- the same three slots the live Cal.com page offers -->
-          <div class="cal-slots">
-            <span class="lab">Tue 18 Aug</span>
-            <div class="cal-slot">9:00pm</div>
-            <div class="cal-slot">10:00pm</div>
-            <div class="cal-slot">11:00pm</div>
+          <div class="field">
+            <label for="cf-name">Name</label>
+            <input id="cf-name" name="name" type="text" placeholder="Enter your name" required>
           </div>
-        </div>
+
+          <div class="field">
+            <label for="cf-email">Work email</label>
+            <input id="cf-email" name="email" type="email" placeholder="Enter your email" required>
+          </div>
+
+          <div class="field">
+            <label for="cf-phone">Contact number <span style="color:var(--ink-3); text-transform:none; letter-spacing:0;">(optional)</span></label>
+            <input id="cf-phone" name="phone" type="tel" placeholder="Enter your contact number">
+          </div>
+
+          <div class="field">
+            <label for="cf-company">Company</label>
+            <input id="cf-company" name="company" type="text" placeholder="Enter your company name">
+          </div>
+
+          <div class="field">
+            <label for="cf-msg">Describe where we can help</label>
+            <textarea id="cf-msg" name="message" placeholder="Tell us about the problem, in a few lines." required></textarea>
+          </div>
+
+          <button class="btn btn--primary" type="submit">Send message</button>
+
+          <p class="cform-note">Goes to hello@aiagency.so</p>
+        </form>
       </div>
+
     </div>
   </div>
 </section>
 
 <!-- ============================================================
-     WHAT TO BRING
+     WHAT TO BRING. intro left, four rows right.
      ============================================================ -->
-<section class="section section--band">
-  <div class="container">
-    <div class="section-head" data-reveal-group="70">
-      <p class="label" data-reveal>Before the call</p>
-      <h2 class="h2" data-reveal>What to bring.</h2>
-    </div>
+<section class="section band">
+  <div class="wrap">
+    <div class="process-grid">
+      <div class="process-intro" data-reveal>
+        <p class="kicker">Before the call</p>
+        <h2 class="h2">What to bring.</h2>
+        <p>Nothing is required. These four things make the hour go further.</p>
+      </div>
 
-    <div class="rail" data-reveal data-reveal-group="70">
-      <div class="rstep" data-reveal style="--d:0ms">
-        <span class="rdot">01</span>
-        <span class="rstage">The process</span>
-        <h3 class="h3">One that costs you time</h3>
-        <p class="small muted">The worst one, not the easiest one.</p>
-      </div>
-      <div class="rstep" data-reveal style="--d:800ms">
-        <span class="rdot">02</span>
-        <span class="rstage">The systems</span>
-        <h3 class="h3">Where it lives today</h3>
-        <p class="small muted">The tools and files it moves between.</p>
-      </div>
-      <div class="rstep" data-reveal style="--d:1600ms">
-        <span class="rdot">03</span>
-        <span class="rstage">The people</span>
-        <h3 class="h3">Who touches it</h3>
-        <p class="small muted">Bring one of them if you can.</p>
-      </div>
-      <div class="rstep" data-reveal style="--d:2400ms">
-        <span class="rdot">04</span>
-        <span class="rstage">The target</span>
-        <h3 class="h3">What good looks like</h3>
-        <p class="small muted">How you would know it worked.</p>
+      <div class="process-steps">
+        <div class="step">
+          <span class="step-meta"><span class="n">01</span><span class="stage">The task</span></span>
+          <div class="step-body">
+            <h3 class="h3">Which task eats your team&rsquo;s time</h3>
+            <p>The daily or weekly work that takes the most hours, like handling orders, invoices, or support messages.</p>
+          </div>
+        </div>
+
+        <div class="step">
+          <span class="step-meta"><span class="n">02</span><span class="stage">The tools</span></span>
+          <div class="step-body">
+            <h3 class="h3">Where that work happens</h3>
+            <p>The software and files it moves through, like email, Excel sheets, WhatsApp, or your CRM.</p>
+          </div>
+        </div>
+
+        <div class="step">
+          <span class="step-meta"><span class="n">03</span><span class="stage">The people</span></span>
+          <div class="step-body">
+            <h3 class="h3">Who does it today</h3>
+            <p>The person who runs this task knows the small details. Bring them on the call if you can.</p>
+          </div>
+        </div>
+
+        <div class="step">
+          <span class="step-meta"><span class="n">04</span><span class="stage">The goal</span></span>
+          <div class="step-body">
+            <h3 class="h3">What a win looks like for you</h3>
+            <p>What you want to change, like fewer manual hours, fewer mistakes, or faster replies to customers.</p>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- ============================================================
-     FAQ
+     FAQ. PLACEHOLDER: location answer needs the real details.
      ============================================================ -->
 <section class="section" id="faq">
-  <div class="container">
-    <div class="section-head section-head--center" data-reveal-group="70">
-      <p class="label" data-reveal>Questions</p>
-      <h2 class="h2" data-reveal>About the call.</h2>
-    </div>
+  <div class="wrap">
+    <div class="faq-grid">
+      <div class="faq-intro" data-reveal>
+        <p class="kicker">Questions</p>
+        <h2 class="h2">About the call.</h2>
+      </div>
 
-    <div class="faq" data-reveal>
-      <div class="faq-item" data-accordion>
-        <button class="aa-acc-trigger" type="button">How long does it take?<span class="aa-acc-sign" aria-hidden="true"></span></button>
-        <div class="aa-acc-body"><div><p>An hour. Most of it is us asking about how the work moves through your business today, so bring someone who actually does it if you can.</p></div></div>
-      </div>
-      <div class="faq-item" data-accordion>
-        <button class="aa-acc-trigger" type="button">Do we need to prepare anything?<span class="aa-acc-sign" aria-hidden="true"></span></button>
-        <div class="aa-acc-body"><div><p>No. The four things above help, but a rough description of the problem is enough to get somewhere useful in an hour.</p></div></div>
-      </div>
-      <div class="faq-item" data-accordion>
-        <button class="aa-acc-trigger" type="button">What comes out of it?<span class="aa-acc-sign" aria-hidden="true"></span></button>
-        <div class="aa-acc-body"><div><p>A clear read on whether the thing is worth building, and a rough shape and range if it is. If it is not worth building we will say so on the call.</p></div></div>
-      </div>
-      <div class="faq-item" data-accordion>
-        <button class="aa-acc-trigger" type="button">Where are you based?<span class="aa-acc-sign" aria-hidden="true"></span></button>
-        <div class="aa-acc-body"><div><p>[Answer with your real location and the time zones you cover.]</p></div></div>
+      <div class="faq">
+        <div class="faq-item" data-accordion>
+          <button class="aa-acc-trigger" type="button">What happens after I send the form?<span class="aa-acc-sign" aria-hidden="true"></span></button>
+          <div class="aa-acc-body"><div><p>We read it ourselves and reply by email to set up the call. No automated sequences, no mailing list, and your details are not shared with anyone else.</p></div></div>
+        </div>
+
+        <div class="faq-item" data-accordion>
+          <button class="aa-acc-trigger" type="button">How long is the first call?<span class="aa-acc-sign" aria-hidden="true"></span></button>
+          <div class="aa-acc-body"><div><p>About an hour. Most of it is us asking how the work moves through your business today, so bring someone who actually does it if you can.</p></div></div>
+        </div>
+
+        <div class="faq-item" data-accordion>
+          <button class="aa-acc-trigger" type="button">Do we need to prepare anything?<span class="aa-acc-sign" aria-hidden="true"></span></button>
+          <div class="aa-acc-body"><div><p>No. The four things above help, but a rough description of the problem is enough to get somewhere useful in an hour.</p></div></div>
+        </div>
+
+        <div class="faq-item" data-accordion>
+          <button class="aa-acc-trigger" type="button">Is the call a sales pitch?<span class="aa-acc-sign" aria-hidden="true"></span></button>
+          <div class="aa-acc-body"><div><p>It is a working session on your process, not a slide deck. The point of the hour is understanding the problem well enough to talk about it concretely.</p></div></div>
+        </div>
+
+        <div class="faq-item" data-accordion>
+          <button class="aa-acc-trigger" type="button">What if we are not sure AI fits our problem?<span class="aa-acc-sign" aria-hidden="true"></span></button>
+          <div class="aa-acc-body"><div><p>That is a normal starting point. Bring the problem anyway. Part of the call is working out whether it is worth building at all, and it is fine if the answer turns out to be no.</p></div></div>
+        </div>
       </div>
     </div>
   </div>
@@ -226,17 +232,24 @@
 
 </main>
 
-<footer class="footer">
-  <div class="container">
-    <div class="footer-grid">
-      <div class="footer-col">
+</div><!-- /sheet -->
+
+<!-- ============================================================
+     FOOTER. no CTA block here, the whole page is the CTA.
+     REPLACE: WhatsApp number, city line.
+     ============================================================ -->
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-grid" style="margin-top: 0; padding-top: 0; border-top: 0;">
+      <div class="foot-col">
         <a class="brand" href="index.html" aria-label="AIAgency home">
           <img src="aiagency_logo.png" alt="" width="26" height="26">
           <span class="brand-name">AIAgency</span>
         </a>
-        <p class="small muted" style="max-width: 34ch;">AI and automation systems, designed and shipped end to end.</p>
+        <p class="brand-line">AI and automation systems, designed and shipped end to end.</p>
       </div>
-      <div class="footer-col">
+
+      <div class="foot-col">
         <p class="label">Site</p>
         <a href="index.html">Home</a>
         <a href="services.html">Services</a>
@@ -244,21 +257,26 @@
         <a href="blog.html">Blog</a>
         <a href="contact.html">Contact</a>
       </div>
-      <div class="footer-col">
+
+      <div class="foot-col">
         <p class="label">Contact</p>
-        <a href="mailto:hello@aiagency.so"><i data-lucide="mail"></i>hello@aiagency.so</a>
-        <a href="https://wa.me/000000000000"><i data-lucide="message-circle"></i>WhatsApp</a>
-        <a href="#book"><i data-lucide="calendar"></i>Book a call</a>
+        <a href="mailto:hello@aiagency.so">hello@aiagency.so</a>
+        <a href="https://wa.me/000000000000">WhatsApp</a>
+        <a href="https://cal.com/chirag-lathiya/ai-agency" target="_blank" rel="noopener">Schedule a call</a>
       </div>
-      <div class="footer-col">
+
+      <div class="foot-col">
         <p class="label">Legal</p>
         <a href="privacy.html">Privacy</a>
         <a href="terms.html">Terms</a>
       </div>
     </div>
-    <div class="footer-bottom">
-      <span class="small">&copy; 2026 AIAgency</span>
-      <span class="label">aiagency.so</span>
+
+    <div class="foot-bottom">
+      <span>&copy; 2026 AIAgency</span>
+      <!-- REPLACE: real city and country -->
+      <span>City, Country</span>
+      <span class="clock">Asia/Kolkata <b id="aa-clock">--:--:--</b></span>
     </div>
   </div>
 </footer>
@@ -266,58 +284,24 @@
 <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
 <script src="aa-motion.js" defer></script>
 <script>
-  window.addEventListener('load', function () { if (window.lucide) lucide.createIcons(); });
+  window.addEventListener('load', function () {
+    if (window.lucide) lucide.createIcons();
+  });
 
-  /* Cal.com inline embed. Runs only once a real link is set on
-     [data-cal-link]; until then the static calendar stays put. */
+  /* live IST clock in the footer */
   (function () {
-    var host = document.querySelector('[data-cal-link]');
-    if (!host) return;
-
-    var link = (host.getAttribute('data-cal-link') || '').trim();
-    if (!link) return;
-
-    host.querySelector('.cal-wrap').hidden = true;
-    host.querySelector('#cal-inline').hidden = false;
-
-    (function (C, A, L) {
-      var p = function (a, ar) { a.q.push(ar); };
-      var d = C.document;
-      C.Cal = C.Cal || function () {
-        var cal = C.Cal, ar = arguments;
-        if (!cal.loaded) {
-          cal.ns = {}; cal.q = cal.q || [];
-          d.head.appendChild(d.createElement('script')).src = A;
-          cal.loaded = true;
-        }
-        if (ar[0] === L) {
-          var api = function () { p(api, arguments); };
-          var namespace = ar[1];
-          api.q = api.q || [];
-          if (typeof namespace === 'string') { cal.ns[namespace] = api; p(api, ar); }
-          else { p(cal, ar); }
-          return;
-        }
-        p(cal, ar);
-      };
-    })(window, 'https://app.cal.com/embed/embed.js', 'init');
-
-    Cal('init', { origin: 'https://cal.com' });
-
-    Cal('inline', {
-      elementOrSelector: '#cal-inline',
-      calLink: link,
-      layout: 'month_view'
+    var el = document.getElementById('aa-clock');
+    if (!el) return;
+    var fmt = new Intl.DateTimeFormat('en-GB', {
+      timeZone: 'Asia/Kolkata',
+      hour: '2-digit', minute: '2-digit', second: '2-digit',
+      hour12: false
     });
-
-    // light theme and our green, so it matches the rest of the site
-    Cal('ui', {
-      theme: 'light',
-      layout: 'month_view',
-      hideEventTypeDetails: false,
-      styles: { branding: { brandColor: '#3ECF8E' } }
-    });
+    function tick() { el.textContent = fmt.format(new Date()); }
+    tick();
+    setInterval(tick, 1000);
   })();
+
 </script>
 </body>
 </html>

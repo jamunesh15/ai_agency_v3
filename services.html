@@ -6,7 +6,7 @@
 
 <link rel="icon" type="image/png" href="/aiagency_logo.png">
 <link rel="apple-touch-icon" href="/aiagency_logo.png">
-<meta name="theme-color" content="#0E100F">
+<meta name="theme-color" content="#EDECE9">
 
 <title>Services | AIAgency</title>
 <meta name="description" content="Services from AIAgency: workflow automation, custom AI agents, document intelligence, assistants, integrations, AI strategy, web and mobile apps, backend and cloud.">
@@ -32,20 +32,22 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="aa-motion.css">
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="home.css">
 </head>
 
 <body>
 <a class="skip" href="#main">Skip to content</a>
 
+<div class="sheet">
+
 <header class="nav" data-nav="20">
-  <div class="container">
+  <div class="wrap">
     <div class="nav-shell">
       <a class="brand" href="index.html" aria-label="AIAgency home">
-        <img class="aa-nav-mark" src="aiagency_logo.png" alt="" width="30" height="30">
+        <img class="aa-nav-mark" src="aiagency_logo.png" alt="" width="28" height="28">
         <span class="brand-name">AIAgency</span>
       </a>
 
@@ -57,9 +59,7 @@
         <a href="contact.html">Contact</a>
       </nav>
 
-      <div class="nav-cta">
-        <a class="btn btn--primary btn--sm" href="contact.html">Book a call</a>
-      </div>
+      <a class="btn btn--primary btn--sm" href="contact.html">Book a call</a>
     </div>
   </div>
 </header>
@@ -67,81 +67,110 @@
 <main id="main">
 
 <!-- ============================================================
-     PAGE HERO
+     HERO. text left, mac code window sliding in from the right.
      ============================================================ -->
-<section class="page-hero page-hero--wide">
-  <div class="container">
-    <div class="split split--screen">
-      <div data-reveal-group="70">
-        <p class="label" data-reveal>Services</p>
-        <h1 class="display" data-reveal style="margin-top: var(--s-4);">What we provide.</h1>
-        <p class="lede" data-reveal style="margin-top: var(--s-4);">AI, automation, and the engineering around it.</p>
+<section class="hero hero--big">
+  <div class="wrap">
+    <div class="hero-grid">
 
-        <div class="split-list" data-reveal-group="70">
-          <div class="split-item" data-reveal><i data-lucide="bot"></i><span>AI agents and automation</span></div>
-          <div class="split-item" data-reveal><i data-lucide="database"></i><span>Data, APIs and integrations</span></div>
-          <div class="split-item" data-reveal><i data-lucide="layout-dashboard"></i><span>Web and mobile products</span></div>
-          <div class="split-item" data-reveal><i data-lucide="cloud"></i><span>Backend, cloud and DevOps</span></div>
+      <div class="hero-copy" data-reveal-group="70">
+        <h1 class="display" data-reveal>
+          What we provide.
+        </h1>
+
+        <p class="lede" data-reveal>
+          AI, automation, and the engineering around it. Scoped as a project,
+          built in your stack.
+        </p>
+
+        <p class="hero-tags" data-reveal>Automation &middot; AI agents &middot; Apps &middot; Data &middot; Cloud</p>
+
+        <div class="actions" data-reveal>
+          <a class="btn btn--primary" href="contact.html">
+            Book a call <i data-lucide="arrow-right"></i>
+          </a>
+          <a class="btn btn--ghost" href="pricing.html">See pricing</a>
         </div>
+      </div>
 
-        <div class="hero-actions" data-reveal style="justify-content:flex-start; margin-top: var(--s-6);">
-          <a class="btn btn--primary" href="contact.html">Book a call <i class="btn-arrow" data-lucide="arrow-right"></i></a>
-          <a class="btn btn--ghost" href="pricing.html"><i data-lucide="tag"></i> See pricing</a>
+      <!-- workflow canvas: boxes appear one by one and explain the
+           service. PLACEHOLDER content, confirm wording. -->
+      <div class="hero-shot hero-shot--fit">
+        <div class="wf" role="img" aria-label="A workflow builds itself: incoming work is read and extracted by AI, acted on in your tools, and a new process can be described to add next.">
+
+          <svg class="wf-svg" viewBox="0 0 560 520" aria-hidden="true">
+            <path class="wf-wire" style="--bd:420ms" d="M302 106 V175 H157 V206"/>
+            <path class="wf-wire" style="--bd:750ms" d="M302 175 H426 V206"/>
+            <path class="wf-wire" style="--bd:1100ms" d="M426 282 V384"/>
+            <path class="wf-wire" style="--bd:1450ms" d="M157 282 V384"/>
+
+            <rect class="wf-node" style="--bd:420ms" x="299" y="103" width="6" height="6"/>
+            <rect class="wf-node" style="--bd:520ms" x="154" y="203" width="6" height="6"/>
+            <rect class="wf-node" style="--bd:850ms" x="423" y="203" width="6" height="6"/>
+            <rect class="wf-node" style="--bd:1100ms" x="423" y="279" width="6" height="6"/>
+            <rect class="wf-node" style="--bd:1200ms" x="423" y="381" width="6" height="6"/>
+            <rect class="wf-node" style="--bd:1450ms" x="154" y="279" width="6" height="6"/>
+            <rect class="wf-node" style="--bd:1500ms" x="154" y="381" width="6" height="6"/>
+          </svg>
+
+          <div class="wf-box wf-box--lead" style="left:54%; top:13%; --bd:150ms">
+            <span class="wf-chip"><i class="ok"></i>Mapped</span>
+            Your project
+            <span class="tok">&gt;&gt;&gt; automation &middot; agents &middot; apps &middot; data</span>
+          </div>
+
+          <div class="wf-box" style="left:28%; top:47%; --bd:550ms">
+            <span class="wf-chip"><i class="ok"></i>Complete</span>
+            Scoped in writing
+            <span class="tok">[fixed scope]</span>
+          </div>
+
+          <div class="wf-box" style="left:76%; top:47%; --bd:950ms">
+            <span class="wf-chip"><i class="proc"></i>Processing</span>
+            Built and shipped
+            <span class="tok">[in your stack]</span>
+          </div>
+
+          <div class="wf-box" style="left:76%; top:82%; --bd:1250ms">
+            <span class="wf-chip"><i class="ok"></i>Done</span>
+            Handed over
+            <span class="tok">[docs &middot; walkthrough]</span>
+          </div>
+
+          <div class="wf-box wf-box--input" style="left:28%; top:82%; --bd:1600ms">
+            <span class="wf-chip"><i class="mk"></i>Create</span>
+            <span class="wf-caret"></span>Describe your project...
+            <span class="wf-enter"><i data-lucide="corner-down-left"></i></span>
+          </div>
+
         </div>
       </div>
 
-      <!-- macOS window with a code panel. the output lines cycle so it
-           reads as something running, with no invented timings. -->
-      <div class="mac" data-reveal>
-        <div class="mac-bar">
-          <span class="mac-lights"><i></i><i></i><i></i></span>
-          <span class="mac-title">order_intake.py</span>
-        </div>
-
-        <div class="mac-code" data-typewriter="38" data-typewriter-rows=".src"
-             data-typewriter-hold="4200" data-typewriter-then=".mac-out">
-          <div class="row"><span class="ln">1</span><span class="src"><span class="tok-k">from</span> aiagency <span class="tok-k">import</span> Agent, Source</span><span class="caret"></span></div>
-          <div class="row"><span class="ln">2</span><span class="src"> </span><span class="caret"></span></div>
-          <div class="row"><span class="ln">3</span><span class="src">agent <span class="tok-p">=</span> Agent<span class="tok-p">(</span></span><span class="caret"></span></div>
-          <div class="row"><span class="ln">4</span><span class="src">    name<span class="tok-p">=</span><span class="tok-s">"order-intake"</span><span class="tok-p">,</span></span><span class="caret"></span></div>
-          <div class="row"><span class="ln">5</span><span class="src">    tools<span class="tok-p">=[</span>erp.lookup, stock.check<span class="tok-p">],</span></span><span class="caret"></span></div>
-          <div class="row"><span class="ln">6</span><span class="src">    escalate<span class="tok-p">=</span><span class="tok-s">"finance"</span><span class="tok-p">,</span>  <span class="tok-c"># humans decide</span></span><span class="caret"></span></div>
-          <div class="row"><span class="ln">7</span><span class="src"><span class="tok-p">)</span></span><span class="caret"></span></div>
-          <div class="row"><span class="ln">8</span><span class="src"> </span><span class="caret"></span></div>
-          <div class="row"><span class="ln">9</span><span class="src">agent.<span class="tok-k">run</span><span class="tok-p">(</span>Source.inbox<span class="tok-p">(</span><span class="tok-s">"orders@"</span><span class="tok-p">))</span></span><span class="caret"></span></div>
-        </div>
-
-        <div class="mac-out">
-          <div style="--d:0ms"    class="dim">&rsaquo; running order-intake</div>
-          <div style="--d:340ms"  class="ok">&check; read 42 documents</div>
-          <div style="--d:680ms"  class="ok">&check; matched 41 to purchase orders</div>
-          <div style="--d:1020ms" class="dim">&rsaquo; 1 exception escalated to finance</div>
-          <div style="--d:1360ms" class="ok">&check; written to the ERP</div>
-        </div>
-      </div>
     </div>
   </div>
 </section>
 
 <!-- ============================================================
-     RADIAL SERVICE DIAGRAM
-     Every spoke shares one 3.4s clock and differs only by delay, so
-     each box can darken exactly as its own pulse lands.
-
-     PLACEHOLDER LIST: eight for the design pass. Swap for the CEO's
-     real service names before launch.
+     RADIAL SERVICE DIAGRAM. the core services visual: hub in the
+     middle, eight services around it, green pulses hitting each
+     box on its own beat. Hovering a box shows its description in
+     a black tooltip.
+     PLACEHOLDER LIST: confirm the real service lines.
      ============================================================ -->
-<section class="section">
-  <div class="container">
-    <div class="section-head section-head--center" data-reveal-group="70">
-      <p class="label" data-reveal>What we do</p>
-      <h2 class="h2" data-reveal>One team, every layer.</h2>
+<section class="section band" id="all">
+  <div class="wrap">
+    <div class="sec-head" data-reveal>
+      <div>
+        <p class="kicker">All services</p>
+        <h2 class="h2">The work we take on.</h2>
+      </div>
     </div>
 
     <div class="radial" data-reveal>
-      <!-- wires run past the box edge on purpose. the boxes are opaque and
-           sit above, so the overlap hides any rounding mismatch between a
-           percentage-positioned box and a viewBox-positioned line. -->
+      <!-- wires run past the box edge on purpose. the boxes are
+           opaque and sit above, so the overlap hides any rounding
+           mismatch between a percentage-positioned box and a
+           viewBox-positioned line. -->
       <svg class="radial-svg" viewBox="0 0 1280 660" aria-hidden="true">
         <g>
           <path class="rad-wire" d="M640 330 H460 V80  H300" data-draw style="--aa-delay:0ms"/>
@@ -176,134 +205,241 @@
       <a class="rad-node" href="contact.html" style="left:14.5%; top:12.12%; --d:0ms">
         <span class="rad-ico"><i data-lucide="workflow"></i></span>
         <span><h3>Workflow automation</h3><p>Runs itself, no one pushing</p></span>
+        <span class="tip">The repetitive path a task takes through your business, rebuilt so it runs without anyone pushing it along.</span>
       </a>
       <a class="rad-node" href="contact.html" style="left:14.5%; top:37.12%; --d:850ms">
         <span class="rad-ico"><i data-lucide="bot"></i></span>
         <span><h3>Custom AI agents</h3><p>Systems that decide and act</p></span>
+        <span class="tip">Systems that read, decide and act inside your own tools, with the limits and the audit trail written in from the start.</span>
       </a>
       <a class="rad-node" href="contact.html" style="left:14.5%; top:62.88%; --d:1700ms">
         <span class="rad-ico"><i data-lucide="file-search"></i></span>
         <span><h3>Document intelligence</h3><p>Documents into clean records</p></span>
+        <span class="tip">Invoices, contracts and forms read into clean records, including the crooked scans and the photographed pages.</span>
       </a>
       <a class="rad-node" href="contact.html" style="left:14.5%; top:87.88%; --d:2550ms">
         <span class="rad-ico"><i data-lucide="message-square"></i></span>
         <span><h3>Assistants and chat</h3><p>Answers from your own content</p></span>
+        <span class="tip">Assistants that answer from your own content, and say so when they do not know.</span>
       </a>
 
       <!-- right column -->
       <a class="rad-node" href="contact.html" style="left:85.5%; top:12.12%; --d:425ms">
         <span class="rad-ico"><i data-lucide="database"></i></span>
         <span><h3>Data integration</h3><p>One version of the numbers</p></span>
+        <span class="tip">Getting the systems you already pay for to agree with each other, so there is one version of the numbers.</span>
       </a>
       <a class="rad-node" href="contact.html" style="left:85.5%; top:37.12%; --d:1275ms">
         <span class="rad-ico"><i data-lucide="compass"></i></span>
         <span><h3>AI strategy and review</h3><p>Where AI is worth the effort</p></span>
+        <span class="tip">Where AI is worth the effort in your business and where it is not, before anybody writes code.</span>
       </a>
       <a class="rad-node" href="contact.html" style="left:85.5%; top:62.88%; --d:2125ms">
         <span class="rad-ico"><i data-lucide="layout-dashboard"></i></span>
         <span><h3>Web and mobile apps</h3><p>Products your team will use</p></span>
+        <span class="tip">The screens around the system, built so your team actually uses them.</span>
       </a>
       <a class="rad-node" href="contact.html" style="left:85.5%; top:87.88%; --d:2975ms">
         <span class="rad-ico"><i data-lucide="server"></i></span>
         <span><h3>Backend and cloud</h3><p>APIs and infrastructure that hold</p></span>
+        <span class="tip">The APIs and infrastructure underneath, set up in your own accounts.</span>
       </a>
     </div>
   </div>
 </section>
 
 <!-- ============================================================
-     ENGAGEMENT TYPES
+     USE-CASE GRID. hairline grid, small visual on top of each
+     cell, title and short copy below.
+     PLACEHOLDER content throughout.
      ============================================================ -->
-<section class="section section--band" id="engagements">
-  <div class="container">
-    <div class="section-head section-head--center" data-reveal-group="70">
-      <p class="label" data-reveal>How to start</p>
-      <h2 class="h2" data-reveal>How to work with us.</h2>
+<section class="section" id="uses">
+  <div class="wrap">
+    <div class="sec-head" data-reveal>
+      <div>
+        <p class="kicker">In production</p>
+        <h2 class="h2">What these systems do all day.</h2>
+      </div>
     </div>
 
-    <div class="cols cols--3" data-reveal-group="70">
-      <article data-reveal>
-        <span class="col-ico"><i data-lucide="flask-conical"></i></span>
-        <p class="label label--accent">Pilot</p>
-        <h3 class="h3">One process, proven</h3>
-        <p class="small muted">Fixed scope, short timeline, yours to keep.</p>
-        <a class="tlink" href="pricing.html">See pricing <i data-lucide="arrow-right"></i></a>
+    <div class="uses">
+      <article class="use">
+        <div class="use-vis">
+          <div class="card">
+            <div class="card-meta">
+              <span class="chip chip--rev">Review</span>
+              <i data-lucide="calendar"></i> Aug 18
+            </div>
+            <p class="card-title">INV-2035 &middot; Solent Group</p>
+            <p class="card-sub">Total is 4% above the purchase order. Sent to finance with both documents.</p>
+            <div class="card-foot">
+              <span class="avas"><span>RM</span><span>AI</span></span>
+            </div>
+          </div>
+        </div>
+        <h3>Exceptions reach a person</h3>
+        <p>The system settles what it can on its own. The doubtful cases go to a named person with everything attached.</p>
       </article>
 
-      <article data-reveal>
-        <span class="col-ico"><i data-lucide="hammer"></i></span>
-        <p class="label label--accent">Full build</p>
-        <h3 class="h3">The whole system</h3>
-        <p class="small muted">Discovery through handover, end to end.</p>
-        <a class="tlink" href="pricing.html">See pricing <i data-lucide="arrow-right"></i></a>
+      <article class="use">
+        <div class="use-vis">
+          <div class="mini-chart">
+            <span class="lab">Reconciled nightly</span>
+            <svg viewBox="0 0 300 100" preserveAspectRatio="none" aria-hidden="true">
+              <rect x="6"   y="58" width="24" height="42" rx="3" fill="#3ECF8E" opacity="0.4"/>
+              <rect x="43"  y="46" width="24" height="54" rx="3" fill="#3ECF8E" opacity="0.5"/>
+              <rect x="80"  y="62" width="24" height="38" rx="3" fill="#3ECF8E" opacity="0.5"/>
+              <rect x="117" y="38" width="24" height="62" rx="3" fill="#3ECF8E" opacity="0.6"/>
+              <rect x="154" y="50" width="24" height="50" rx="3" fill="#3ECF8E" opacity="0.7"/>
+              <rect x="191" y="28" width="24" height="72" rx="3" fill="#3ECF8E" opacity="0.8"/>
+              <rect x="228" y="40" width="24" height="60" rx="3" fill="#3ECF8E" opacity="0.9"/>
+              <rect x="265" y="18" width="24" height="82" rx="3" fill="#3ECF8E"/>
+              <line x1="0" y1="99.5" x2="300" y2="99.5" stroke="#EAE9E5" stroke-width="1"/>
+            </svg>
+          </div>
+        </div>
+        <h3>One version of the numbers</h3>
+        <p>CRM, billing and the spreadsheets agree with each other, checked every night instead of at quarter end.</p>
       </article>
 
-      <article data-reveal>
-        <span class="col-ico"><i data-lucide="repeat"></i></span>
-        <p class="label label--accent">Ongoing</p>
-        <h3 class="h3">A team on retainer</h3>
-        <p class="small muted">Standing capacity, priced monthly.</p>
-        <a class="tlink" href="pricing.html">See pricing <i data-lucide="arrow-right"></i></a>
+      <article class="use">
+        <div class="use-vis">
+          <div class="tagset">
+            <span class="tag tag--on">Invoices</span>
+            <span class="tag">Purchase orders</span>
+            <span class="tag">Contracts</span>
+            <span class="tag">Scans</span>
+            <span class="tag">Photos</span>
+            <span class="tag">Forms</span>
+          </div>
+        </div>
+        <h3>Documents into records</h3>
+        <p>Whatever shape it arrives in, it leaves as a clean structured record, with the doubtful reads queued for review.</p>
+      </article>
+
+      <article class="use">
+        <div class="use-vis">
+          <div class="mini-log">
+            <div><span class="t">09:42</span> Invoice matched to PO <i>&check;</i></div>
+            <div><span class="t">09:41</span> Vendor record updated <i>&check;</i></div>
+            <div><span class="t">09:39</span> Exception routed to finance <i>&check;</i></div>
+            <div><span class="t">09:38</span> Payment posted <i>&check;</i></div>
+          </div>
+        </div>
+        <h3>Every action logged</h3>
+        <p>Each decision and each write is on the record, so you can always answer what happened and why.</p>
+      </article>
+
+      <article class="use">
+        <div class="use-vis">
+          <div class="card">
+            <p class="card-sub">What happens when the agent is not sure?</p>
+            <p class="card-title">It stops, flags the document, and sends it to the review queue.</p>
+            <div class="card-meta">
+              <span class="chip chip--doc">agent-rules.md</span>
+            </div>
+          </div>
+        </div>
+        <h3>Answers with sources</h3>
+        <p>Assistants quote the document they answered from, and say so plainly when they do not know.</p>
+      </article>
+
+      <article class="use">
+        <div class="use-vis">
+          <div class="tagset">
+            <span class="tag">ERP</span>
+            <span class="tag">CRM</span>
+            <span class="tag">Sheets</span>
+            <span class="tag tag--on">Your stack</span>
+            <span class="tag">Slack</span>
+            <span class="tag">WhatsApp</span>
+          </div>
+        </div>
+        <h3>Runs where you already work</h3>
+        <p>Built inside the tools and accounts you have, so nothing new to buy and nothing to migrate.</p>
       </article>
     </div>
   </div>
 </section>
 
 <!-- ============================================================
-     PROCESS
+     WHAT WE AUTOMATE. the locked band component with example
+     automations sliding through it.
+     PLACEHOLDER: confirm the examples.
      ============================================================ -->
-<section class="section" id="process">
-  <div class="container">
-    <div class="section-head" data-reveal-group="70">
-      <p class="label" data-reveal>Process</p>
-      <h2 class="h2" data-reveal>How a project actually runs.</h2>
-    </div>
-
-    <div class="rail" data-reveal-group="70">
-      <div class="rstep" data-reveal>
-        <span class="rdot">01</span>
-        <span class="rstage">Discovery</span>
-        <h3 class="h3">Map it before touching it</h3>
-        <p class="small muted">We write down what actually happens.</p>
+<section class="logos">
+  <div class="wrap">
+    <div class="logo-band" data-reveal>
+      <div class="logo-lead">
+        <p class="logo-stat">What we automate</p>
+        <p class="logo-sub">The processes teams bring to us most often</p>
       </div>
 
-      <div class="rstep" data-reveal>
-        <span class="rdot">02</span>
-        <span class="rstage">Design</span>
-        <h3 class="h3">Scope agreed in writing</h3>
-        <p class="small muted">Architecture and cost, signed off first.</p>
-      </div>
+      <div class="logo-rail">
+        <div data-marquee="left" data-marquee-speed="36">
+          <div>
+            <span class="logo-cell">Order intake</span>
+            <span class="logo-cell">Invoice matching</span>
+            <span class="logo-cell">Support triage</span>
+            <span class="logo-cell">Lead follow-up</span>
+            <span class="logo-cell">Report generation</span>
+            <span class="logo-cell">Vendor onboarding</span>
+          </div>
+        </div>
 
-      <div class="rstep" data-reveal>
-        <span class="rdot">03</span>
-        <span class="rstage">Build</span>
-        <h3 class="h3">Shipped weekly, in your stack</h3>
-        <p class="small muted">Working software in front of you.</p>
-      </div>
-
-      <div class="rstep" data-reveal>
-        <span class="rdot">04</span>
-        <span class="rstage">Handover</span>
-        <h3 class="h3">You own it when we leave</h3>
-        <p class="small muted">Docs, walkthrough, repo in your account.</p>
+        <div data-marquee="right" data-marquee-speed="36">
+          <div>
+            <span class="logo-cell">Payment reconciliation</span>
+            <span class="logo-cell">Stock alerts</span>
+            <span class="logo-cell">Document filing</span>
+            <span class="logo-cell">Quote generation</span>
+            <span class="logo-cell">Onboarding paperwork</span>
+            <span class="logo-cell">Data cleanup</span>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- ============================================================
-     CTA
+     HOW TO WORK WITH US. intro left, three rows right, same
+     component as the home process section.
      ============================================================ -->
-<section class="section section--dark">
-  <div class="container">
-    <div class="cta" data-reveal-group="70">
-      <p class="label" data-reveal>Next step</p>
-      <h2 class="h2" data-reveal>Not sure which one you need?</h2>
-      <p class="lede" data-reveal style="text-align:center;">Bring one process that costs you time.</p>
-      <div class="hero-actions" data-reveal>
-        <a class="btn btn--primary" href="contact.html">Book a call <i class="btn-arrow" data-lucide="arrow-right"></i></a>
-        <!-- REPLACE: real WhatsApp number -->
-        <a class="btn btn--onDark" href="https://wa.me/000000000000"><i data-lucide="message-circle"></i>Message on WhatsApp</a>
+<section class="section band" id="engagements">
+  <div class="wrap">
+    <div class="process-grid">
+      <div class="process-intro" data-reveal>
+        <p class="kicker">How to start</p>
+        <h2 class="h2">How to work with us.</h2>
+        <p>Three ways in, depending on how sure you already are about what needs building.</p>
+        <a class="tlink" href="pricing.html">See pricing <i data-lucide="arrow-right"></i></a>
+      </div>
+
+      <div class="process-steps">
+        <div class="step">
+          <span class="step-meta"><span class="n">01</span><span class="stage">Pilot</span></span>
+          <div class="step-body">
+            <h3 class="h3">One process, proven</h3>
+            <p>Fixed scope, short timeline, a working system at the end of it.</p>
+          </div>
+        </div>
+
+        <div class="step">
+          <span class="step-meta"><span class="n">02</span><span class="stage">Full build</span></span>
+          <div class="step-body">
+            <h3 class="h3">The whole system</h3>
+            <p>Discovery through handover, end to end, with the scope agreed in writing before code starts.</p>
+          </div>
+        </div>
+
+        <div class="step">
+          <span class="step-meta"><span class="n">03</span><span class="stage">Ongoing</span></span>
+          <div class="step-body">
+            <h3 class="h3">A team on retainer</h3>
+            <p>Standing capacity for the next process and the one after it, priced monthly.</p>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -311,18 +447,38 @@
 
 </main>
 
-<footer class="footer">
-  <div class="container">
-    <div class="footer-grid">
-      <div class="footer-col">
+</div><!-- /sheet -->
+
+<!-- ============================================================
+     FOOTER. same shell as home.
+     REPLACE: WhatsApp number, city line.
+     ============================================================ -->
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-cta">
+      <p class="kicker">Next step</p>
+      <h2 class="h2">Not sure which one you need?</h2>
+      <p class="lede">Bring one process that costs you time. We will tell you.</p>
+      <div class="actions">
+        <a class="btn btn--primary" href="contact.html">Book a call <i data-lucide="arrow-right"></i></a>
+        <!-- REPLACE: real WhatsApp number -->
+        <a class="btn btn--paper" href="https://wa.me/000000000000">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413"/></svg>
+          Message on WhatsApp
+        </a>
+      </div>
+    </div>
+
+    <div class="foot-grid">
+      <div class="foot-col">
         <a class="brand" href="index.html" aria-label="AIAgency home">
           <img src="aiagency_logo.png" alt="" width="26" height="26">
           <span class="brand-name">AIAgency</span>
         </a>
-        <p class="small muted" style="max-width: 34ch;">AI and automation systems, designed and shipped end to end.</p>
+        <p class="brand-line">AI and automation systems, designed and shipped end to end.</p>
       </div>
 
-      <div class="footer-col">
+      <div class="foot-col">
         <p class="label">Site</p>
         <a href="index.html">Home</a>
         <a href="services.html">Services</a>
@@ -331,23 +487,25 @@
         <a href="contact.html">Contact</a>
       </div>
 
-      <div class="footer-col">
+      <div class="foot-col">
         <p class="label">Contact</p>
-        <a href="mailto:hello@aiagency.so"><i data-lucide="mail"></i>hello@aiagency.so</a>
-        <a href="https://wa.me/000000000000"><i data-lucide="message-circle"></i>WhatsApp</a>
-        <a href="contact.html"><i data-lucide="calendar"></i>Book a call</a>
+        <a href="mailto:hello@aiagency.so">hello@aiagency.so</a>
+        <a href="https://wa.me/000000000000">WhatsApp</a>
+        <a href="contact.html">Book a call</a>
       </div>
 
-      <div class="footer-col">
+      <div class="foot-col">
         <p class="label">Legal</p>
         <a href="privacy.html">Privacy</a>
         <a href="terms.html">Terms</a>
       </div>
     </div>
 
-    <div class="footer-bottom">
-      <span class="small">&copy; 2026 AIAgency</span>
-      <span class="label">aiagency.so</span>
+    <div class="foot-bottom">
+      <span>&copy; 2026 AIAgency</span>
+      <!-- REPLACE: real city and country -->
+      <span>City, Country</span>
+      <span class="clock">Asia/Kolkata <b id="aa-clock">--:--:--</b></span>
     </div>
   </div>
 </footer>
@@ -358,6 +516,20 @@
   window.addEventListener('load', function () {
     if (window.lucide) lucide.createIcons();
   });
+
+  /* live IST clock in the footer */
+  (function () {
+    var el = document.getElementById('aa-clock');
+    if (!el) return;
+    var fmt = new Intl.DateTimeFormat('en-GB', {
+      timeZone: 'Asia/Kolkata',
+      hour: '2-digit', minute: '2-digit', second: '2-digit',
+      hour12: false
+    });
+    function tick() { el.textContent = fmt.format(new Date()); }
+    tick();
+    setInterval(tick, 1000);
+  })();
 </script>
 </body>
 </html>

@@ -6,7 +6,7 @@
 
 <link rel="icon" type="image/png" href="/aiagency_logo.png">
 <link rel="apple-touch-icon" href="/aiagency_logo.png">
-<meta name="theme-color" content="#0E100F">
+<meta name="theme-color" content="#EDECE9">
 
 <title>Pricing | AIAgency</title>
 <meta name="description" content="AIAgency pricing: two monthly packages for ongoing AI automation, plus custom scoping for full project builds.">
@@ -21,22 +21,25 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="aa-motion.css">
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="home.css">
 </head>
 
 <body>
 <a class="skip" href="#main">Skip to content</a>
 
+<div class="sheet">
+
 <header class="nav" data-nav="20">
-  <div class="container">
+  <div class="wrap">
     <div class="nav-shell">
       <a class="brand" href="index.html" aria-label="AIAgency home">
-        <img class="aa-nav-mark" src="aiagency_logo.png" alt="" width="30" height="30">
+        <img class="aa-nav-mark" src="aiagency_logo.png" alt="" width="28" height="28">
         <span class="brand-name">AIAgency</span>
       </a>
+
       <nav class="nav-links" aria-label="Primary">
         <a href="index.html">Home</a>
         <a href="services.html">Services</a>
@@ -44,79 +47,109 @@
         <a href="blog.html">Blog</a>
         <a href="contact.html">Contact</a>
       </nav>
-      <div class="nav-cta">
-        <a class="btn btn--primary btn--sm" href="contact.html">Book a call</a>
-      </div>
+
+      <a class="btn btn--primary btn--sm" href="contact.html">Book a call</a>
     </div>
   </div>
 </header>
 
 <main id="main">
 
-<section class="page-hero page-hero--tight">
-  <div class="container">
-    <div class="page-hero-inner" data-reveal-group="70">
-      <p class="label" data-reveal>Pricing</p>
-      <h1 class="display" data-reveal>What it costs.</h1>
-      <p class="lede" data-reveal style="text-align:center;">Two monthly packages, or a scope built around you.</p>
+<!-- ============================================================
+     HERO. short and type-first, the tiers are the visual.
+     ============================================================ -->
+<section class="hero hero--big hero--center">
+  <div class="wrap">
+    <div class="hero-copy" data-reveal-group="70">
+      <h1 class="display" data-reveal>
+        Transparent pricing for every stage of growth.
+      </h1>
+
+      <p class="lede" data-reveal>
+        Two monthly packages, or a scope built around you. Cloud and model
+        costs run in your own accounts, so you always see them directly.
+      </p>
     </div>
   </div>
 </section>
 
 <!-- ============================================================
-     TIERS
-     PLACEHOLDER: names, prices and feature lists are carried over
-     from the current live site. Confirm every line with the CEO.
+     TIERS. numbered cards, from-price, feature rows.
+     PLACEHOLDER: names, prices and features carried over from the
+     live site. Confirm every line.
      ============================================================ -->
-<section class="section">
-  <div class="container">
-    <div class="tiers" data-reveal-group="70">
+<section class="section band" id="tiers">
+  <div class="wrap">
+    <div class="tiers" data-reveal>
 
-      <article class="tier" data-reveal>
-        <div class="tier-top">
-          <h3>Starter AI System</h3>
-          <p class="tier-sub">For a team automating its first process.</p>
-          <div class="tier-price"><b>$4,999</b><span>/ month</span></div>
+      <article class="tier">
+        <p class="tier-num">01</p>
+        <h3>Starter AI System</h3>
+        <p class="tier-sub">For a team automating its first process.</p>
+
+        <div class="tier-price">
+          <div class="row">
+            <span class="from">From</span>
+            <span class="tier-chip">1-2 processes</span>
+          </div>
+          <b>$4,999</b><span class="per">/ month</span>
         </div>
+
         <div class="tier-list">
-          <div><i data-lucide="check"></i><span>AI automation setup, one to two processes</span></div>
-          <div><i data-lucide="check"></i><span>Workflow design and implementation</span></div>
-          <div><i data-lucide="check"></i><span>Dashboard and reporting</span></div>
-          <div><i data-lucide="check"></i><span>Priority support</span></div>
+          <div><i data-lucide="arrow-right"></i><span>AI automation setup for one to two processes</span></div>
+          <div><i data-lucide="arrow-right"></i><span>Workflow design and implementation</span></div>
+          <div><i data-lucide="arrow-right"></i><span>Dashboard and reporting</span></div>
+          <div><i data-lucide="arrow-right"></i><span>Priority support</span></div>
         </div>
-        <a class="btn btn--ghost" href="contact.html">Start here</a>
+
+        <a class="btn btn--primary" href="contact.html">Start with Starter</a>
       </article>
 
-      <article class="tier tier--featured" data-reveal>
-        <div class="tier-top">
-          <span class="tier-badge">Recommended</span>
-          <h3>Enterprise AI Suite</h3>
-          <p class="tier-sub">For operations running across departments.</p>
-          <div class="tier-price"><b>$7,999</b><span>/ month</span></div>
+      <article class="tier">
+        <p class="tier-num">02</p>
+        <h3>Enterprise AI Suite</h3>
+        <p class="tier-sub">For operations running across departments.</p>
+
+        <div class="tier-price">
+          <div class="row">
+            <span class="from">From</span>
+            <span class="tier-chip">Multi-department</span>
+          </div>
+          <b>$7,999</b><span class="per">/ month</span>
         </div>
+
         <div class="tier-list">
-          <div><i data-lucide="check"></i><span>Everything in Starter</span></div>
-          <div><i data-lucide="check"></i><span>Multi-department automation</span></div>
-          <div><i data-lucide="check"></i><span>Custom model integration</span></div>
-          <div><i data-lucide="check"></i><span>A dedicated consultant</span></div>
-          <div><i data-lucide="check"></i><span>Round the clock support</span></div>
+          <div><i data-lucide="arrow-right"></i><span>Everything in Starter</span></div>
+          <div><i data-lucide="arrow-right"></i><span>Automation across departments</span></div>
+          <div><i data-lucide="arrow-right"></i><span>Custom model integration</span></div>
+          <div><i data-lucide="arrow-right"></i><span>A dedicated consultant</span></div>
+          <div><i data-lucide="arrow-right"></i><span>Round the clock support</span></div>
         </div>
-        <a class="btn btn--primary" href="contact.html">Start here <i class="btn-arrow" data-lucide="arrow-right"></i></a>
+
+        <a class="btn btn--primary" href="contact.html">Start with Enterprise</a>
       </article>
 
-      <article class="tier" data-reveal>
-        <div class="tier-top">
-          <h3>Custom</h3>
-          <p class="tier-sub">For a full build with its own scope.</p>
-          <div class="tier-price"><b>Let's talk</b></div>
+      <article class="tier">
+        <p class="tier-num">03</p>
+        <h3>Custom</h3>
+        <p class="tier-sub">For a full build with its own scope.</p>
+
+        <div class="tier-price">
+          <div class="row">
+            <span class="from">Priced per engagement</span>
+            <span class="tier-chip">Fixed scope</span>
+          </div>
+          <b>Contact for price</b>
         </div>
+
         <div class="tier-list">
-          <div><i data-lucide="check"></i><span>Full project builds, fixed scope</span></div>
-          <div><i data-lucide="check"></i><span>Short pilot engagements</span></div>
-          <div><i data-lucide="check"></i><span>A dedicated team on retainer</span></div>
-          <div><i data-lucide="check"></i><span>Priced per engagement</span></div>
+          <div><i data-lucide="arrow-right"></i><span>Full project builds with a fixed scope</span></div>
+          <div><i data-lucide="arrow-right"></i><span>Short pilot engagements</span></div>
+          <div><i data-lucide="arrow-right"></i><span>A dedicated team on retainer</span></div>
+          <div><i data-lucide="arrow-right"></i><span>A date and a price before code starts</span></div>
         </div>
-        <a class="btn btn--ghost" href="contact.html">Talk to us</a>
+
+        <a class="btn btn--primary" href="contact.html">Talk to us</a>
       </article>
 
     </div>
@@ -124,89 +157,91 @@
 </section>
 
 <!-- ============================================================
-     WHAT EVERY ENGAGEMENT INCLUDES
+     WHAT HAPPENS NEXT. intro left, four rows right.
      ============================================================ -->
-<section class="section section--band">
-  <div class="container">
-    <div class="section-head" data-reveal-group="70">
-      <p class="label" data-reveal>After you choose</p>
-      <h2 class="h2" data-reveal>What happens next.</h2>
-    </div>
+<section class="section" id="next">
+  <div class="wrap">
+    <div class="process-grid">
+      <div class="process-intro" data-reveal>
+        <p class="kicker">After you choose</p>
+        <h2 class="h2">What happens next.</h2>
+        <p>The same path whichever tier you start on, and something runs early, not at the end.</p>
+        <a class="tlink" href="contact.html">Book your first demo <i data-lucide="arrow-right"></i></a>
+      </div>
 
-    <div class="rail" data-reveal data-reveal-group="70">
-      <div class="rstep" data-reveal style="--d:0ms">
-        <span class="rdot">01</span>
-        <span class="rstage">The call</span>
-        <h3 class="h3">We map the process</h3>
-        <p class="small muted">One hour, with the people who run it.</p>
-      </div>
-      <div class="rstep" data-reveal style="--d:800ms">
-        <span class="rdot">02</span>
-        <span class="rstage">The scope</span>
-        <h3 class="h3">You get it in writing</h3>
-        <p class="small muted">What gets built, and what it costs.</p>
-      </div>
-      <div class="rstep" data-reveal style="--d:1600ms">
-        <span class="rdot">03</span>
-        <span class="rstage">The build</span>
-        <h3 class="h3">Something runs early</h3>
-        <p class="small muted">Not a demo at the end of the project.</p>
-      </div>
-      <div class="rstep" data-reveal style="--d:2400ms">
-        <span class="rdot">04</span>
-        <span class="rstage">Handover</span>
-        <h3 class="h3">Your team takes it</h3>
-        <p class="small muted">Docs and a walkthrough, not a lock-in.</p>
+      <div class="process-steps">
+        <div class="step">
+          <span class="step-meta"><span class="n">01</span><span class="stage">The call</span></span>
+          <div class="step-body">
+            <h3 class="h3">We map the process</h3>
+            <p>One hour, with the people who actually run it.</p>
+          </div>
+        </div>
+
+        <div class="step">
+          <span class="step-meta"><span class="n">02</span><span class="stage">The scope</span></span>
+          <div class="step-body">
+            <h3 class="h3">You get it in writing</h3>
+            <p>What gets built, what working means, and what it costs.</p>
+          </div>
+        </div>
+
+        <div class="step">
+          <span class="step-meta"><span class="n">03</span><span class="stage">The build</span></span>
+          <div class="step-body">
+            <h3 class="h3">Something runs early</h3>
+            <p>Working software in the first weeks, not a demo at the end.</p>
+          </div>
+        </div>
+
+        <div class="step">
+          <span class="step-meta"><span class="n">04</span><span class="stage">Handover</span></span>
+          <div class="step-body">
+            <h3 class="h3">A clean handover</h3>
+            <p>Documentation, a walkthrough with your team, and a support plan only if you want one.</p>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- ============================================================
-     FAQ
+     FAQ. PLACEHOLDER: two answers still need the real terms.
      ============================================================ -->
-<section class="section" id="faq">
-  <div class="container">
-    <div class="section-head section-head--center" data-reveal-group="70">
-      <p class="label" data-reveal>Questions</p>
-      <h2 class="h2" data-reveal>Before you pick one.</h2>
-    </div>
+<section class="section band" id="faq">
+  <div class="wrap">
+    <div class="faq-grid">
+      <div class="faq-intro" data-reveal>
+        <p class="kicker">Questions</p>
+        <h2 class="h2">Before you pick one.</h2>
+      </div>
 
-    <div class="faq" data-reveal>
-      <div class="faq-item" data-accordion>
-        <button class="aa-acc-trigger" type="button">Can we start small and move up later?<span class="aa-acc-sign" aria-hidden="true"></span></button>
-        <div class="aa-acc-body"><div><p>Yes. Most teams start on Starter with a single process, see it running, then decide whether a second one is worth it. Moving up is a conversation, not a renegotiation.</p></div></div>
-      </div>
-      <div class="faq-item" data-accordion>
-        <button class="aa-acc-trigger" type="button">What sits behind the monthly price?<span class="aa-acc-sign" aria-hidden="true"></span></button>
-        <div class="aa-acc-body"><div><p>Design, build, and the ongoing work of keeping it correct as your business changes. Cloud and model provider costs are billed to your own account, so you see them directly rather than through us.</p></div></div>
-      </div>
-      <div class="faq-item" data-accordion>
-        <button class="aa-acc-trigger" type="button">When does Custom make more sense?<span class="aa-acc-sign" aria-hidden="true"></span></button>
-        <div class="aa-acc-body"><div><p>When the work is a project rather than a subscription. A full product build, a migration, or anything with a fixed end date is scoped and priced on its own.</p></div></div>
-      </div>
-      <div class="faq-item" data-accordion>
-        <button class="aa-acc-trigger" type="button">Is there a minimum commitment?<span class="aa-acc-sign" aria-hidden="true"></span></button>
-        <div class="aa-acc-body"><div><p>[Answer with your real terms. Buyers read this one before they read anything else on the page.]</p></div></div>
-      </div>
-      <div class="faq-item" data-accordion>
-        <button class="aa-acc-trigger" type="button">What happens if we want to stop?<span class="aa-acc-sign" aria-hidden="true"></span></button>
-        <div class="aa-acc-body"><div><p>[Answer with your real terms, including what you hand over and in what state.]</p></div></div>
-      </div>
-    </div>
-  </div>
-</section>
+      <div class="faq">
+        <div class="faq-item" data-accordion>
+          <button class="aa-acc-trigger" type="button">Can we start small and move up later?<span class="aa-acc-sign" aria-hidden="true"></span></button>
+          <div class="aa-acc-body"><div><p>Yes. Most teams start on Starter with a single process, see it running, then decide whether a second one is worth it. Moving up is a conversation, not a renegotiation.</p></div></div>
+        </div>
 
-<section class="section section--dark">
-  <div class="container">
-    <div class="cta" data-reveal-group="70">
-      <p class="label" data-reveal>Next step</p>
-      <h2 class="h2" data-reveal>Not sure which one fits?</h2>
-      <p class="lede" data-reveal style="text-align:center;">Tell us the process and we will tell you.</p>
-      <div class="hero-actions" data-reveal>
-        <a class="btn btn--primary" href="contact.html">Book a call <i class="btn-arrow" data-lucide="arrow-right"></i></a>
-        <!-- REPLACE: real WhatsApp number -->
-        <a class="btn btn--onDark" href="https://wa.me/000000000000"><i data-lucide="message-circle"></i>Message on WhatsApp</a>
+        <div class="faq-item" data-accordion>
+          <button class="aa-acc-trigger" type="button">What sits behind the monthly price?<span class="aa-acc-sign" aria-hidden="true"></span></button>
+          <div class="aa-acc-body"><div><p>Design, build, and the ongoing work of keeping it correct as your business changes. Cloud and model provider costs are billed to your own account, so you see them directly rather than through us.</p></div></div>
+        </div>
+
+        <div class="faq-item" data-accordion>
+          <button class="aa-acc-trigger" type="button">When does Custom make more sense?<span class="aa-acc-sign" aria-hidden="true"></span></button>
+          <div class="aa-acc-body"><div><p>When the work is a project rather than a subscription. A full product build, a migration, or anything with a fixed end date is scoped and priced on its own.</p></div></div>
+        </div>
+
+        <div class="faq-item" data-accordion>
+          <button class="aa-acc-trigger" type="button">Is there a minimum commitment?<span class="aa-acc-sign" aria-hidden="true"></span></button>
+          <div class="aa-acc-body"><div><p>[PLACEHOLDER: answer with the real terms. Buyers read this one before they read anything else on the page.]</p></div></div>
+        </div>
+
+        <div class="faq-item" data-accordion>
+          <button class="aa-acc-trigger" type="button">What happens if we want to stop?<span class="aa-acc-sign" aria-hidden="true"></span></button>
+          <div class="aa-acc-body"><div><p>[PLACEHOLDER: answer with the real terms, including what you hand over and in what state.]</p></div></div>
+        </div>
       </div>
     </div>
   </div>
@@ -214,17 +249,38 @@
 
 </main>
 
-<footer class="footer">
-  <div class="container">
-    <div class="footer-grid">
-      <div class="footer-col">
+</div><!-- /sheet -->
+
+<!-- ============================================================
+     FOOTER. same shell as home.
+     REPLACE: WhatsApp number, city line.
+     ============================================================ -->
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-cta">
+      <p class="kicker">Next step</p>
+      <h2 class="h2">Not sure which one fits?</h2>
+      <p class="lede">Tell us the process and we will tell you.</p>
+      <div class="actions">
+        <a class="btn btn--primary" href="contact.html">Book a call <i data-lucide="arrow-right"></i></a>
+        <!-- REPLACE: real WhatsApp number -->
+        <a class="btn btn--paper" href="https://wa.me/000000000000">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413"/></svg>
+          Message on WhatsApp
+        </a>
+      </div>
+    </div>
+
+    <div class="foot-grid">
+      <div class="foot-col">
         <a class="brand" href="index.html" aria-label="AIAgency home">
           <img src="aiagency_logo.png" alt="" width="26" height="26">
           <span class="brand-name">AIAgency</span>
         </a>
-        <p class="small muted" style="max-width: 34ch;">AI and automation systems, designed and shipped end to end.</p>
+        <p class="brand-line">AI and automation systems, designed and shipped end to end.</p>
       </div>
-      <div class="footer-col">
+
+      <div class="foot-col">
         <p class="label">Site</p>
         <a href="index.html">Home</a>
         <a href="services.html">Services</a>
@@ -232,21 +288,26 @@
         <a href="blog.html">Blog</a>
         <a href="contact.html">Contact</a>
       </div>
-      <div class="footer-col">
+
+      <div class="foot-col">
         <p class="label">Contact</p>
-        <a href="mailto:hello@aiagency.so"><i data-lucide="mail"></i>hello@aiagency.so</a>
-        <a href="https://wa.me/000000000000"><i data-lucide="message-circle"></i>WhatsApp</a>
-        <a href="contact.html"><i data-lucide="calendar"></i>Book a call</a>
+        <a href="mailto:hello@aiagency.so">hello@aiagency.so</a>
+        <a href="https://wa.me/000000000000">WhatsApp</a>
+        <a href="contact.html">Book a call</a>
       </div>
-      <div class="footer-col">
+
+      <div class="foot-col">
         <p class="label">Legal</p>
         <a href="privacy.html">Privacy</a>
         <a href="terms.html">Terms</a>
       </div>
     </div>
-    <div class="footer-bottom">
-      <span class="small">&copy; 2026 AIAgency</span>
-      <span class="label">aiagency.so</span>
+
+    <div class="foot-bottom">
+      <span>&copy; 2026 AIAgency</span>
+      <!-- REPLACE: real city and country -->
+      <span>City, Country</span>
+      <span class="clock">Asia/Kolkata <b id="aa-clock">--:--:--</b></span>
     </div>
   </div>
 </footer>
@@ -254,7 +315,23 @@
 <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
 <script src="aa-motion.js" defer></script>
 <script>
-  window.addEventListener('load', function () { if (window.lucide) lucide.createIcons(); });
+  window.addEventListener('load', function () {
+    if (window.lucide) lucide.createIcons();
+  });
+
+  /* live IST clock in the footer */
+  (function () {
+    var el = document.getElementById('aa-clock');
+    if (!el) return;
+    var fmt = new Intl.DateTimeFormat('en-GB', {
+      timeZone: 'Asia/Kolkata',
+      hour: '2-digit', minute: '2-digit', second: '2-digit',
+      hour12: false
+    });
+    function tick() { el.textContent = fmt.format(new Date()); }
+    tick();
+    setInterval(tick, 1000);
+  })();
 </script>
 </body>
 </html>

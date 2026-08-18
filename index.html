@@ -6,7 +6,7 @@
 
 <link rel="icon" type="image/png" href="/aiagency_logo.png">
 <link rel="apple-touch-icon" href="/aiagency_logo.png">
-<meta name="theme-color" content="#0E100F">
+<meta name="theme-color" content="#EDECE9">
 
 <title>AIAgency | AI systems, built end to end</title>
 <meta name="description" content="AIAgency designs and ships production AI and automation systems for businesses. Full projects, not prototypes.">
@@ -25,28 +25,29 @@
   "@type": "Organization",
   "name": "AIAgency",
   "url": "https://aiagency.so/",
-  "logo": "https://aiagency.so/logo.svg",
+  "logo": "https://aiagency.so/aiagency_logo.png",
   "description": "AI and automation systems built end to end for businesses."
 }
 </script>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="aa-motion.css">
-
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="home.css">
 </head>
 
 <body>
 <a class="skip" href="#main">Skip to content</a>
 
+<div class="sheet">
+
 <header class="nav" data-nav="20">
-  <div class="container">
+  <div class="wrap">
     <div class="nav-shell">
       <a class="brand" href="index.html" aria-label="AIAgency home">
-        <img class="aa-nav-mark" src="aiagency_logo.png" alt="" width="30" height="30">
+        <img class="aa-nav-mark" src="aiagency_logo.png" alt="" width="28" height="28">
         <span class="brand-name">AIAgency</span>
       </a>
 
@@ -58,9 +59,7 @@
         <a href="contact.html">Contact</a>
       </nav>
 
-      <div class="nav-cta">
-        <a class="btn btn--primary btn--sm" href="contact.html">Book a call</a>
-      </div>
+      <a class="btn btn--primary btn--sm" href="contact.html">Book a call</a>
     </div>
   </div>
 </header>
@@ -68,390 +67,599 @@
 <main id="main">
 
 <!-- ============================================================
-     HERO. single column, network map underneath.
-     PLACEHOLDER COPY: needs the CEO's real positioning line.
-
-     Map wiring lives in the markup:
-       node: data-node="wf" data-mx="230" data-my="190"
-       link: class="map-live" data-link="wf ag"
-     Hovering a node lights the dots near it, draws its links green,
-     and darkens the nodes it reaches.
+     HERO
+     PLACEHOLDER COPY: swap for the CEO's real positioning line.
      ============================================================ -->
 <section class="hero">
-  <div class="container">
-    <div class="hero-copy" data-reveal-group="70">
-      <p class="label" data-reveal>AI systems, built end to end</p>
+  <div class="wrap">
+    <div class="hero-grid">
 
-      <h1 class="display" data-reveal>
-        We build the AI systems your business actually runs on.
-      </h1>
+      <div class="hero-copy" data-reveal-group="70">
+        <p class="kicker" data-reveal>AI systems, built end to end</p>
 
-      <p class="lede" data-reveal style="text-align:center;">
-        We scope it, build it, and hand it over. No pilots that go nowhere.
-      </p>
+        <h1 class="display" data-reveal>
+          We build AI systems for your business.
+        </h1>
 
-      <div class="hero-actions" data-reveal>
-        <a class="btn btn--primary" href="contact.html">
-          Book a call <i class="btn-arrow" data-lucide="arrow-right"></i>
-        </a>
-        <a class="btn btn--ghost" href="#process">
-          <i data-lucide="play"></i> See how we work
-        </a>
-      </div>
-    </div>
+        <p class="lede" data-reveal>
+          We scope it, build it, and hand it over. No pilots that go nowhere.
+        </p>
 
-    <div class="map-scroll">
-      <div class="map-wrap" data-reveal>
-        <svg class="map-field" data-dotmap viewBox="0 0 1280 560" aria-hidden="true">
-          <g data-dotmap-field></g>
-
-          <g>
-            <path class="map-link" d="M230 190 Q 430 108 655 140"   data-draw style="--aa-delay:0ms"/>
-            <path class="map-link" d="M655 140 Q 810 176 900 272"   data-draw style="--aa-delay:320ms"/>
-            <path class="map-link" d="M230 190 Q 286 336 452 392"   data-draw style="--aa-delay:640ms"/>
-            <path class="map-link" d="M655 140 Q 632 238 700 322"   data-draw style="--aa-delay:960ms"/>
-            <path class="map-link" d="M900 272 Q 1006 306 1058 404" data-draw style="--aa-delay:1280ms"/>
-            <path class="map-link" d="M700 322 Q 806 318 900 272"   data-draw style="--aa-delay:1600ms"/>
-            <path class="map-link" d="M452 392 Q 574 398 700 322"   data-draw style="--aa-delay:1920ms"/>
-          </g>
-
-          <g>
-            <path class="map-live" data-link="wf ag"  d="M230 190 Q 430 108 655 140"/>
-            <path class="map-live" data-link="ag di"  d="M655 140 Q 810 176 900 272"/>
-            <path class="map-live" data-link="wf doc" d="M230 190 Q 286 336 452 392"/>
-            <path class="map-live" data-link="ag rep" d="M655 140 Q 632 238 700 322"/>
-            <path class="map-live" data-link="di sup" d="M900 272 Q 1006 306 1058 404"/>
-            <path class="map-live" data-link="rep di" d="M700 322 Q 806 318 900 272"/>
-            <path class="map-live" data-link="doc rep" d="M452 392 Q 574 398 700 322"/>
-          </g>
-        </svg>
-
-        <a class="map-node" style="left:17.97%; top:33.93%;" href="services.html" data-node="wf"  data-mx="230"  data-my="190">
-          <span class="bubble"><i data-lucide="workflow"></i></span>
-          <span class="cap">Workflow<br>automation</span>
-        </a>
-        <a class="map-node" style="left:51.17%; top:25.00%;" href="services.html" data-node="ag"  data-mx="655"  data-my="140">
-          <span class="bubble"><i data-lucide="bot"></i></span>
-          <span class="cap">Custom<br>AI agents</span>
-        </a>
-        <a class="map-node" style="left:70.31%; top:48.57%;" href="services.html" data-node="di"  data-mx="900"  data-my="272">
-          <span class="bubble"><i data-lucide="database"></i></span>
-          <span class="cap">Data<br>integration</span>
-        </a>
-        <a class="map-node" style="left:35.31%; top:70.00%;" href="services.html" data-node="doc" data-mx="452"  data-my="392">
-          <span class="bubble"><i data-lucide="file-search"></i></span>
-          <span class="cap">Document<br>intelligence</span>
-        </a>
-        <a class="map-node" style="left:54.69%; top:57.50%;" href="services.html" data-node="rep" data-mx="700"  data-my="322">
-          <span class="bubble"><i data-lucide="chart-column"></i></span>
-          <span class="cap">Reporting<br>and analytics</span>
-        </a>
-        <a class="map-node" style="left:82.66%; top:72.14%;" href="services.html" data-node="sup" data-mx="1058" data-my="404">
-          <span class="bubble"><i data-lucide="headphones"></i></span>
-          <span class="cap">Support<br>automation</span>
-        </a>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- ============================================================
-     LOGO WALL
-     PLACEHOLDER NAMES: dummies. Replace with real client marks.
-     ============================================================ -->
-<section class="section--afterHero">
-  <div class="container">
-    <p class="label" style="text-align:center; margin-bottom: var(--s-5);">Teams running AIAgency systems in production</p>
-    <div class="logorows" data-reveal>
-      <div data-marquee="left" data-marquee-speed="42">
-        <div>
-          <span class="mq-item">Northbridge</span>
-          <span class="mq-item">Vertex</span>
-          <span class="mq-item">Calder &amp; Co</span>
-          <span class="mq-item">Meridian</span>
-          <span class="mq-item">Kestrel</span>
-          <span class="mq-item">Orsted Foods</span>
+        <div class="actions" data-reveal>
+          <a class="btn btn--primary" href="contact.html">
+            Book a call <i data-lucide="arrow-right"></i>
+          </a>
+          <a class="btn btn--ghost" href="#process">See how we work</a>
         </div>
       </div>
 
-      <div data-marquee="right" data-marquee-speed="42">
-        <div>
-          <span class="mq-item">Larkfield</span>
-          <span class="mq-item">Anselm Health</span>
-          <span class="mq-item">Brightpath</span>
-          <span class="mq-item">Tenway</span>
-          <span class="mq-item">Solent Group</span>
-          <span class="mq-item">Hollis &amp; Park</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+      <!-- the OVERVIEW screen slides in from the right on load,
+           Miter style. Different content from the board below.
+           PLACEHOLDER DATA: sample data, labelled in the top bar. -->
+      <div class="hero-shot">
+        <div class="dash" role="img" aria-label="Overview screen of an automation workspace with weekly numbers, a runs chart and an approvals list.">
+          <div class="dash-top">
+            <span class="page"><i data-lucide="house"></i>Overview</span>
+            <span class="pill"><i></i>Running</span>
 
-<!-- ============================================================
-     LAPTOP SHOWCASE
-     ============================================================ -->
-<section class="section section--band">
-  <div class="container">
-    <div class="section-head section-head--center" data-reveal-group="70">
-      <p class="label" data-reveal>What you end up with</p>
-      <h2 class="h2" data-reveal>One place where the work is visible.</h2>
-    </div>
+            <span class="dash-right">
+              <span class="sample">Sample data</span>
+              <i data-lucide="bell"></i>
+              <span class="ava">MF</span>
+            </span>
+          </div>
 
-    <div class="stage" data-reveal>
-      <div class="laptop-lid">
-        <div class="laptop-cam"></div>
-        <div class="laptop-screen">
-
-          <div class="app">
-            <aside class="app-nav">
-              <div class="app-brand">
-                <img src="aiagency_logo.png" alt="" width="20" height="20">
-                AIAgency
+          <div class="ov-body">
+            <div class="ov-head">
+              <div>
+                <p class="crumb">Tuesday, 18 August</p>
+                <p class="ov-title">Good afternoon, Meridian</p>
               </div>
-              <a class="on"><i data-lucide="layout-dashboard"></i>Overview</a>
-              <a><i data-lucide="workflow"></i>Workflows</a>
-              <a><i data-lucide="bot"></i>Agents</a>
-              <a><i data-lucide="database"></i>Sources</a>
-              <a><i data-lucide="file-text"></i>Documents</a>
-              <a><i data-lucide="settings"></i>Settings</a>
-            </aside>
+              <span class="ov-filter"><i data-lucide="sliders-horizontal"></i>Filters</span>
+            </div>
 
-            <div class="app-body">
-              <div class="app-head">
-                <div>
-                  <p class="label">Operations</p>
-                  <p class="app-title">Order intake</p>
-                </div>
-                <span class="pill"><i data-lucide="circle-check"></i>Running</span>
+            <div class="ov-kpis">
+              <div class="kpi-card">
+                <span class="kpi-lab"><i data-lucide="file-text"></i>Processed today</span>
+                <span class="kpi-val">1,284</span>
+                <span class="kpi-delta up">+18% since last week</span>
               </div>
-
-              <div class="kpis">
-                <div class="kpi">
-                  <span class="kpi-lab">Processed today</span>
-                  <span class="kpi-val">1,284</span>
-                  <span class="kpi-dlt"><i data-lucide="trending-up"></i>18% vs last week</span>
-                </div>
-                <div class="kpi">
-                  <span class="kpi-lab">Touched by a human</span>
-                  <span class="kpi-val">37</span>
-                  <span class="kpi-dlt"><i data-lucide="trending-down"></i>62% fewer</span>
-                </div>
-                <div class="kpi">
-                  <span class="kpi-lab">Avg. handling time</span>
-                  <span class="kpi-val">11s</span>
-                  <span class="kpi-dlt"><i data-lucide="trending-down"></i>from 6m 40s</span>
-                </div>
+              <div class="kpi-card">
+                <span class="kpi-lab"><i data-lucide="clock"></i>Hours given back</span>
+                <span class="kpi-val">41</span>
+                <span class="kpi-delta up">+6 since last week</span>
               </div>
+              <div class="kpi-card">
+                <span class="kpi-lab"><i data-lucide="user-check"></i>Sent to a human</span>
+                <span class="kpi-val">12</span>
+                <span class="kpi-delta">2 waiting now</span>
+              </div>
+            </div>
 
-              <div class="panel">
-                <div class="panel-hd"><span>Throughput</span><span class="label">Last 30 days</span></div>
-                <svg viewBox="0 0 640 110" preserveAspectRatio="none" style="width:100%; height:104px;" aria-hidden="true">
-                  <path d="M0 90 L48 82 L96 86 L144 68 L192 72 L240 55 L288 59 L336 42 L384 47 L432 31 L480 35 L528 22 L576 26 L640 13 L640 110 L0 110 Z" fill="var(--accent-tint)"/>
-                  <path d="M0 90 L48 82 L96 86 L144 68 L192 72 L240 55 L288 59 L336 42 L384 47 L432 31 L480 35 L528 22 L576 26 L640 13" fill="none" stroke="var(--accent)" stroke-width="2"/>
+            <div class="ov-grid">
+              <div class="ov-panel">
+                <div class="ov-panel-hd"><span>Runs per day</span><span class="ov-range">Last 12 days</span></div>
+                <svg class="ov-bars" viewBox="0 0 340 120" preserveAspectRatio="none" aria-hidden="true">
+                  <rect x="8"   y="77" width="16" height="42" rx="3" fill="#3ECF8E" opacity="0.45"/>
+                  <rect x="36"  y="64" width="16" height="55" rx="3" fill="#3ECF8E" opacity="0.45"/>
+                  <rect x="64"  y="81" width="16" height="38" rx="3" fill="#3ECF8E" opacity="0.45"/>
+                  <rect x="92"  y="59" width="16" height="60" rx="3" fill="#3ECF8E" opacity="0.55"/>
+                  <rect x="120" y="47" width="16" height="72" rx="3" fill="#3ECF8E" opacity="0.55"/>
+                  <rect x="148" y="69" width="16" height="50" rx="3" fill="#3ECF8E" opacity="0.55"/>
+                  <rect x="176" y="53" width="16" height="66" rx="3" fill="#3ECF8E" opacity="0.7"/>
+                  <rect x="204" y="39" width="16" height="80" rx="3" fill="#3ECF8E" opacity="0.7"/>
+                  <rect x="232" y="61" width="16" height="58" rx="3" fill="#3ECF8E" opacity="0.7"/>
+                  <rect x="260" y="31" width="16" height="88" rx="3" fill="#3ECF8E" opacity="0.85"/>
+                  <rect x="288" y="45" width="16" height="74" rx="3" fill="#3ECF8E" opacity="0.85"/>
+                  <rect x="316" y="23" width="16" height="96" rx="3" fill="#3ECF8E"/>
+                  <line x1="0" y1="119.5" x2="340" y2="119.5" stroke="#EAE9E5" stroke-width="1"/>
                 </svg>
               </div>
 
-              <div class="panel">
-                <div class="panel-hd"><span>Recent runs</span><span class="label">Live</span></div>
-                <div class="rowline"><span class="t">09:42:18</span><span>Invoice parsed and matched to PO</span><span class="s"><i data-lucide="check"></i>Done</span></div>
-                <div class="rowline"><span class="t">09:41:56</span><span>Vendor record updated in CRM</span><span class="s"><i data-lucide="check"></i>Done</span></div>
-                <div class="rowline"><span class="t">09:41:03</span><span>Exception routed to finance</span><span class="s"><i data-lucide="check"></i>Done</span></div>
+              <div class="ov-panel">
+                <div class="ov-panel-hd"><span>Needs approval</span><span class="ov-range">Today</span></div>
+                <div class="ap-row"><span class="ava ava--sm">RM</span><span class="ap-txt"><b>INV-2035 &middot; Solent Group</b><i>Total 4% above the purchase order</i></span></div>
+                <div class="ap-row"><span class="ava ava--sm">DK</span><span class="ap-txt"><b>PO-8817 &middot; Vertex</b><i>New vendor, first order</i></span></div>
+                <div class="ap-row"><span class="ava ava--sm">AI</span><span class="ap-txt"><b>INV-2029 &middot; Kestrel</b><i>Missing a line item</i></span></div>
+                <div class="ap-row"><span class="ava ava--sm">DK</span><span class="ap-txt"><b>INV-2027 &middot; Hollis &amp; Park</b><i>Duplicate invoice number</i></span></div>
+                <div class="ap-row"><span class="ava ava--sm">RM</span><span class="ap-txt"><b>PO-8809 &middot; Brightpath</b><i>Price above the quote</i></span></div>
+                <div class="ap-more"><span>2 waiting now</span><span>View all</span></div>
               </div>
             </div>
           </div>
-
         </div>
       </div>
-      <div class="laptop-base"></div>
 
-      <div class="win--float">
-        <div class="float-hd"><strong>Last run</strong><span class="label">2.4s</span></div>
-        <div class="step-row"><i data-lucide="download"></i>Fetched 42 documents<span class="ms">0.3s</span></div>
-        <div class="step-row"><i data-lucide="scan-text"></i>Extracted line items<span class="ms">0.9s</span></div>
-        <div class="step-row"><i data-lucide="git-compare-arrows"></i>Reconciled against ledger<span class="ms">0.8s</span></div>
-        <div class="step-row"><i data-lucide="send"></i>Pushed to accounting<span class="ms">0.4s</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     THE DASHBOARD SHOT
+     The framed board below the hero, restored, as before.
+     PLACEHOLDER DATA: sample data, labelled on the sheet.
+     ============================================================ -->
+<figure class="fig">
+  <div class="wrap">
+    <div class="fig-head">
+      <span><b>Order intake</b> &nbsp;&middot;&nbsp; a system we deliver</span>
+      <span>Shown with sample data</span>
+    </div>
+
+    <div class="shot" data-reveal>
+      <div class="dash" role="img" aria-label="Dashboard of an order intake automation system showing a board of documents moving from incoming to done.">
+
+        <div class="dash-top">
+          <span class="page"><i data-lucide="layout-dashboard"></i>Order intake</span>
+          <span class="pill"><i></i>Running</span>
+
+          <span class="dash-right">
+            <i data-lucide="bell"></i>
+            <span class="ava">MF</span>
+          </span>
+        </div>
+
+        <div class="dash-body">
+          <aside class="dash-side">
+            <div class="ws-card">
+              <img src="aiagency_logo.png" alt="">
+              <span class="ws-name"><b>Meridian Foods</b><span>Operations</span></span>
+              <i data-lucide="chevrons-up-down"></i>
+            </div>
+
+            <div class="side-search">
+              <i data-lucide="search"></i> Search <kbd>&#8984;K</kbd>
+            </div>
+
+            <nav>
+              <a class="on"><i data-lucide="layout-dashboard"></i>Overview</a>
+              <a><i data-lucide="list-checks"></i>Runs</a>
+              <a><i data-lucide="user-check"></i>Approvals</a>
+              <a><i data-lucide="database"></i>Sources</a>
+              <a><i data-lucide="chart-column"></i>Reports</a>
+            </nav>
+
+            <p class="side-sec">Workflows</p>
+            <div class="side-item"><i data-lucide="workflow"></i>Order intake<i data-lucide="chevron-up" style="margin-left:auto"></i></div>
+            <div class="side-tree">
+              <a>Invoices</a>
+              <a>Vendors</a>
+              <a>Exceptions</a>
+            </div>
+
+            <button class="side-new" type="button">+ New workflow</button>
+          </aside>
+
+          <div class="dash-main">
+            <div class="dash-head">
+              <span class="seg">
+                <span class="on">Overview</span>
+                <span>Board view</span>
+                <span>Grid view</span>
+              </span>
+
+              <span class="upd">Last updated at 11:28 <i data-lucide="refresh-cw"></i></span>
+            </div>
+
+            <div class="board">
+              <div class="col">
+                <div class="col-hd">Incoming <span class="cnt">03</span><span class="ics"><i data-lucide="plus"></i><i data-lucide="ellipsis"></i></span></div>
+
+                <div class="card card--ghost">
+                  <div class="ghost-art" aria-hidden="true"></div>
+                  <p class="card-title">New run</p>
+                  <p class="card-sub">Forward a document or connect a source to start one.</p>
+                  <button class="ghost-btn" type="button">+ Add a source</button>
+                </div>
+
+                <div class="card">
+                  <div class="card-meta">
+                    <span class="chip chip--doc">Invoice</span>
+                    <i data-lucide="calendar"></i> Aug 18
+                    <i class="dots" data-lucide="ellipsis"></i>
+                  </div>
+                  <p class="card-title">INV-2041 &middot; Kestrel Supply</p>
+                  <p class="card-sub">Received by email, waiting to be read and matched.</p>
+                  <div class="card-foot">
+                    <span class="avas"><span>AI</span></span>
+                    <span class="card-ics"><i data-lucide="paperclip"></i><i data-lucide="message-square"></i></span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col">
+                <div class="col-hd">Processing <span class="cnt">02</span><span class="ics"><i data-lucide="plus"></i><i data-lucide="ellipsis"></i></span></div>
+
+                <div class="card">
+                  <div class="card-meta">
+                    <span class="chip chip--auto">Automated</span>
+                    <i data-lucide="calendar"></i> Aug 18
+                    <i class="dots" data-lucide="ellipsis"></i>
+                  </div>
+                  <p class="card-title">INV-2039 &middot; Northbridge</p>
+                  <p class="card-sub">Line items extracted, matching against the ledger now.</p>
+                  <div class="prog"><span class="lab">Progress</span><span class="prog-bar"><i style="width:64%"></i></span>64%</div>
+                  <div class="card-foot">
+                    <span class="avas"><span>AI</span></span>
+                    <span class="card-ics"><i data-lucide="paperclip"></i><i data-lucide="message-square"></i></span>
+                  </div>
+                </div>
+
+                <div class="card">
+                  <div class="card-meta">
+                    <span class="chip chip--auto">Automated</span>
+                    <i data-lucide="calendar"></i> Aug 18
+                    <i class="dots" data-lucide="ellipsis"></i>
+                  </div>
+                  <p class="card-title">INV-2040 &middot; Larkfield</p>
+                  <p class="card-sub">Reading a scanned copy, two pages left.</p>
+                  <div class="prog"><span class="lab">Progress</span><span class="prog-bar"><i style="width:28%"></i></span>28%</div>
+                  <div class="card-foot">
+                    <span class="avas"><span>AI</span></span>
+                    <span class="card-ics"><i data-lucide="paperclip"></i></span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col">
+                <div class="col-hd">Needs a person <span class="cnt">01</span><span class="ics"><i data-lucide="plus"></i><i data-lucide="ellipsis"></i></span></div>
+
+                <div class="card">
+                  <div class="card-meta">
+                    <span class="chip chip--rev">Review</span>
+                    <i data-lucide="calendar"></i> Aug 18
+                    <i class="dots" data-lucide="ellipsis"></i>
+                  </div>
+                  <p class="card-title">INV-2035 &middot; Solent Group</p>
+                  <p class="card-sub">Total is 4% above the purchase order. Sent to finance with both documents attached.</p>
+                  <div class="card-foot">
+                    <span class="avas"><span>RM</span><span>AI</span></span>
+                    <span class="card-ics"><i data-lucide="paperclip"></i><i data-lucide="message-square"></i></span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col">
+                <div class="col-hd">Done today <span class="cnt">24</span><span class="ics"><i data-lucide="plus"></i><i data-lucide="ellipsis"></i></span></div>
+
+                <div class="card">
+                  <div class="card-meta">
+                    <span class="chip chip--auto">Automated</span>
+                    <i data-lucide="calendar"></i> Aug 18
+                    <i class="dots" data-lucide="ellipsis"></i>
+                  </div>
+                  <p class="card-title">INV-2038 &middot; Brightpath</p>
+                  <p class="card-sub">Matched, posted to accounting, vendor record updated.</p>
+                  <div class="prog"><span class="lab">Progress</span><span class="prog-bar"><i style="width:100%"></i></span>100%</div>
+                  <div class="card-foot">
+                    <span class="avas"><span>AI</span></span>
+                    <span class="card-ics"><i data-lucide="check"></i></span>
+                  </div>
+                </div>
+
+                <div class="card">
+                  <div class="card-meta">
+                    <span class="chip chip--auto">Automated</span>
+                    <i data-lucide="calendar"></i> Aug 18
+                    <i class="dots" data-lucide="ellipsis"></i>
+                  </div>
+                  <p class="card-title">INV-2037 &middot; Tenway</p>
+                  <p class="card-sub">Matched and posted, no exceptions raised.</p>
+                  <div class="prog"><span class="lab">Progress</span><span class="prog-bar"><i style="width:100%"></i></span>100%</div>
+                  <div class="card-foot">
+                    <span class="avas"><span>AI</span></span>
+                    <span class="card-ics"><i data-lucide="check"></i></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</figure>
+
+<!-- ============================================================
+     LOGO BAND. Cartesia layout in our style: fixed stat cell
+     left, bordered logo cells sliding right of it, row one left,
+     row two right. Hover darkens a cell.
+     PLACEHOLDER: the stat and every name are dummies, swap for
+     real numbers and client marks.
+     ============================================================ -->
+<section class="logos">
+  <div class="wrap">
+    <div class="logo-band" data-reveal>
+      <div class="logo-lead">
+        <p class="logo-stat">50+ projects</p>
+        <p class="logo-sub">shipped end to end, from first mapping call to handover</p>
+      </div>
+
+      <div class="logo-rail">
+        <div data-marquee="left" data-marquee-speed="36">
+          <div>
+            <span class="logo-cell">Northbridge</span>
+            <span class="logo-cell">Vertex</span>
+            <span class="logo-cell">Calder &amp; Co</span>
+            <span class="logo-cell">Meridian</span>
+            <span class="logo-cell">Kestrel</span>
+            <span class="logo-cell">Orsted Foods</span>
+          </div>
+        </div>
+
+        <div data-marquee="right" data-marquee-speed="36">
+          <div>
+            <span class="logo-cell">Larkfield</span>
+            <span class="logo-cell">Anselm Health</span>
+            <span class="logo-cell">Brightpath</span>
+            <span class="logo-cell">Tenway</span>
+            <span class="logo-cell">Solent Group</span>
+            <span class="logo-cell">Hollis &amp; Park</span>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- ============================================================
-     SERVICES
-     PLACEHOLDER CATEGORIES: confirm the real service list.
+     AGENTS AT WORK. four agent cards on the drafting canvas,
+     working one document each: reading, reviewing, drafting the
+     report, ticking the handover checklist.
+     PLACEHOLDER content throughout.
+     ============================================================ -->
+<section class="section" id="agents">
+  <div class="wrap">
+    <div class="sec-head" data-reveal>
+      <div>
+        <p class="kicker">Behind the scenes</p>
+        <h2 class="h2">Agents at work.</h2>
+      </div>
+    </div>
+
+    <div class="agents" data-reveal>
+      <svg class="agents-svg" viewBox="0 0 1100 560" aria-hidden="true">
+        <path class="awire" d="M286 250 H352 V190 H418"/>
+        <path class="awire" d="M286 310 H352 V437 H418"/>
+        <path class="awire" d="M682 250 H748 V280 H814"/>
+
+        <path class="agents-pulse" data-flow style="--aa-delay:0ms"    d="M286 250 H352 V190 H418"/>
+        <path class="agents-pulse" data-flow style="--aa-delay:900ms"  d="M286 310 H352 V437 H418"/>
+        <path class="agents-pulse" data-flow style="--aa-delay:1800ms" d="M682 250 H748 V280 H814"/>
+
+        <rect x="283" y="247" width="6" height="6"/>
+        <rect x="415" y="187" width="6" height="6"/>
+        <rect x="283" y="307" width="6" height="6"/>
+        <rect x="415" y="434" width="6" height="6"/>
+        <rect x="679" y="247" width="6" height="6"/>
+        <rect x="811" y="277" width="6" height="6"/>
+      </svg>
+
+      <article class="acard acard--stack" style="left:14%; top:50%;">
+        <span class="atag"><i></i>Agent Alpha</span>
+        <p class="atitle">Reading the vendor contract <span>[extract]</span></p>
+        <div class="sk" style="width:92%; --sd:0ms"></div>
+        <div class="sk" style="width:78%; --sd:120ms"></div>
+        <div class="sk" style="width:86%; --sd:240ms"></div>
+        <div class="sk sk--hl" style="width:60%; --sd:360ms"></div>
+        <div class="sk" style="width:88%; --sd:480ms"></div>
+        <div class="sk" style="width:70%; --sd:600ms"></div>
+        <div class="sk" style="width:82%; --sd:720ms"></div>
+        <div class="sk" style="width:52%; --sd:840ms"></div>
+      </article>
+
+      <article class="acard" style="left:50%; top:34%;">
+        <span class="atag"><i class="busy"></i>Agent Bravo</span>
+        <p class="atitle">Checking terms against policy <span>[review]</span></p>
+        <div class="sk" style="width:88%; --sd:0ms"></div>
+        <div class="sk" style="width:72%; --sd:120ms"></div>
+        <div class="sk" style="width:90%; --sd:240ms"></div>
+        <div class="sk" style="width:64%; --sd:360ms"></div>
+        <div class="sk" style="width:84%; --sd:480ms"></div>
+        <div class="sk" style="width:58%; --sd:600ms"></div>
+        <div class="adots" aria-hidden="true">
+          <span style="left:18%; top:44%; --d:0ms"></span>
+          <span style="left:52%; top:58%; --d:400ms"></span>
+          <span style="left:34%; top:74%; --d:800ms"></span>
+          <span class="ring" style="left:66%; top:82%; --d:1200ms"></span>
+        </div>
+      </article>
+
+      <article class="acard" style="left:50%; top:78%;">
+        <span class="atag"><i></i>Agent Charlie</span>
+        <p class="atitle">Preparing the summary report <span>[draft]</span></p>
+        <div class="aprog-row"><span>Progress.</span><b data-count="100" data-count-suffix="%" data-count-duration="7500">0%</b></div>
+        <div class="abar"><i></i></div>
+      </article>
+
+      <article class="acard" style="left:86%; top:50%;">
+        <span class="atag"><i></i>Agent Foxtrot</span>
+        <p class="atitle">Handover checklist <span>[verify]</span></p>
+        <div class="ack"><span class="bx bx--on" style="--d:800ms"></span><div class="sk" style="width:86%; --sd:0ms"></div></div>
+        <div class="ack"><span class="bx bx--on" style="--d:1000ms"></span><div class="sk" style="width:64%; --sd:120ms"></div></div>
+        <div class="ack"><span class="bx bx--on" style="--d:1200ms"></span><div class="sk" style="width:78%; --sd:240ms"></div></div>
+        <div class="ack"><span class="bx bx--on" style="--d:1400ms"></span><div class="sk" style="width:58%; --sd:360ms"></div></div>
+        <div class="ack"><span class="bx bx--on" style="--d:1600ms"></span><div class="sk" style="width:70%; --sd:480ms"></div></div>
+        <div class="ack"><span class="bx bx--on" style="--d:1800ms"></span><div class="sk" style="width:74%; --sd:600ms"></div></div>
+        <div class="ack"><span class="bx bx--on" style="--d:2000ms"></span><div class="sk" style="width:52%; --sd:720ms"></div></div>
+        <div class="ack"><span class="bx bx--on" style="--d:2200ms"></span><div class="sk" style="width:62%; --sd:840ms"></div></div>
+      </article>
+
+      <!-- appears once the checklist above is fully ticked.
+           PLACEHOLDER name. -->
+      <aside class="acard acard--result" style="left:86%; top:90%; --d:2600ms">
+        <span class="ares-txt">
+          <b>Ravi M.</b>
+          <i>Checklist complete, cleared for handover</i>
+        </span>
+        <span class="bigck" aria-hidden="true"></span>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SERVICES. numbered typographic rows.
+     PLACEHOLDER LIST: confirm the real service lines.
      ============================================================ -->
 <section class="section" id="services">
-  <div class="container">
-    <div class="section-head" data-reveal-group="70">
-      <p class="label" data-reveal>What we do</p>
-      <h2 class="h2" data-reveal>Four ways we put AI to work.</h2>
+  <div class="wrap">
+    <div class="sec-head" data-reveal>
+      <div>
+        <p class="kicker">What we build</p>
+        <h2 class="h2">The work we take on.</h2>
+      </div>
     </div>
 
-    <div class="cols" data-reveal-group="70">
-    <article data-reveal>
-      <span class="col-ico"><i data-lucide="workflow"></i></span>
-      <p class="label label--accent">01</p>
-      <h3 class="h3">Workflow automation</h3>
-      <p class="small muted">The repetitive path a task takes through your business, rebuilt so it runs without anyone pushing it along.</p>
-    </article>
+    <div class="svc-list">
+      <a class="svc" href="services.html">
+        <span class="svc-num">01</span>
+        <span class="svc-title">Workflow automation</span>
+        <span class="svc-desc">The repetitive path a task takes through your business, rebuilt so it runs without anyone pushing it along.</span>
+        <span class="svc-arrow"><i data-lucide="arrow-right"></i></span>
+      </a>
 
-    <article data-reveal>
-      <span class="col-ico"><i data-lucide="bot"></i></span>
-      <p class="label label--accent">02</p>
-      <h3 class="h3">Custom AI agents</h3>
-      <p class="small muted">Systems that read, decide and act inside your own tools, with the limits and the audit trail written in from the start.</p>
-    </article>
+      <a class="svc" href="services.html">
+        <span class="svc-num">02</span>
+        <span class="svc-title">Custom AI agents</span>
+        <span class="svc-desc">Systems that read, decide and act inside your own tools, with the limits and the audit trail written in from the start.</span>
+        <span class="svc-arrow"><i data-lucide="arrow-right"></i></span>
+      </a>
 
-    <article data-reveal>
-      <span class="col-ico"><i data-lucide="database"></i></span>
-      <p class="label label--accent">03</p>
-      <h3 class="h3">Data and system integration</h3>
-      <p class="small muted">Getting the systems you already pay for to agree with each other, so there is one version of the numbers.</p>
-    </article>
+      <a class="svc" href="services.html">
+        <span class="svc-num">03</span>
+        <span class="svc-title">Data and system integration</span>
+        <span class="svc-desc">Getting the systems you already pay for to agree with each other, so there is one version of the numbers.</span>
+        <span class="svc-arrow"><i data-lucide="arrow-right"></i></span>
+      </a>
 
-    <article data-reveal>
-      <span class="col-ico"><i data-lucide="compass"></i></span>
-      <p class="label label--accent">04</p>
-      <h3 class="h3">AI strategy and review</h3>
-      <p class="small muted">Where AI is worth the effort in your business and where it is not, before anybody writes code.</p>
-    </article>
+      <a class="svc" href="services.html">
+        <span class="svc-num">04</span>
+        <span class="svc-title">AI strategy and review</span>
+        <span class="svc-desc">Where AI is worth the effort in your business and where it is not, before anybody writes code.</span>
+        <span class="svc-arrow"><i data-lucide="arrow-right"></i></span>
+      </a>
     </div>
 
-    <div style="margin-top: var(--s-6);">
+    <div class="svc-more">
       <a class="tlink" href="services.html">All services <i data-lucide="arrow-right"></i></a>
     </div>
   </div>
 </section>
 
-<!-- ============================================================
-     FLOW DIAGRAM
-     ============================================================ -->
-<section class="section section--band">
-  <div class="container">
-    <div class="section-head" data-reveal-group="70">
-      <p class="label" data-reveal>What an engagement produces</p>
-      <h2 class="h2" data-reveal>Scattered inputs in. One system out.</h2>
+<section class="diagram">
+  <div class="wrap">
+    <div class="sec-head" data-reveal>
+      <div>
+        <p class="kicker">What an engagement produces</p>
+        <h2 class="h2">Scattered inputs in. One system out.</h2>
+      </div>
     </div>
 
-    <figure class="diagram-wrap" data-reveal>
-      <div class="diagram-scroll">
-        <svg class="diagram" viewBox="0 0 1060 460" role="img"
-             aria-label="Five scattered business inputs converge into one AIAgency system which produces unified data, automated workflows and reporting.">
+    <div class="diagram-stage" data-reveal>
+      <svg viewBox="0 0 1100 380" role="img"
+           aria-label="CRM records, spreadsheets, inbox, support tickets and documents converge into one system, which produces unified data, automated workflows and reporting.">
 
-          <g class="dg-text" data-reveal-group="60">
-            <g data-reveal><rect class="dg-box dg-box--in" x="40" y="27" width="170" height="46" rx="3"/><text x="58" y="55">CRM records</text></g>
-            <g data-reveal><rect class="dg-box dg-box--in" x="40" y="117" width="170" height="46" rx="3"/><text x="58" y="145">Spreadsheets</text></g>
-            <g data-reveal><rect class="dg-box dg-box--in" x="40" y="207" width="170" height="46" rx="3"/><text x="58" y="235">Inbox</text></g>
-            <g data-reveal><rect class="dg-box dg-box--in" x="40" y="297" width="170" height="46" rx="3"/><text x="58" y="325">Support tickets</text></g>
-            <g data-reveal><rect class="dg-box dg-box--in" x="40" y="387" width="170" height="46" rx="3"/><text x="58" y="415">Documents</text></g>
-          </g>
+        <!-- input labels -->
+        <text class="dg-lab" x="40" y="45">CRM RECORDS</text>
+        <text class="dg-lab" x="40" y="118">SPREADSHEETS</text>
+        <text class="dg-lab" x="40" y="191">INBOX</text>
+        <text class="dg-lab" x="40" y="264">SUPPORT TICKETS</text>
+        <text class="dg-lab" x="40" y="337">DOCUMENTS</text>
 
-          <g>
-            <path class="dg-wire" d="M210 50  H360 V230 H536" data-draw style="--aa-delay:0ms"/>
-            <path class="dg-wire" d="M210 140 H400 V230 H536" data-draw style="--aa-delay:180ms"/>
-            <path class="dg-wire" d="M210 230 H536"           data-draw style="--aa-delay:360ms"/>
-            <path class="dg-wire" d="M210 320 H400 V230 H536" data-draw style="--aa-delay:540ms"/>
-            <path class="dg-wire" d="M210 410 H360 V230 H536" data-draw style="--aa-delay:720ms"/>
+        <rect class="dg-node" x="218" y="38"  width="4" height="4"/>
+        <rect class="dg-node" x="218" y="111" width="4" height="4"/>
+        <rect class="dg-node" x="218" y="184" width="4" height="4"/>
+        <rect class="dg-node" x="218" y="257" width="4" height="4"/>
+        <rect class="dg-node" x="218" y="330" width="4" height="4"/>
 
-            <path class="dg-live" d="M210 50  H360 V230 H536" data-measure style="--d:0ms"/>
-            <path class="dg-live" d="M210 140 H400 V230 H536" data-measure style="--d:70ms"/>
-            <path class="dg-live" d="M210 230 H536"           data-measure style="--d:140ms"/>
-            <path class="dg-live" d="M210 320 H400 V230 H536" data-measure style="--d:70ms"/>
-            <path class="dg-live" d="M210 410 H360 V230 H536" data-measure style="--d:0ms"/>
-          </g>
+        <!-- converging wires -->
+        <path class="dg-wire" d="M222 40  H370 V186 H478" data-draw style="--aa-delay:0ms"/>
+        <path class="dg-wire" d="M222 113 H410 V186 H478" data-draw style="--aa-delay:140ms"/>
+        <path class="dg-wire" d="M222 186 H478"           data-draw style="--aa-delay:280ms"/>
+        <path class="dg-wire" d="M222 259 H410 V186 H478" data-draw style="--aa-delay:420ms"/>
+        <path class="dg-wire" d="M222 332 H370 V186 H478" data-draw style="--aa-delay:560ms"/>
 
-          <circle class="dg-ring" cx="600" cy="230" r="80" data-orbit/>
-          <circle cx="600" cy="230" r="64" fill="var(--canvas)" stroke="var(--ink-3)" stroke-width="1.2"/>
-          <image href="aiagency_logo.png" x="576" y="206" width="48" height="48" data-reveal/>
-          <text class="dg-cap" x="600" y="332" text-anchor="middle">AIAGENCY</text>
+        <path class="dg-pulse" d="M222 40  H370 V186 H478" data-flow style="--aa-delay:0ms"/>
+        <path class="dg-pulse" d="M222 113 H410 V186 H478" data-flow style="--aa-delay:450ms"/>
+        <path class="dg-pulse" d="M222 186 H478"           data-flow style="--aa-delay:900ms"/>
+        <path class="dg-pulse" d="M222 259 H410 V186 H478" data-flow style="--aa-delay:1350ms"/>
+        <path class="dg-pulse" d="M222 332 H370 V186 H478" data-flow style="--aa-delay:1800ms"/>
 
-          <g>
-            <path class="dg-wire" d="M664 230 H770 V130 H840" data-draw style="--aa-delay:900ms"/>
-            <path class="dg-wire" d="M664 230 H840"           data-draw style="--aa-delay:1020ms"/>
-            <path class="dg-wire" d="M664 230 H770 V330 H840" data-draw style="--aa-delay:1140ms"/>
+        <!-- hub -->
+        <circle class="dg-hub-ring" cx="548" cy="186" r="66"/>
+        <circle class="dg-hub" cx="548" cy="186" r="50"/>
+        <image href="aiagency_logo.png" x="528" y="166" width="40" height="40"/>
+        <text class="dg-cap" x="548" y="282" text-anchor="middle">ONE SYSTEM, IN YOUR STACK</text>
 
-            <path class="dg-live" d="M664 230 H770 V130 H840" data-measure style="--d:560ms"/>
-            <path class="dg-live" d="M664 230 H840"           data-measure style="--d:560ms"/>
-            <path class="dg-live" d="M664 230 H770 V330 H840" data-measure style="--d:560ms"/>
-          </g>
+        <!-- outgoing wires -->
+        <path class="dg-wire" d="M614 186 H740 V96  H846" data-draw style="--aa-delay:700ms"/>
+        <path class="dg-wire" d="M614 186 H846"           data-draw style="--aa-delay:820ms"/>
+        <path class="dg-wire" d="M614 186 H740 V276 H846" data-draw style="--aa-delay:940ms"/>
 
-          <g class="dg-text dg-text--out" data-reveal-group="60">
-            <g data-reveal><rect class="dg-box" x="840" y="104" width="180" height="52" rx="3"/><text x="860" y="135">Unified data</text></g>
-            <g data-reveal><rect class="dg-box" x="840" y="204" width="180" height="52" rx="3"/><text x="860" y="235">Automated workflows</text></g>
-            <g data-reveal><rect class="dg-box" x="840" y="304" width="180" height="52" rx="3"/><text x="860" y="335">Reporting you trust</text></g>
-          </g>
-        </svg>
-      </div>
-    </figure>
-  </div>
-</section>
+        <path class="dg-pulse" d="M614 186 H740 V96  H846" data-flow style="--aa-delay:2400ms"/>
+        <path class="dg-pulse" d="M614 186 H846"           data-flow style="--aa-delay:2850ms"/>
+        <path class="dg-pulse" d="M614 186 H740 V276 H846" data-flow style="--aa-delay:3300ms"/>
 
-<!-- ============================================================
-     PROCESS
-     ============================================================ -->
-<section class="section" id="process">
-  <div class="container">
-    <div class="section-head" data-reveal-group="70">
-      <p class="label" data-reveal>Process</p>
-      <h2 class="h2" data-reveal>How a project actually runs.</h2>
-    </div>
+        <rect class="dg-node" x="842" y="94"  width="4" height="4"/>
+        <rect class="dg-node" x="842" y="184" width="4" height="4"/>
+        <rect class="dg-node" x="842" y="274" width="4" height="4"/>
 
-    <div class="rail" data-reveal-group="70">
-      <div class="rstep" data-reveal>
-        <span class="rdot">01</span>
-        <span class="rstage">Discovery</span>
-        <h3 class="h3">Map it before touching it</h3>
-        <p class="small muted">We sit with the people who do the work and write down what actually happens, including the parts nobody documented. The map is yours either way.</p>
-      </div>
-
-      <div class="rstep" data-reveal>
-        <span class="rdot">02</span>
-        <span class="rstage">Design</span>
-        <h3 class="h3">Scope agreed in writing</h3>
-        <p class="small muted">What gets built, what it connects to, what working means, and what it costs. No code starts until you have signed that off.</p>
-      </div>
-
-      <div class="rstep" data-reveal>
-        <span class="rdot">03</span>
-        <span class="rstage">Build</span>
-        <h3 class="h3">Shipped weekly, in your stack</h3>
-        <p class="small muted">Working software in front of you every week, running in your own environment rather than a demo of ours.</p>
-      </div>
-
-      <div class="rstep" data-reveal>
-        <span class="rdot">04</span>
-        <span class="rstage">Handover</span>
-        <h3 class="h3">You own it when we leave</h3>
-        <p class="small muted">Documentation, a walkthrough with your team, and the repository in your account. Support afterwards is a choice, not a dependency.</p>
-      </div>
+        <!-- output labels -->
+        <text class="dg-lab dg-lab--out" x="862" y="100">UNIFIED DATA</text>
+        <text class="dg-lab dg-lab--out" x="862" y="190">AUTOMATED WORKFLOWS</text>
+        <text class="dg-lab dg-lab--out" x="862" y="280">REPORTING YOU TRUST</text>
+      </svg>
     </div>
   </div>
 </section>
 
-
 <!-- ============================================================
-     STATS
-     PLACEHOLDER NUMBERS: replace or cut all four.
+     PROCESS. editorial split. only place the four stages appear.
      ============================================================ -->
-<section class="section--tight section--band">
-  <div class="container">
-    <div class="stats" data-reveal>
-      <div class="stat">
-        <span class="stat-num" data-count="24" data-count-suffix="+">0</span>
-        <span class="label">Systems in production</span>
+<section class="section band" id="process">
+  <div class="wrap">
+    <div class="process-grid">
+      <div class="process-intro" data-reveal>
+        <p class="kicker">Process</p>
+        <h2 class="h2">How a project actually runs.</h2>
+        <p>The same four stages on every engagement, and you see working software from the first weeks, not the last.</p>
+        <a class="tlink" href="contact.html">Book your first demo <i data-lucide="arrow-right"></i></a>
       </div>
-      <div class="stat">
-        <span class="stat-num" data-count="6" data-count-suffix=" wks">0</span>
-        <span class="label">Median time to first release</span>
-      </div>
-      <div class="stat">
-        <span class="stat-num" data-count="40" data-count-suffix="%">0</span>
-        <span class="label">Manual steps removed, average</span>
-      </div>
-      <div class="stat">
-        <span class="stat-num" data-count="100" data-count-suffix="%">0</span>
-        <span class="label">Code ownership transferred</span>
+
+      <div class="process-steps">
+        <div class="step">
+          <span class="step-meta"><span class="n">01</span><span class="stage">Discovery</span></span>
+          <div class="step-body">
+            <h3 class="h3">Map it before touching it</h3>
+            <p>We sit with the people who do the work and write down what actually happens, including the parts nobody documented.</p>
+          </div>
+        </div>
+
+        <div class="step">
+          <span class="step-meta"><span class="n">02</span><span class="stage">Design</span></span>
+          <div class="step-body">
+            <h3 class="h3">Scope agreed in writing</h3>
+            <p>What gets built, what it connects to, what working means, and what it costs. No code starts until you have signed that off.</p>
+          </div>
+        </div>
+
+        <div class="step">
+          <span class="step-meta"><span class="n">03</span><span class="stage">Build</span></span>
+          <div class="step-body">
+            <h3 class="h3">Shipped weekly, in your stack</h3>
+            <p>Working software in front of you every week, running in your own environment rather than a demo of ours.</p>
+          </div>
+        </div>
+
+        <div class="step">
+          <span class="step-meta"><span class="n">04</span><span class="stage">Handover</span></span>
+          <div class="step-body">
+            <h3 class="h3">A clean handover</h3>
+            <p>Documentation, a walkthrough with your team, and a support plan only if you want one.</p>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -460,59 +668,39 @@
 <!-- ============================================================
      FAQ
      ============================================================ -->
-<section class="section" id="faq">
-  <div class="container">
-    <div class="section-head section-head--center" data-reveal-group="70">
-      <p class="label" data-reveal>Questions</p>
-      <h2 class="h2" data-reveal>Before you book a call.</h2>
-    </div>
-
-    <div class="faq" data-reveal>
-      <div class="faq-item" data-accordion>
-        <button class="aa-acc-trigger" type="button">Do we own the code you write?<span class="aa-acc-sign" aria-hidden="true"></span></button>
-        <div class="aa-acc-body"><div><p>Yes. The repository sits in your account from the first commit, not ours. There is no license to keep paying and nothing to unlock.</p></div></div>
+<section class="section band" id="faq">
+  <div class="wrap">
+    <div class="faq-grid">
+      <div class="faq-intro" data-reveal>
+        <p class="kicker">Questions</p>
+        <h2 class="h2">Before you book a call.</h2>
       </div>
 
-      <div class="faq-item" data-accordion>
-        <button class="aa-acc-trigger" type="button">How long does a typical project take?<span class="aa-acc-sign" aria-hidden="true"></span></button>
-        <div class="aa-acc-body"><div><p>A focused pilot runs four to six weeks from first call to something running in production. A full build is usually eight to sixteen weeks depending on how many systems it has to touch. We give you a fixed scope and a date before anything starts.</p></div></div>
-      </div>
+      <div class="faq">
+        <div class="faq-item" data-accordion>
+          <button class="aa-acc-trigger" type="button">Whose account does the code live in?<span class="aa-acc-sign" aria-hidden="true"></span></button>
+          <div class="aa-acc-body"><div><p>Yours. The repository is created in your account from the first commit, not ours. There is no license to keep paying and nothing to unlock.</p></div></div>
+        </div>
 
-      <div class="faq-item" data-accordion>
-        <button class="aa-acc-trigger" type="button">Do you work with the tools we already use?<span class="aa-acc-sign" aria-hidden="true"></span></button>
-        <div class="aa-acc-body"><div><p>We build inside your existing stack rather than asking you to move onto ours. Replacing a working system is a decision you should make for your own reasons, not because of how we prefer to work.</p></div></div>
-      </div>
+        <div class="faq-item" data-accordion>
+          <button class="aa-acc-trigger" type="button">How long does a typical project take?<span class="aa-acc-sign" aria-hidden="true"></span></button>
+          <div class="aa-acc-body"><div><p>A focused pilot runs four to six weeks from first call to something running in production. A full build is usually eight to sixteen weeks depending on how many systems it has to touch. We give you a fixed scope and a date before anything starts.</p></div></div>
+        </div>
 
-      <div class="faq-item" data-accordion>
-        <button class="aa-acc-trigger" type="button">What happens after launch?<span class="aa-acc-sign" aria-hidden="true"></span></button>
-        <div class="aa-acc-body"><div><p>You can take it from there with the documentation and walkthrough we provide, or keep us on a support retainer. Plenty of clients do the first. We would rather you stay because the next project is worth doing, not because you cannot run the last one without us.</p></div></div>
-      </div>
+        <div class="faq-item" data-accordion>
+          <button class="aa-acc-trigger" type="button">Do you work with the tools we already use?<span class="aa-acc-sign" aria-hidden="true"></span></button>
+          <div class="aa-acc-body"><div><p>We build inside your existing stack rather than asking you to move onto ours. Replacing a working system is a decision you should make for your own reasons, not because of how we prefer to work.</p></div></div>
+        </div>
 
-      <div class="faq-item" data-accordion>
-        <button class="aa-acc-trigger" type="button">How is our data handled?<span class="aa-acc-sign" aria-hidden="true"></span></button>
-        <div class="aa-acc-body"><div><p>Systems run in your own cloud account wherever possible, so your data does not sit with us. Where a third party model provider is involved we tell you exactly which one, what it sees, and what it retains, before you sign anything.</p></div></div>
-      </div>
-    </div>
-  </div>
-</section>
+        <div class="faq-item" data-accordion>
+          <button class="aa-acc-trigger" type="button">What happens after launch?<span class="aa-acc-sign" aria-hidden="true"></span></button>
+          <div class="aa-acc-body"><div><p>You can take it from there with the documentation and walkthrough we provide, or keep us on a support retainer. Plenty of clients do the first. We would rather you stay because the next project is worth doing, not because you cannot run the last one without us.</p></div></div>
+        </div>
 
-<!-- ============================================================
-     CTA
-     ============================================================ -->
-<section class="section section--dark">
-  <div class="container">
-    <div class="cta" data-reveal-group="70">
-      <p class="label" data-reveal>Next step</p>
-      <h2 class="h2" data-reveal>Tell us what is held together by hand.</h2>
-      <p class="lede" data-reveal style="text-align:center;">
-        A first call is a working session, not a pitch. Bring one process that
-        costs you time and we will tell you whether it is worth automating,
-        including when the answer is no.
-      </p>
-      <div class="hero-actions" data-reveal>
-        <a class="btn btn--primary" href="contact.html">Book a call <i class="btn-arrow" data-lucide="arrow-right"></i></a>
-        <!-- REPLACE: real WhatsApp number -->
-        <a class="btn btn--onDark" href="https://wa.me/000000000000"><i data-lucide="message-circle"></i>Message on WhatsApp</a>
+        <div class="faq-item" data-accordion>
+          <button class="aa-acc-trigger" type="button">How is our data handled?<span class="aa-acc-sign" aria-hidden="true"></span></button>
+          <div class="aa-acc-body"><div><p>Systems run in your own cloud account wherever possible, so your data does not sit with us. Where a third party model provider is involved we tell you exactly which one, what it sees, and what it retains, before you sign anything.</p></div></div>
+        </div>
       </div>
     </div>
   </div>
@@ -520,18 +708,38 @@
 
 </main>
 
-<footer class="footer">
-  <div class="container">
-    <div class="footer-grid">
-      <div class="footer-col">
+</div><!-- /sheet -->
+
+<!-- ============================================================
+     FOOTER. sits on the paper, outside the sheet.
+     REPLACE: WhatsApp number, city line.
+     ============================================================ -->
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-cta">
+      <p class="kicker">Next step</p>
+      <h2 class="h2">Tell us what is held together by hand.</h2>
+      <p class="lede">One call, one process, a straight answer.</p>
+      <div class="actions">
+        <a class="btn btn--primary" href="contact.html">Book a call <i data-lucide="arrow-right"></i></a>
+        <!-- REPLACE: real WhatsApp number -->
+        <a class="btn btn--paper" href="https://wa.me/000000000000">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413"/></svg>
+          Message on WhatsApp
+        </a>
+      </div>
+    </div>
+
+    <div class="foot-grid">
+      <div class="foot-col">
         <a class="brand" href="index.html" aria-label="AIAgency home">
           <img src="aiagency_logo.png" alt="" width="26" height="26">
           <span class="brand-name">AIAgency</span>
         </a>
-        <p class="small muted" style="max-width: 34ch;">AI and automation systems, designed and shipped end to end.</p>
+        <p class="brand-line">AI and automation systems, designed and shipped end to end.</p>
       </div>
 
-      <div class="footer-col">
+      <div class="foot-col">
         <p class="label">Site</p>
         <a href="index.html">Home</a>
         <a href="services.html">Services</a>
@@ -540,34 +748,49 @@
         <a href="contact.html">Contact</a>
       </div>
 
-      <div class="footer-col">
+      <div class="foot-col">
         <p class="label">Contact</p>
-        <a href="mailto:hello@aiagency.so"><i data-lucide="mail"></i>hello@aiagency.so</a>
-        <a href="https://wa.me/000000000000"><i data-lucide="message-circle"></i>WhatsApp</a>
-        <a href="contact.html"><i data-lucide="calendar"></i>Book a call</a>
+        <a href="mailto:hello@aiagency.so">hello@aiagency.so</a>
+        <a href="https://wa.me/000000000000">WhatsApp</a>
+        <a href="contact.html">Book a call</a>
       </div>
 
-      <div class="footer-col">
+      <div class="foot-col">
         <p class="label">Legal</p>
         <a href="privacy.html">Privacy</a>
         <a href="terms.html">Terms</a>
       </div>
     </div>
 
-    <div class="footer-bottom">
-      <span class="small">&copy; 2026 AIAgency</span>
-      <span class="label">aiagency.so</span>
+    <div class="foot-bottom">
+      <span>&copy; 2026 AIAgency</span>
+      <!-- REPLACE: real city and country -->
+      <span>City, Country</span>
+      <span class="clock">Asia/Kolkata <b id="aa-clock">--:--:--</b></span>
     </div>
   </div>
 </footer>
 
 <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
-<script src="aa-map.js" defer></script>
 <script src="aa-motion.js" defer></script>
 <script>
   window.addEventListener('load', function () {
     if (window.lucide) lucide.createIcons();
   });
+
+  /* live IST clock in the footer */
+  (function () {
+    var el = document.getElementById('aa-clock');
+    if (!el) return;
+    var fmt = new Intl.DateTimeFormat('en-GB', {
+      timeZone: 'Asia/Kolkata',
+      hour: '2-digit', minute: '2-digit', second: '2-digit',
+      hour12: false
+    });
+    function tick() { el.textContent = fmt.format(new Date()); }
+    tick();
+    setInterval(tick, 1000);
+  })();
 </script>
 </body>
 </html>
