@@ -168,9 +168,6 @@ a { color: inherit; }
   color: var(--ink-2);
 }
 
-.small { font-size: var(--t-sm); }
-.muted { color: var(--ink-2); }
-
 /* ---------- buttons ----------------------------------------- */
 
 .btn {
@@ -372,58 +369,6 @@ a { color: inherit; }
   margin-top: clamp(16px, 2.4vw, 40px);
 }
 
-/* ---------- laptop frame around the hero's desktop screen ---------
-   dark bezel lid + pale keyboard-deck base, wrapping the browser
-   chrome that already lives on .dash. The framed board further down
-   the page keeps its own separate, already-locked look and does not
-   get this. */
-
-.mac-frame {
-  padding: 14px 14px 0;
-  background: linear-gradient(180deg, #303032 0%, #1C1C1E 100%);
-  border-radius: 20px 20px 9px 9px;
-  box-shadow:
-    0 1px 0 rgba(255, 255, 255, 0.06) inset,
-    0 40px 90px -30px rgba(20, 20, 18, 0.4);
-}
-
-.mac-cam {
-  width: 6px;
-  height: 6px;
-  margin: 0 auto 10px;
-  border-radius: 50%;
-  background: #0A0A0B;
-  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.04);
-}
-
-.mac-screen {
-  background: #000;
-  border-radius: 8px 8px 3px 3px;
-  overflow: hidden;
-}
-
-.mac-screen .dash { box-shadow: none; }
-
-.mac-base {
-  height: 14px;
-  background: linear-gradient(180deg, #29292B 0%, #131315 100%);
-  border-radius: 0 0 11px 11px;
-  position: relative;
-}
-
-.mac-base::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 15%;
-  min-width: 90px;
-  height: 6px;
-  background: #050506;
-  border-radius: 0 0 7px 7px;
-}
-
 /* ---------- hero phone: a real device frame, slides up on load ---- */
 
 .hero-phone {
@@ -445,148 +390,6 @@ a { color: inherit; }
   .hero-phone { animation: none; }
 }
 
-.phone-frame {
-  position: relative;
-  background: #17171A;
-  border-radius: 30px;
-  padding: 10px;
-  box-shadow:
-    0 30px 60px -22px rgba(20, 20, 18, 0.5),
-    0 0 0 1px rgba(255, 255, 255, 0.05) inset;
-}
-
-.phone-notch {
-  position: absolute;
-  top: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 56px;
-  height: 16px;
-  background: #17171A;
-  border-radius: 0 0 12px 12px;
-  z-index: 2;
-}
-
-.phone-screen {
-  position: relative;
-  background: #fff;
-  border-radius: 21px;
-  overflow: hidden;
-  aspect-ratio: 9 / 19.5;
-  display: flex;
-  flex-direction: column;
-}
-
-.phone-status {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 15px 17px 3px;
-  font-size: 11px;
-  font-weight: 600;
-  color: var(--ink);
-  flex: none;
-}
-
-.phone-status-icons { letter-spacing: 1px; color: var(--ink-3); }
-
-.phone-app-top {
-  display: flex;
-  align-items: center;
-  gap: 7px;
-  padding: 13px 17px 10px;
-  font-size: 12px;
-  font-weight: 600;
-  border-bottom: 1px solid var(--line);
-  flex: none;
-}
-
-.phone-app-top svg, .phone-app-top i { width: 13px; height: 13px; }
-
-.phone-badge {
-  margin-left: auto;
-  background: var(--accent-tint);
-  color: var(--accent-text);
-  font-size: 10px;
-  font-weight: 700;
-  border-radius: 20px;
-  padding: 2px 8px;
-}
-
-.phone-lead {
-  padding: 10px 17px 2px;
-  font-size: 11px;
-  font-weight: 600;
-  color: var(--ink-3);
-  flex: none;
-}
-
-/* a distinct mobile job, not a shrunk copy of the desktop overview:
-   an approvals list you'd act on from your phone, closed off by a
-   bottom tab bar so the screen reads as a real app, not a card that
-   runs out of content */
-.phone-cards {
-  padding: 6px 13px 4px;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  flex: 1;
-  min-height: 0;
-}
-
-.phone-card {
-  border: 1px solid var(--line);
-  border-radius: 10px;
-  padding: 8px 10px;
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
-}
-
-.phone-card b { font-size: 12px; font-weight: 700; letter-spacing: -0.005em; }
-
-.phone-card p {
-  font-size: 11px;
-  line-height: 1.4;
-  color: var(--ink-2);
-}
-
-.phone-card .row { display: flex; gap: 16px; margin-top: 2px; }
-.phone-card .row span { font-size: 11px; font-weight: 600; }
-.phone-card .row .review { color: var(--ink-3); }
-.phone-card .row .approve { color: var(--accent-text); }
-
-.phone-tabbar {
-  display: flex;
-  border-top: 1px solid var(--line);
-  padding: 9px 6px 16px;
-  flex: none;
-}
-
-.phone-tab {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 3px;
-  font-size: 9px;
-  font-weight: 600;
-  color: var(--ink-3);
-}
-
-.phone-tab i, .phone-tab svg { width: 15px; height: 15px; }
-.phone-tab.on { color: var(--ink); }
-
-.phone-home {
-  position: absolute;
-  bottom: 7px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 66px;
-  height: 4px;
-  border-radius: 2px;
-  background: rgba(23, 23, 23, 0.28);
-}
 
 /* the screen enters from the right on load and bleeds past the
    sheet edge, Miter style */
@@ -605,7 +408,24 @@ a { color: inherit; }
   .hero-shot { animation: none; }
 }
 
-.hero-shot .dash {
+/* the hero screen, the board and the phone are real screenshots now,
+   each with its own device frame baked into the file, so the CSS
+   frames they used to sit in are gone. */
+/* Each file carries its own light-grey ground (239-250) plus a soft
+   drop shadow under the device. On the white sheet that reads as a
+   grey box behind every screenshot. Lifting the whites clips the
+   ground and the shadow to #fff and leaves only the device. */
+.shot-img,
+.phone-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  filter: brightness(1.05);
+}
+
+/* keeps bleeding off the right edge of its column, the way the built
+   laptop frame did */
+.hero-shot .shot-img {
   width: 100%;
   min-width: 840px;
 }
@@ -614,7 +434,7 @@ a { color: inherit; }
   .hero-grid { grid-template-columns: 1fr; }
   .hero .display { font-size: var(--t-title); }
   .hero-shot { margin-right: calc(-1 * clamp(24px, 8vw, 96px)); }
-  .hero-shot .dash { min-width: 0; }
+  .hero-shot .shot-img { min-width: 0; }
   .hero-shot--fit {
     margin-top: 40px;
     margin-right: 0;
@@ -667,353 +487,21 @@ a { color: inherit; }
 
 .fig-head b { color: var(--ink-2); font-weight: 600; }
 
+/* no tinted plate or border: the tablet brings its own frame, and a
+   panel behind it just reads as a second box with a shadow. Padding
+   stays so it does not run to the page edges. */
 .shot {
-  border-radius: 18px;
-  border: 1px solid var(--line-strong);
-  background: var(--frame);
-  padding: clamp(28px, 4.4vw, 68px) clamp(20px, 3.6vw, 60px) clamp(28px, 4.4vw, 68px);
+  padding: clamp(20px, 3vw, 44px) 0;
   display: flex;
   justify-content: center;
 }
 
-/* inside the frame the window is wider and taller; it now sits
-   inside a full laptop frame instead of cropping at the edge */
-.shot .mac-frame {
+/* the tablet shot sits centred on the presentation panel */
+.shot .shot-img {
   width: 100%;
   max-width: 1080px;
 }
 
-.shot .dash {
-  width: 100%;
-  height: clamp(440px, 44vw, 600px);
-}
-
-/* the laptop wrapper carries its own shadow and radius, so the crop
-   styling a plain .dash would otherwise get here is switched off;
-   three classes of specificity so this wins regardless of source
-   order against the base .dash and .shot .dash rules */
-.shot .mac-screen .dash {
-  box-shadow: none;
-  border-radius: 0;
-  border-bottom: 1px solid var(--line-strong);
-}
-
-/* ---------- the dashboard shell ----------------------------- */
-
-.dash {
-  height: clamp(400px, 35vw, 540px);
-  background: #fff;
-  border: 1px solid var(--line-strong);
-  border-radius: 12px;
-  box-shadow: 0 30px 80px -28px rgba(40, 40, 38, 0.35);
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  font-size: 13px;
-}
-
-/* muted honesty tag inside the top bar */
-.sample {
-  font-family: var(--mono);
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--ink-3);
-}
-
-/* ---------- hero overview screen ---------------------------- */
-
-.ov-body {
-  flex: 1;
-  min-height: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-  padding: 16px 18px;
-  background: #FAFAF8;
-}
-
-.ov-head {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-}
-
-.ov-title {
-  font-size: 16px;
-  font-weight: 600;
-  letter-spacing: -0.01em;
-}
-
-.ov-filter {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  border: 1px solid var(--line-strong);
-  border-radius: var(--r-btn);
-  padding: 6px 12px;
-  font-size: 12px;
-  color: var(--ink-2);
-  background: #fff;
-}
-
-.ov-filter svg { width: 13px; height: 13px; }
-
-.ov-kpis {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 12px;
-}
-
-.kpi-card {
-  background: #fff;
-  border: 1px solid var(--line);
-  border-radius: var(--r-card);
-  padding: 13px 14px;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.kpi-lab {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  font-family: var(--mono);
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--ink-3);
-  white-space: nowrap;
-  overflow: hidden;
-}
-
-.kpi-lab svg { width: 12px; height: 12px; flex: none; }
-
-.kpi-val {
-  font-size: 24px;
-  font-weight: 600;
-  letter-spacing: -0.02em;
-  font-variant-numeric: tabular-nums;
-}
-
-.kpi-delta { font-size: 11px; color: var(--ink-3); }
-.kpi-delta.up { color: var(--accent-text); }
-
-.ov-grid {
-  flex: 1;
-  min-height: 0;
-  display: grid;
-  grid-template-columns: 1.5fr 1fr;
-  gap: 12px;
-}
-
-.ov-panel {
-  display: flex;
-  flex-direction: column;
-  background: #fff;
-  border: 1px solid var(--line);
-  border-radius: var(--r-card);
-  padding: 13px 14px;
-  overflow: hidden;
-  min-width: 0;
-}
-
-.ov-panel-hd {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--ink-2);
-  margin-bottom: 10px;
-}
-
-.ov-range {
-  font-family: var(--mono);
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--ink-3);
-}
-
-.ov-bars {
-  width: 100%;
-  height: 112px;
-  flex: none;
-  display: block;
-}
-
-/* recent runs list under the chart, pinned to the panel bottom */
-.ov-runs { margin-top: auto; padding-top: 8px; }
-
-.ov-runs > div {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 7px 0;
-  border-top: 1px dashed var(--line);
-  font-family: var(--mono);
-  font-size: 11px;
-}
-
-.ov-runs .t { color: var(--ink-3); }
-.ov-runs i { margin-left: auto; font-style: normal; color: var(--accent-text); }
-
-/* not enough panel height for the list on smaller screens */
-@media (max-width: 1200px) { .ov-runs { display: none; } }
-
-/* summary row pinned to the panel bottom */
-.ap-more {
-  margin-top: auto;
-  padding-top: 10px;
-  border-top: 1px solid var(--line);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  font-family: var(--mono);
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--ink-3);
-}
-
-.ap-row {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 8px 0;
-  border-top: 1px solid var(--line);
-}
-
-.ava--sm {
-  width: 22px;
-  height: 22px;
-  font-size: 10px;
-  background: #E8E8E4;
-  color: var(--ink-2);
-}
-
-.ap-txt { min-width: 0; display: flex; flex-direction: column; }
-
-.ap-txt b {
-  font-size: 12px;
-  font-weight: 600;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.ap-txt i {
-  font-style: normal;
-  font-size: 11px;
-  color: var(--ink-3);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-/* slim top bar */
-/* real macOS-style window chrome: traffic lights + address pill,
-   so the mockup reads as an actual screen, not a flat fake bar */
-.dash-chrome {
-  display: flex;
-  align-items: center;
-  gap: var(--s-3);
-  height: 32px;
-  padding: 0 var(--s-3);
-  background: #F1F0ED;
-  border-bottom: 1px solid var(--line);
-  flex: none;
-}
-
-.dash-dots { display: flex; gap: 6px; flex: none; }
-
-.dash-dots span {
-  width: 9px;
-  height: 9px;
-  border-radius: 50%;
-  display: block;
-}
-
-.dash-dots span:nth-child(1) { background: #EC6A5E; }
-.dash-dots span:nth-child(2) { background: #F4BE4E; }
-.dash-dots span:nth-child(3) { background: #61C454; }
-
-.dash-url {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  height: 22px;
-  max-width: 220px;
-  margin-inline: auto;
-  border: 1px solid var(--line);
-  border-radius: 6px;
-  background: #fff;
-  font-family: var(--mono);
-  font-size: 10px;
-  color: var(--ink-3);
-}
-
-.dash-url svg, .dash-url i { width: 11px; height: 11px; }
-
-.dash-top {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  padding: 10px 16px;
-  border-bottom: 1px solid var(--line);
-  flex: none;
-}
-
-.dash-top .page {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 13px;
-  font-weight: 600;
-}
-
-.dash-top .page svg { width: 15px; height: 15px; color: var(--ink-2); }
-
-.pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  font-family: var(--mono);
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--ink-2);
-  border: 1px solid var(--line-strong);
-  border-radius: 6px;
-  padding: 4px 10px;
-}
-
-.pill i {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--accent);
-}
-
-.dash-right {
-  margin-left: auto;
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  color: var(--ink-2);
-}
-.dash-right svg { width: 16px; height: 16px; }
 
 .ava {
   width: 26px;
@@ -1028,220 +516,6 @@ a { color: inherit; }
   justify-content: center;
 }
 
-/* body: sidebar + main */
-.dash-body { display: flex; flex: 1; min-height: 0; }
-
-.dash-side {
-  width: 232px;
-  flex: none;
-  border-right: 1px solid var(--line);
-  padding: 12px;
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  overflow: hidden;
-  background: #FCFCFB;
-}
-
-.ws-card {
-  display: flex;
-  align-items: center;
-  gap: 9px;
-  padding: 8px 9px;
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  background: #fff;
-  margin-bottom: 10px;
-}
-
-.ws-card img { width: 26px; height: 26px; border-radius: 6px; }
-.ws-name { line-height: 1.2; min-width: 0; }
-.ws-name b { display: block; font-size: 12px; font-weight: 600; }
-.ws-name span { font-size: 11px; color: var(--ink-3); }
-.ws-card > svg { width: 13px; height: 13px; color: var(--ink-3); margin-left: auto; }
-
-.side-search {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  border: 1px solid var(--line);
-  border-radius: var(--r-btn);
-  padding: 6px 9px;
-  color: var(--ink-3);
-  font-size: 12px;
-  background: #fff;
-  margin-bottom: 12px;
-}
-.side-search svg { width: 13px; height: 13px; }
-.side-search kbd {
-  margin-left: auto;
-  font-family: var(--mono);
-  font-size: 10px;
-  border: 1px solid var(--line);
-  border-radius: 4px;
-  padding: 1px 5px;
-}
-
-.dash-side nav a {
-  display: flex;
-  align-items: center;
-  gap: 9px;
-  padding: 7px 9px;
-  border-radius: var(--r-btn);
-  color: var(--ink-2);
-  font-size: 13px;
-  font-weight: 500;
-  text-decoration: none;
-}
-
-.dash-side nav a svg { width: 15px; height: 15px; }
-
-.dash-side nav a.on {
-  background: #F1F1EE;
-  color: var(--ink);
-  font-weight: 600;
-}
-
-.side-sec {
-  font-family: var(--mono);
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--ink-3);
-  margin: 14px 9px 6px;
-}
-
-.side-item {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 7px 9px;
-  border-radius: var(--r-btn);
-  font-size: 12px;
-  font-weight: 600;
-  background: var(--ink);
-  color: #fff;
-}
-
-.side-item svg { width: 13px; height: 13px; }
-
-.side-tree {
-  margin: 4px 0 0 17px;
-  border-left: 1px solid var(--line-strong);
-  padding-left: 6px;
-  display: flex;
-  flex-direction: column;
-}
-
-.side-tree a {
-  padding: 5px 9px;
-  font-size: 12px;
-  color: var(--ink-2);
-  text-decoration: none;
-  border-radius: 6px;
-}
-
-.side-new {
-  margin-top: 12px;
-  border: 1px dashed var(--line-strong);
-  border-radius: var(--r-btn);
-  padding: 7px;
-  background: none;
-  font-family: var(--sans);
-  font-size: 12px;
-  color: var(--ink-2);
-  text-align: center;
-}
-
-.dash-main {
-  flex: 1;
-  min-width: 0;
-  display: flex;
-  flex-direction: column;
-}
-
-/* segmented view tabs + updated line */
-.dash-head {
-  display: flex;
-  align-items: center;
-  gap: 18px;
-  padding: 11px 16px;
-  border-bottom: 1px solid var(--line);
-  flex: none;
-}
-
-.seg {
-  display: inline-flex;
-  gap: 2px;
-  background: #F1F1EE;
-  border-radius: 8px;
-  padding: 3px;
-}
-
-.seg span {
-  padding: 5px 13px;
-  border-radius: 6px;
-  font-size: 12px;
-  color: var(--ink-2);
-}
-
-.seg .on {
-  background: var(--ink);
-  color: #fff;
-  font-weight: 600;
-}
-
-.dash-head .upd {
-  margin-left: auto;
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  font-size: 12px;
-  color: var(--ink-3);
-}
-
-.dash-head .upd svg { width: 13px; height: 13px; }
-
-/* the board. minmax(0,1fr) so four columns always fit inside the
-   frame and never clip against the right border */
-.board {
-  flex: 1;
-  min-height: 0;
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 12px;
-  padding: 14px 16px;
-  background: #FAFAF8;
-  overflow: hidden;
-}
-
-.col { display: flex; flex-direction: column; gap: 10px; min-width: 0; }
-
-.col-hd {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 2px 4px;
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--ink-2);
-}
-
-.col-hd .cnt {
-  font-family: var(--mono);
-  font-size: 10px;
-  color: var(--ink-3);
-}
-
-.col-hd .ics {
-  margin-left: auto;
-  display: inline-flex;
-  gap: 8px;
-  color: var(--ink-3);
-}
-
-.col-hd .ics svg { width: 13px; height: 13px; }
 
 .card {
   background: #fff;
@@ -1254,62 +528,6 @@ a { color: inherit; }
   box-shadow: 0 1px 2px rgba(23, 23, 23, 0.04);
 }
 
-/* the ghost "new run" card */
-.card--ghost {
-  border: 1px dashed var(--line-strong);
-  box-shadow: none;
-  background: #FDFDFC;
-}
-
-.ghost-art {
-  position: relative;
-  height: 84px;
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  background: #F6F6F3;
-  overflow: hidden;
-}
-
-.ghost-art::before {
-  content: "";
-  position: absolute;
-  left: 12px;
-  top: 14px;
-  width: 56%;
-  height: 7px;
-  border-radius: 4px;
-  background: var(--line-strong);
-  box-shadow: 0 16px 0 -1px var(--line), 0 32px 0 -1px var(--line);
-}
-
-.ghost-art::after {
-  content: "+";
-  position: absolute;
-  right: 10px;
-  top: 10px;
-  width: 26px;
-  height: 26px;
-  border: 1px solid var(--line-strong);
-  border-radius: 7px;
-  background: #fff;
-  color: var(--ink-2);
-  font-size: 15px;
-  line-height: 24px;
-  text-align: center;
-}
-
-.ghost-btn {
-  border: 0;
-  border-radius: var(--r-btn);
-  background: var(--ink);
-  color: #fff;
-  font-family: var(--sans);
-  font-size: 12px;
-  font-weight: 600;
-  padding: 8px 10px;
-  width: 100%;
-}
-
 .card-meta {
   display: flex;
   align-items: center;
@@ -1319,7 +537,6 @@ a { color: inherit; }
 }
 
 .card-meta svg { width: 11px; height: 11px; }
-.card-meta .dots { margin-left: auto; }
 
 .chip {
   font-size: 11px;
@@ -1327,7 +544,6 @@ a { color: inherit; }
   padding: 2px 8px;
   border-radius: 5px;
 }
-.chip--auto { background: var(--accent-tint); color: var(--accent-text); }
 .chip--rev  { background: #FBF3E0; color: #96690F; }
 .chip--doc  { background: #F1F1EE; color: var(--ink-2); }
 
@@ -1335,31 +551,6 @@ a { color: inherit; }
 
 .card-sub { font-size: 12px; line-height: 1.45; color: var(--ink-2); }
 
-.prog {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 11px;
-  color: var(--ink-3);
-  font-variant-numeric: tabular-nums;
-}
-
-.prog .lab { color: var(--ink-3); }
-
-.prog-bar {
-  flex: 1;
-  height: 4px;
-  border-radius: 4px;
-  background: #EDEDEA;
-  overflow: hidden;
-}
-
-.prog-bar i {
-  display: block;
-  height: 100%;
-  background: var(--accent);
-  border-radius: 4px;
-}
 
 .card-foot {
   display: flex;
@@ -1382,13 +573,6 @@ a { color: inherit; }
   justify-content: center;
 }
 .avas span + span { margin-left: -6px; }
-
-.card-ics { display: flex; gap: 10px; color: var(--ink-3); }
-.card-ics svg { width: 13px; height: 13px; }
-
-@media (max-width: 900px) {
-  .dash-side { display: none; }
-}
 
 /* ---------- workflow canvas (services hero) -------------------
    boxes appear one by one on a quiet canvas and explain the
@@ -2307,8 +1491,6 @@ a { color: inherit; }
 
 @keyframes aa-caret-blink { 50% { border-color: transparent; } }
 
-.sk--hl { background: rgba(62, 207, 142, 0.4); }
-
 /* reading dots drifting over the text */
 .adots { position: absolute; inset: 0; pointer-events: none; }
 
@@ -2372,7 +1554,6 @@ a { color: inherit; }
 /* checklist card */
 .ack { display: flex; align-items: center; gap: 10px; margin-top: 9px; }
 
-.ack .sk { flex: 1; margin-top: 0; }
 
 .ack-label {
   flex: 1;
@@ -2513,7 +1694,6 @@ a { color: inherit; }
 
 @media (prefers-reduced-motion: reduce) {
   .adots span { animation: none; }
-  .agents.aa-in .sk { animation: none; }
   .agents.aa-in .bx--on, .agents.aa-in .bx--on::after { animation: none; }
   .acard--result, .agents.aa-in .acard--result { animation: none; opacity: 1; }
   .abar i, .agents.aa-in .abar i { width: 100%; animation: none; }
@@ -3078,49 +2258,12 @@ a { color: inherit; }
   .tabset { display: flex; overflow-x: auto; }
 }
 
-/* ---------- article page ------------------------------------- *//* ---------- article page ------------------------------------- */
-
-.article {
-  max-width: 760px;
-  margin-inline: auto;
-  padding: var(--sec-y) 0;
-}
-
-.art-meta {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  flex-wrap: wrap;
-}
-
-.article h1 {
-  margin-top: var(--s-4);
-  font-size: var(--t-title-sm);
-  line-height: 1.12;
-  font-weight: 700;
-  letter-spacing: -0.015em;
-  text-wrap: balance;
-}
-
 .standfirst {
   margin-top: var(--s-5);
   font-size: var(--t-lede-lg);
   line-height: 1.55;
   color: var(--ink-2);
 }
-
-.byline {
-  display: flex;
-  align-items: center;
-  gap: var(--s-3);
-  margin-top: var(--s-5);
-  padding: var(--s-4) 0;
-  border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
-}
-
-.byline b { display: block; font-size: 14px; font-weight: 600; }
-.byline span { display: block; font-size: 12px; color: var(--ink-3); margin-top: 2px; }
 
 .art-body { margin-top: var(--s-6); }
 
