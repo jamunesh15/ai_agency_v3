@@ -158,8 +158,18 @@
 
     var decimals = parseInt(el.getAttribute('data-count-decimals'), 10) || 0;
     var duration = parseInt(el.getAttribute('data-count-duration'), 10) || 1100;
+    var delay = parseInt(el.getAttribute('data-count-delay'), 10) || 0;
     var prefix = el.getAttribute('data-count-prefix') || '';
     var suffix = el.getAttribute('data-count-suffix') || '';
+
+    /* A number printed next to a bar has to travel on the bar's curve.
+       easeOutCubic races ahead early and coasts, so against a linear
+       CSS fill it reads 90% while the bar is barely past half. Any
+       counter paired with a bar wants linear, and the same delay and
+       duration as the animation it is labelling. */
+    var ease = el.getAttribute('data-count-ease') === 'linear'
+      ? function (t) { return t; }
+      : easeOutCubic;
 
     var write = function (value) {
       el.textContent = prefix + value.toFixed(decimals) + suffix;
@@ -167,12 +177,13 @@
 
     if (REDUCED) { write(target); return; }
 
+    write(0);                       // a replay has to visibly rewind
     var start = null;
 
     function frame(now) {
       if (start === null) start = now;
-      var t = Math.min((now - start) / duration, 1);
-      write(target * easeOutCubic(t));
+      var t = Math.min(Math.max(now - start - delay, 0) / duration, 1);
+      write(target * ease(t));
       if (t < 1) requestAnimationFrame(frame);
     }
 
@@ -180,7 +191,13 @@
   }
 
   function setupCount(scope, observers) {
-    var els = $$('[data-count]', scope);
+    // A counter inside a looping block is owned by setupLoop, which
+    // restarts it in step with the CSS sequence. Observing it here too
+    // would leave two rAF loops writing the same element on different
+    // clocks, and whichever ran last in a frame would win.
+    var els = $$('[data-count]', scope).filter(function (el) {
+      return !el.closest('[data-loop]');
+    });
     els.forEach(function (el) {
       // hold the final width from the start so nothing reflows mid-count
       var prefix = el.getAttribute('data-count-prefix') || '';
@@ -346,9 +363,23 @@
       trigger.setAttribute('aria-controls', body.id);
       trigger.setAttribute('aria-expanded', item.classList.contains('aa-open'));
 
+      /* Single-open: opening one answer closes the others. Scoped to
+         the item's own parent, so two separate accordions on the same
+         page cannot close each other's rows. */
       function toggle() {
-        var open = item.classList.toggle('aa-open');
-        trigger.setAttribute('aria-expanded', open);
+        var opening = !item.classList.contains('aa-open');
+
+        if (opening) {
+          $$('[data-accordion].aa-open', item.parentNode).forEach(function (other) {
+            if (other === item) return;
+            other.classList.remove('aa-open');
+            var otherTrigger = other.querySelector('.aa-acc-trigger');
+            if (otherTrigger) otherTrigger.setAttribute('aria-expanded', 'false');
+          });
+        }
+
+        item.classList.toggle('aa-open', opening);
+        trigger.setAttribute('aria-expanded', opening);
       }
 
       trigger.addEventListener('click', toggle);
@@ -360,11 +391,108 @@
 
   /* ---------- init ------------------------------------------- */
 
+  /* ---------- 9. path nodes -----------------------------------
+     Square markers that must sit ON a curve. A hand-written x/y can
+     only ever approximate a bezier, and it drifts the moment the
+     curve is edited, so the position is read back off the real
+     geometry instead of guessed.
+
+     data-node="#pathId" data-node-at="0..1" (fraction along it). */
+
+  function setupPathNodes(scope) {
+    $$('[data-node]', scope).forEach(function (el) {
+      var path = document.querySelector(el.getAttribute('data-node'));
+      if (!path || !path.getTotalLength) return;
+
+      var at = parseFloat(el.getAttribute('data-node-at'));
+      if (isNaN(at)) at = 0.5;
+
+      var pt;
+      try {
+        pt = path.getPointAtLength(path.getTotalLength() * at);
+      } catch (err) {
+        return;                       // detached or non-geometry element
+      }
+
+      var w = parseFloat(el.getAttribute('width')) || 8;
+      var h = parseFloat(el.getAttribute('height')) || 8;
+      el.setAttribute('x', (pt.x - w / 2).toFixed(1));
+      el.setAttribute('y', (pt.y - h / 2).toFixed(1));
+    });
+  }
+
+  /* ---------- 8. loop ------------------------------------------
+     data-loop="MS" replays a finished sequence every MS for as long
+     as the block is on screen, instead of playing once and freezing.
+
+     The sequence class is .aa-run, deliberately NOT the .aa-in the
+     reveal uses. Toggling .aa-in would fade the whole canvas out and
+     back in on every cycle, which reads as a blink.
+
+     Dropping the class is not enough on its own: the browser
+     coalesces remove-then-add in one frame and nothing restarts, so
+     a forced reflow sits between them.
+
+     The timer only runs while the block is visible. A canvas three
+     screens up should not be burning frames, and a background tab
+     should not be queueing them. */
+
+  function setupLoop(scope, observers, teardowns) {
+    var els = $$('[data-loop]', scope);
+    if (!els.length) return;
+
+    // Reduced motion still needs the sequence class, because the base
+    // state of these blocks is the UNSTARTED one: an empty progress bar
+    // and invisible checkboxes. Applying it once lands the finished
+    // state, and the reduced-motion CSS strips the animation itself.
+    // What reduced motion opts out of is the repeating, not the result.
+    if (REDUCED) {
+      els.forEach(function (el) { el.classList.add('aa-run'); });
+      return;
+    }
+
+    function replay(el) {
+      el.classList.remove('aa-run');
+      void el.offsetWidth;                // forces the restart
+      el.classList.add('aa-run');
+      // counters are JS driven, so the class alone will not rewind them
+      $$('[data-count]', el).forEach(runCount);
+    }
+
+    function start(el) {
+      if (el.aaLoopTimer) return;
+      var every = parseInt(el.getAttribute('data-loop'), 10) || 9000;
+      replay(el);
+      el.aaLoopTimer = setInterval(function () { replay(el); }, every);
+    }
+
+    function stop(el) {
+      if (!el.aaLoopTimer) return;
+      clearInterval(el.aaLoopTimer);
+      el.aaLoopTimer = null;
+    }
+
+    var io = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) start(entry.target);
+          else stop(entry.target);
+        });
+      },
+      { threshold: 0.2 }
+    );
+
+    els.forEach(function (el) { io.observe(el); });
+    observers.push(io);
+    teardowns.push(function () { els.forEach(stop); });
+  }
+
   function initMotion(scope) {
     var root = scope || document;
     var observers = [];
     var teardowns = [];
 
+    setupPathNodes(root);
     setupReveal(root, observers);
     setupPaths(root, observers);
     setupCount(root, observers);
@@ -372,6 +500,7 @@
     setupTypewriter(root, observers, teardowns);
     setupNav(root, teardowns);
     setupAccordion(root, teardowns);
+    setupLoop(root, observers, teardowns);
 
     return function teardown() {
       observers.forEach(function (io) { if (io) io.disconnect(); });
