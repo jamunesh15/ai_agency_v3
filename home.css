@@ -1553,7 +1553,7 @@ a { color: inherit; }
 
 .agents {
   position: relative;
-  max-width: 880px;
+  max-width: 1140px;
   margin-inline: auto;
   aspect-ratio: 1100 / 560;
   background-color: var(--surface);
