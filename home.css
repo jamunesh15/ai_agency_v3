@@ -2722,7 +2722,8 @@ a { color: inherit; }
   width: var(--panel-w);
   margin-inline: auto;
   padding: var(--sec-y) 0 0;
-  background: var(--beige-soft);
+  /* off-white, continuing the sheet rather than stepping into beige */
+  background: var(--sheet);
   overflow: hidden;
   border: 1px solid rgba(43, 39, 34, 0.05);
   border-top: 0;
@@ -2879,7 +2880,9 @@ a { color: inherit; }
    base rather than another row of content. */
 .foot-strip {
   margin-top: var(--sec-y);
-  background: var(--frame);
+  /* one quiet step below the footer so the base still separates by
+     tone now that the footer itself is off-white */
+  background: var(--beige-soft);
   border-top: 1px solid var(--line-strong);
 }
 
