@@ -18,19 +18,19 @@
      Surfaces, lightest on top to deepest behind. Every panel sits one
      visible step above whatever it rests on, which is what gives the
      page its depth order. */
-  --surface: #FDFBF7;       /* cards and panels, the top layer */
-  --sheet: #FAF7F1;         /* the content sheet */
-  --beige-soft: #F4F0E6;    /* footer band */
-  --band: #F1ECE0;          /* section surfaces */
-  --frame: #EAE4D6;         /* ground behind a visual, for contrast */
-  --bg: #E3DBCB;            /* outer backdrop, the deepest */
-  --beige-deep: #D8CFBB;    /* strongest beige */
+  --surface: #FFFFFF;       /* cards and panels, the top layer */
+  --sheet: #FFFFFF;         /* the content sheet */
+  --beige-soft: #F9F7F1;    /* footer band */
+  --band: #F7F5EE;          /* section surfaces */
+  --frame: #F3F0E8;         /* ground behind a visual, for contrast */
+  --bg: #F0EBE2;            /* outer backdrop, the deepest */
+  --beige-deep: #EAE5DA;    /* strongest beige */
 
   /* warm charcoal, never pure black */
   --ink: #2B2722;
   --ink-2: #5E574C;
   --ink-3: #8F8878;
-  --paper: #FBF8F2;         /* text and marks ON a charcoal plate */
+  --paper: #FFFFFF;         /* text and marks ON a charcoal plate */
 
   --line: #E4DED0;
   --line-strong: #D3CAB7;
@@ -38,7 +38,7 @@
 
   --accent: #2B2722;
   --accent-text: #2B2722;
-  --accent-tint: #E6DECC;
+  --accent-tint: #F1EDE3;
 
   --sans: "Inter Tight", system-ui, -apple-system, "Segoe UI", sans-serif;
   --serif: "Source Serif 4", Charter, "Iowan Old Style", Georgia, serif;
@@ -54,8 +54,19 @@
      too, not just on desktop. */
   --wrap: 1180px;
   --wrap-w: min(var(--wrap), calc(100% - clamp(72px, 13vw, 260px)));
-  --r-btn: 7px;
-  --r-card: 10px;
+  /* Ruled gutter strips down both panel edges, per the Questo reference.
+     Width, line pitch and line colour all live here. */
+  --rule-strip: 88px;
+  --rule-gap: 8px;
+  --rule-hair: rgba(43, 39, 34, 0.055);
+
+  /* ONE corner radius for the whole site. Every panel, card, button and
+     frame reads var(--r); only chips, tags, bars and checkboxes use the
+     small step, because 10px on a 12px-tall chip turns it into a pill. */
+  --r: 10px;
+  --r-sm: 5px;
+  --r-btn: var(--r);
+  --r-card: var(--r);
 
   /* ---- spacing scale -------------------------------------------
      Every gap on the page comes from one of these steps. If a value
@@ -114,6 +125,16 @@ body {
   color: var(--ink);
   background: var(--bg);
   -webkit-font-smoothing: antialiased;
+  /* Nothing may scroll the page sideways. clip, not hidden: hidden would
+     turn body into a scroll container and break position: sticky on the
+     blog table of contents. */
+  overflow-x: clip;
+}
+
+/* No rubber-band bounce past the top or bottom. Without this, overscrolling
+   pulls the sheet away and shows the beige body ground behind it. */
+html {
+  overscroll-behavior: none;
 }
 
 img { max-width: 100%; display: block; }
@@ -128,7 +149,7 @@ a { color: inherit; }
   color: var(--paper);
   padding: 10px 18px;
   z-index: 100;
-  border-radius: 0 0 8px 0;
+  border-radius: 0 0 var(--r) 0;
 }
 .skip:focus { left: 0; }
 
@@ -140,6 +161,41 @@ a { color: inherit; }
   width: var(--panel-w);
   margin: var(--nav-h) auto 0;
   background: var(--sheet);
+}
+
+/* A narrow band of fine horizontal hairlines down each edge of the panel,
+   closed by a vertical rule where the content area begins. Drawn on the
+   nav as well as the sheet, because the nav is fixed and opaque and would
+   otherwise cut the band off at the top of the page. */
+.sheet::before, .sheet::after,
+.nav::before, .nav::after,
+.foot::before, .foot::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: var(--rule-strip);
+  pointer-events: none;
+  background-image: repeating-linear-gradient(
+    to bottom,
+    var(--rule-hair) 0 1px,
+    transparent 1px var(--rule-gap));
+}
+
+.sheet::before, .nav::before, .foot::before { left: 0; border-right: 1px solid var(--line); }
+.sheet::after,  .nav::after,  .foot::after  { right: 0; border-left: 1px solid var(--line); }
+
+/* --nav-h is 68px, not a multiple of the 8px pitch, so the sheet's first
+   line is offset by the 4px remainder and the two bands read as one
+   continuous ruling at the top of the page. */
+.sheet::before, .sheet::after { background-position: 0 4px; }
+
+/* Below this the content gutter is narrower than the strip and they
+   would collide. */
+@media (max-width: 1000px) {
+  .sheet::before, .sheet::after,
+  .nav::before, .nav::after,
+  .foot::before, .foot::after { display: none; }
 }
 
 /* Side spacing was too tight, so sections ran almost edge to edge.
@@ -276,7 +332,9 @@ a { color: inherit; }
      Side borders match .sheet and .foot so all three edges line up. */
   background: var(--sheet);
   border-top: 0;
-  box-shadow: 0 1px 0 rgba(43, 39, 34, 0.04), 0 16px 32px -28px rgba(43, 39, 34, 0.13);
+  /* hairline plus a soft drop, so the bar separates from the hero instead
+     of blending into it now that both are pure white */
+  box-shadow: 0 1px 0 rgba(43, 39, 34, 0.07), 0 8px 20px -10px rgba(43, 39, 34, 0.16);
 }
 
 .nav-shell {
@@ -402,7 +460,7 @@ a { color: inherit; }
    Replaced the laptop/phone/tablet screenshots (CEO, 2026-08-20:
    no device screens anywhere on the site). Same canvas family as
    .agents and the services workflow, so it reads as one system:
-   grid inside the canvas only, corner brackets, square nodes.
+   grid inside the canvas only, square nodes.
 
    The canvas ground is beige and the pills are white, which is
    where the contrast behind the artwork comes from. Do not put a
@@ -442,14 +500,71 @@ a { color: inherit; }
    and small labels, and those vanish over a saturated gradient. */
 .flow-frame {
   margin-top: clamp(28px, 3.6vw, 52px);
-  /* thicker than a hairline: the colour lives in the outer ring of
-     the image, so a thin frame would show almost none of it */
-  padding: clamp(18px, 3.2vw, 54px);
-  border-radius: 18px;
+  /* One ground everywhere. Frame width and radius are .tiers-stage's,
+     so the pricing cards, the home canvases and the services workflow
+     all read as the same component. Change it here, not per instance.
+     The ground is the supplied painted texture, with charcoal underneath
+     it so the frame still reads if the image is slow or fails. Padding is
+     wider than the old 40px: only this band of the image is ever visible,
+     and at 40px a busy texture reads as a stripe rather than a surface. */
+  padding: clamp(24px, 2vw, 56px);
+  border-radius: var(--r);
   background-color: var(--ink);
-  background-image: url("home_backdrop.webp");
+  background-image: url("new_backdrop.webp");
   background-size: cover;
   background-position: center;
+}
+
+/* Same frame used mid-page under a .sec-head, which already supplies the
+   gap above it. The max-width carries the canvas's old 1140px plus the
+   frame padding, so the gradient border stays even on both sides. */
+.flow-frame--sec {
+  margin-top: 0;
+  max-width: 1248px;
+  margin-inline: auto;
+}
+
+/* services hero: the canvas is 680px, not a full-width diagram, so the
+   frame is capped well below the section variant. Ground and frame
+   width come from .flow-frame. */
+.flow-frame--alt { max-width: 880px; }
+
+/* ---------- services hero -------------------------------------
+   Everything here is scoped with :has(.flow-frame--alt), the one
+   element unique to this hero. Contact and pricing also carry
+   .hero--big and .hero-shot--fit and must not move. */
+
+/* Its own measure, wider than the 1180px the rest of the page uses, but
+   on the SAME gutter as every other section. It briefly ran a narrower
+   8vw gutter to buy image width; once the ruled edge strips went in that
+   left the headline about 12px off the rule, so the gutter went back. */
+.hero--big:has(.flow-frame--alt) .wrap {
+  width: min(1280px, calc(100% - clamp(72px, 13vw, 260px)));
+}
+
+.hero-grid:has(.flow-frame--alt) {
+  grid-template-columns: minmax(320px, 45%) 1fr;
+  /* tighter than the shared 4vw: the ~12px it frees is what takes the
+     canvas over 720px */
+  gap: clamp(32px, 3.2vw, 52px);
+}
+
+/* Short headline, so it runs bigger than the shared --t-title-lg. NOT
+   done on the token: home, contact and pricing read it too, and home's
+   headline is long enough to break the two-line rule at this size. */
+.hero--big:has(.flow-frame--alt) .display {
+  font-size: clamp(42px, 4.7vw, 72px);
+}
+
+.hero-shot--fit:has(.flow-frame--alt) {
+  margin-top: clamp(8px, 1.2vw, 20px);
+}
+
+.flow-frame--alt .wf {
+  max-width: none;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--r);
+  overflow: hidden;
 }
 
 .flow {
@@ -459,7 +574,7 @@ a { color: inherit; }
   overflow: hidden;
   background: var(--frame);
   border: 1px solid var(--line-strong);
-  border-radius: 10px;
+  border-radius: var(--r);
 }
 
 .flow-stage { position: absolute; inset: 0; }
@@ -561,7 +676,7 @@ a { color: inherit; }
 .flow-lite { display: none; }
 
 @media (max-width: 760px) {
-  .flow-frame { padding: 10px; border-radius: 12px; }
+  .flow-frame { padding: 10px; border-radius: var(--r); }
   .flow {
     aspect-ratio: auto;
     container-type: normal;
@@ -684,7 +799,7 @@ a { color: inherit; }
   font-size: 11px;
   font-weight: 600;
   padding: 2px 8px;
-  border-radius: 5px;
+  border-radius: var(--r-sm);
 }
 .chip--rev  { background: var(--accent-tint); color: var(--ink); }
 .chip--doc  { background: var(--frame); color: var(--ink-2); }
@@ -719,7 +834,7 @@ a { color: inherit; }
 /* ---------- workflow canvas (services hero) -------------------
    boxes appear one by one on a quiet canvas and explain the
    service: work comes in, AI reads it, acts in your tools, and
-   you describe the next process. corner brackets frame it. */
+   you describe the next process. */
 
 .hero-shot--fit {
   margin-right: 0;
@@ -737,36 +852,22 @@ a { color: inherit; }
   align-self: center;
 }
 
+/* Holds the supplied services artwork. The aspect ratio is the image's
+   own (1300x957), so it fills the card edge to edge with no letterbox
+   and the height is reserved before it loads. */
 .wf {
   position: relative;
   max-width: 680px;
   margin-inline: auto;
-  aspect-ratio: 560 / 520;
+  aspect-ratio: 1300 / 957;
   background-color: var(--surface);
 }
 
-/* corner brackets framing the canvas */
-.wf::before {
-  content: "";
-  position: absolute;
-  inset: -6px;
-  pointer-events: none;
-  background-image:
-    linear-gradient(rgba(43, 39, 34,0.55) 0 0), linear-gradient(rgba(43, 39, 34,0.55) 0 0),
-    linear-gradient(rgba(43, 39, 34,0.55) 0 0), linear-gradient(rgba(43, 39, 34,0.55) 0 0),
-    linear-gradient(rgba(43, 39, 34,0.55) 0 0), linear-gradient(rgba(43, 39, 34,0.55) 0 0),
-    linear-gradient(rgba(43, 39, 34,0.55) 0 0), linear-gradient(rgba(43, 39, 34,0.55) 0 0);
-  background-size:
-    14px 1px, 1px 14px,
-    14px 1px, 1px 14px,
-    14px 1px, 1px 14px,
-    14px 1px, 1px 14px;
-  background-position:
-    left top, left top,
-    right top, right top,
-    left bottom, left bottom,
-    right bottom, right bottom;
-  background-repeat: no-repeat;
+.wf-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
 .wf-svg { position: absolute; inset: 0; width: 100%; height: 100%; }
@@ -788,12 +889,16 @@ a { color: inherit; }
 
 .wf-box {
   position: absolute;
-  width: 47%;
-  padding: 18px;
+  width: 48%;
+  /* Sized in pure cqw, not clamped, on purpose. The SVG wires assume a
+     box half-height of 38 viewBox units; 2.2cqw text on 3.2cqw padding
+     resolves to exactly that at any canvas width, so the connectors meet
+     the boxes instead of drifting. The px floors are a mobile backstop. */
+  padding: max(12px, 3.2cqw);
   background: var(--surface);
   border: 1px solid var(--ink-2);
   font-family: var(--mono);
-  font-size: 12px;
+  font-size: max(10px, 2.2cqw);
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -803,12 +908,21 @@ a { color: inherit; }
   animation: aa-wf-box 450ms cubic-bezier(0.22, 0.61, 0.36, 1) var(--bd, 0ms) both;
 }
 
-.wf-box .tok { display: block; color: var(--ink-3); font-weight: 500; }
+.wf-box .tok {
+  display: block;
+  color: var(--ink-3);
+  font-weight: 500;
+  /* if it has to wrap, split it evenly instead of orphaning one word */
+  text-wrap: balance;
+}
 
 /* the lead box is tinted to mark it as the input, but --accent-tint
    is the deepest beige and read as a heavy block against the white
    boxes below it. --band keeps the distinction at a lighter weight. */
 .wf-box--lead {
+  /* wider than the rest: its token line is the longest on the canvas
+     and at 47% it wrapped to three lines and unbalanced the top */
+  width: 54%;
   background: var(--band);
   border-color: var(--accent-text);
 }
@@ -833,8 +947,8 @@ a { color: inherit; }
   gap: 6px;
   background: var(--surface);
   border: 1px solid var(--line-strong);
-  padding: 3px 8px;
-  font-size: 10px;
+  padding: max(3px, 0.5cqw) max(6px, 1.35cqw);
+  font-size: max(9px, 1.75cqw);
   letter-spacing: 0.1em;
 }
 
@@ -863,8 +977,8 @@ a { color: inherit; }
 
 .wf-caret {
   display: inline-block;
-  width: 7px;
-  height: 12px;
+  width: max(6px, 1.1cqw);
+  height: max(10px, 1.9cqw);
   background: var(--ink);
   margin-right: 7px;
   vertical-align: -1px;
@@ -875,9 +989,9 @@ a { color: inherit; }
   position: absolute;
   right: 10px;
   bottom: 10px;
-  width: 22px;
-  height: 22px;
-  border-radius: 4px;
+  width: max(20px, 3.5cqw);
+  height: max(20px, 3.5cqw);
+  border-radius: var(--r-sm);
   background: var(--ink);
   color: var(--paper);
   display: grid;
@@ -923,33 +1037,6 @@ a { color: inherit; }
 .svc:last-of-type { border-bottom: 1px solid var(--line); }
 
 .svc:hover { background: var(--band); }
-
-.svc::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity 180ms ease;
-  background-image:
-    linear-gradient(var(--ink) 0 0), linear-gradient(var(--ink) 0 0),
-    linear-gradient(var(--ink) 0 0), linear-gradient(var(--ink) 0 0),
-    linear-gradient(var(--ink) 0 0), linear-gradient(var(--ink) 0 0),
-    linear-gradient(var(--ink) 0 0), linear-gradient(var(--ink) 0 0);
-  background-size:
-    14px 1px, 1px 14px,
-    14px 1px, 1px 14px,
-    14px 1px, 1px 14px,
-    14px 1px, 1px 14px;
-  background-position:
-    left top, left top,
-    right top, right top,
-    left bottom, left bottom,
-    right bottom, right bottom;
-  background-repeat: no-repeat;
-}
-
-.svc:hover::after { opacity: 1; }
 
 .svc-num {
   font-family: var(--mono);
@@ -1110,7 +1197,7 @@ a { color: inherit; }
   z-index: 3;
 }
 
-.rad-hub img { width: 56px; height: 56px; border-radius: 12px; }
+.rad-hub img { width: 56px; height: 56px; border-radius: var(--r); }
 
 .rad-node {
   position: absolute;
@@ -1178,7 +1265,7 @@ a { color: inherit; }
   line-height: 1.5;
   font-weight: 400;
   padding: 10px 14px;
-  border-radius: 8px;
+  border-radius: var(--r);
   opacity: 0;
   pointer-events: none;
   transition: opacity 180ms ease, transform 180ms ease;
@@ -1235,11 +1322,17 @@ a { color: inherit; }
    each cell, title and short text below. all visuals reuse the
    existing component language. */
 
+/* The grid is drawn from half borders: this element supplies the top and
+   left, each .use supplies its right and bottom. overflow:hidden is what
+   lets the outer corners round, by clipping the cell borders to the curve
+   while the internal grid lines stay straight. */
 .uses {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   border-top: 1px solid var(--line);
   border-left: 1px solid var(--line);
+  border-radius: var(--r);
+  overflow: hidden;
 }
 
 .use {
@@ -1280,7 +1373,7 @@ a { color: inherit; }
 
 .tag {
   border: 1px dashed var(--line-strong);
-  border-radius: 6px;
+  border-radius: var(--r-sm);
   padding: 6px 12px;
   font-family: var(--mono);
   font-size: 11px;
@@ -1389,11 +1482,11 @@ a { color: inherit; }
    full-bleed, the page gutter rules would cross it and vanish. */
 .tiers-stage {
   background-color: var(--ink);
-  background-image: url("pricing_backdrop.webp");
+  background-image: url("new_backdrop.webp");
   background-size: cover;
   background-position: center;
-  border-radius: 14px;
-  padding: clamp(20px, 2.6vw, 40px);
+  border-radius: var(--r);
+  padding: clamp(24px, 2vw, 56px);
 }
 
 /* The backdrop is luminous through the middle, exactly where the cards
@@ -1416,7 +1509,7 @@ a { color: inherit; }
   flex-direction: column;
   background: var(--surface);
   border: 1px solid var(--line-strong);
-  border-radius: 12px;
+  border-radius: var(--r);
   padding: 26px 26px 24px;
 }
 
@@ -1474,7 +1567,7 @@ a { color: inherit; }
   text-transform: uppercase;
   color: var(--ink-2);
   border: 1px solid var(--line-strong);
-  border-radius: 6px;
+  border-radius: var(--r-sm);
   padding: 4px 10px;
 }
 
@@ -1534,27 +1627,14 @@ a { color: inherit; }
   background-color: var(--surface);
 }
 
-.agents::before {
-  content: "";
-  position: absolute;
-  inset: -6px;
-  pointer-events: none;
-  background-image:
-    linear-gradient(rgba(43, 39, 34,0.55) 0 0), linear-gradient(rgba(43, 39, 34,0.55) 0 0),
-    linear-gradient(rgba(43, 39, 34,0.55) 0 0), linear-gradient(rgba(43, 39, 34,0.55) 0 0),
-    linear-gradient(rgba(43, 39, 34,0.55) 0 0), linear-gradient(rgba(43, 39, 34,0.55) 0 0),
-    linear-gradient(rgba(43, 39, 34,0.55) 0 0), linear-gradient(rgba(43, 39, 34,0.55) 0 0);
-  background-size:
-    14px 1px, 1px 14px,
-    14px 1px, 1px 14px,
-    14px 1px, 1px 14px,
-    14px 1px, 1px 14px;
-  background-position:
-    left top, left top,
-    right top, right top,
-    left bottom, left bottom,
-    right bottom, right bottom;
-  background-repeat: no-repeat;
+/* inside the gradient frame it fills the padding box and reads as one
+   solid card on the gradient, exactly like .flow does in the hero */
+.flow-frame--sec .agents {
+  max-width: none;
+  margin-inline: 0;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--r);
+  overflow: hidden;
 }
 
 .agents-svg { position: absolute; inset: 0; width: 100%; height: 100%; }
@@ -1577,6 +1657,7 @@ a { color: inherit; }
 .agents-svg rect { fill: var(--accent); }
 
 .acard {
+  border-radius: var(--r);
   position: absolute;
   transform: translate(-50%, -50%);
   width: var(--w, 24%);
@@ -1667,7 +1748,7 @@ a { color: inherit; }
 
 .abar {
   height: 8px;
-  border-radius: 4px;
+  border-radius: var(--r-sm);
   background: var(--frame);
   overflow: hidden;
 }
@@ -1676,7 +1757,7 @@ a { color: inherit; }
   display: block;
   height: 100%;
   width: 0;
-  border-radius: 4px;
+  border-radius: var(--r-sm);
   background: var(--accent);
 }
 
@@ -1702,7 +1783,7 @@ a { color: inherit; }
   height: 14px;
   flex: none;
   border: 1px solid var(--line-strong);
-  border-radius: 3px;
+  border-radius: var(--r-sm);
   background: var(--surface);
   position: relative;
 }
@@ -1796,7 +1877,7 @@ a { color: inherit; }
   height: 22px;
   flex: none;
   margin-left: auto;
-  border-radius: 4px;
+  border-radius: var(--r-sm);
   background: var(--accent-text);
   position: relative;
 }
@@ -1842,15 +1923,7 @@ a { color: inherit; }
   align-items: start;
 }
 
-/* Sticky intro: it holds while its own section scrolls past, and adds
-   no scroll distance. Pinning the whole section did hold everything
-   still, but only by adding a screen-and-a-half of dead scroll. */
-.process-intro {
-  position: sticky;
-  top: var(--stick-top);
-  align-self: start;
-  will-change: auto;
-}
+.process-intro { align-self: start; }
 
 .process-intro .h2 { margin-top: var(--s-4); }
 
@@ -1898,7 +1971,6 @@ a { color: inherit; }
 
 @media (max-width: 960px) {
   .process-grid { grid-template-columns: 1fr; }
-  .process-intro { position: static; }
   .step { grid-template-columns: 96px 1fr; }
 }
 
@@ -1914,7 +1986,7 @@ a { color: inherit; }
 .logo-band {
   display: flex;
   border: 1px solid var(--line);
-  border-radius: 14px;
+  border-radius: var(--r);
   overflow: hidden;
   background: var(--surface);
 }
@@ -1999,12 +2071,7 @@ a { color: inherit; }
   align-items: start;
 }
 
-.faq-intro {
-  position: sticky;
-  top: var(--stick-top);
-  align-self: start;
-  will-change: auto;
-}
+.faq-intro { align-self: start; }
 .faq-intro .h2 { margin-top: var(--s-4); }
 
 .faq-item { border-top: 1px solid var(--line); }
@@ -2049,7 +2116,6 @@ a { color: inherit; }
 
 @media (max-width: 960px) {
   .faq-grid { grid-template-columns: 1fr; }
-  .faq-intro { position: static; }
 }
 
 /* ---------- blog index (Cartesia-style, our palette) ---------- */
@@ -2119,34 +2185,9 @@ a { color: inherit; }
 .cover {
   position: relative;
   border: 1px solid var(--line-strong);
+  border-radius: var(--r);
   background-color: var(--surface);
   overflow: hidden;
-}
-
-/* corner brackets, matching the canvas family used for the hero and
-   agent-cards diagrams, so the covers read as finished pieces
-   instead of bare wireframe placeholders */
-.cover::before {
-  content: "";
-  position: absolute;
-  inset: 10px;
-  pointer-events: none;
-  background-image:
-    linear-gradient(rgba(43, 39, 34, 0.5) 0 0), linear-gradient(rgba(43, 39, 34, 0.5) 0 0),
-    linear-gradient(rgba(43, 39, 34, 0.5) 0 0), linear-gradient(rgba(43, 39, 34, 0.5) 0 0),
-    linear-gradient(rgba(43, 39, 34, 0.5) 0 0), linear-gradient(rgba(43, 39, 34, 0.5) 0 0),
-    linear-gradient(rgba(43, 39, 34, 0.5) 0 0), linear-gradient(rgba(43, 39, 34, 0.5) 0 0);
-  background-size:
-    12px 1px, 1px 12px,
-    12px 1px, 1px 12px,
-    12px 1px, 1px 12px,
-    12px 1px, 1px 12px;
-  background-position:
-    left top, left top,
-    right top, right top,
-    left bottom, left bottom,
-    right bottom, right bottom;
-  background-repeat: no-repeat;
 }
 
 .cover svg { position: relative; z-index: 1; }
@@ -2337,7 +2378,7 @@ a { color: inherit; }
 .tabset {
   display: inline-flex;
   border: 1px solid var(--line-strong);
-  border-radius: 8px;
+  border-radius: var(--r);
   overflow: hidden;
   margin: var(--s-6) 0 var(--s-5);
 }
@@ -2371,6 +2412,7 @@ a { color: inherit; }
   flex-direction: column;
   background: var(--surface);
   border: 1px solid var(--line);
+  border-radius: var(--r);
   text-decoration: none;
   transition: border-color 160ms ease, box-shadow 160ms ease;
 }
@@ -2471,7 +2513,7 @@ a { color: inherit; }
   margin-top: var(--s-5);
   background: var(--band);
   border: 1px solid var(--line);
-  border-radius: 8px;
+  border-radius: var(--r);
   padding: 16px 18px;
   overflow-x: auto;
   font-family: var(--mono);
@@ -2561,6 +2603,7 @@ a { color: inherit; }
 .toc ol a:hover { color: var(--ink); }
 
 .toc-cta {
+  border-radius: var(--r);
   margin-top: var(--s-5);
   border: 1px solid var(--line);
   background: var(--band);
@@ -2630,7 +2673,7 @@ a { color: inherit; }
 /* contact form panel */
 .cform {
   border: 1px solid var(--line-strong);
-  border-radius: 12px;
+  border-radius: var(--r);
   background: var(--surface);
   box-shadow: 0 30px 80px -28px rgba(40, 40, 38, 0.35);
   padding: var(--s-5);
@@ -2712,7 +2755,9 @@ a { color: inherit; }
   z-index: 0;
   width: var(--panel-w);
   margin-inline: auto;
-  padding: var(--sec-y) 0 0;
+  /* deeper than --sec-y on purpose: this is the base of the page, not
+     another section in the stack */
+  padding: clamp(44px, 4.4vw, 72px) 0 0;
   /* off-white, continuing the sheet rather than stepping into beige */
   background: var(--sheet);
   overflow: hidden;
@@ -2721,19 +2766,75 @@ a { color: inherit; }
     0 32px 80px -32px rgba(43, 39, 34, 0.15);
 }
 
+/* Moneda-style footer: mark and link columns on top, an oversized
+   wordmark as the body, then a base bar carrying socials, legal and
+   the copyright. */
+/* Corner ornament, per the TechUp Labs footer: a dashed 64px grid whose
+   lines run through the tile centre, so the cross lands exactly on each
+   intersection and the squares read as squares. Faded toward the middle
+   of the page so it stays a corner mark and never becomes a graph-paper
+   background. Bottom right only.
+   .foot-strip is not itself positioned, so this resolves against .foot
+   and can sit at the corner of the whole footer. */
+.foot-strip::before {
+  content: "";
+  position: absolute;
+  width: clamp(240px, 34vw, 520px);
+  height: clamp(220px, 28vw, 440px);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64'%3E%3Cpath d='M0 32.5H64M32.5 0V64' stroke='%232B2722' stroke-opacity='.13' stroke-dasharray='3 5'/%3E%3Cpath d='M32.5 26v13M26 32.5h13' stroke='%232B2722' stroke-opacity='.3'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+}
+
+.foot-strip::before {
+  bottom: 0;
+  right: 0;
+  -webkit-mask-image: radial-gradient(130% 130% at 100% 100%, #000 30%, transparent 100%);
+          mask-image: radial-gradient(130% 130% at 100% 100%, #000 30%, transparent 100%);
+}
+
+/* content sits above the ornament */
+.foot-strip .wrap { position: relative; z-index: 1; }
+
+@media (max-width: 1000px) {
+  .foot-strip::before { display: none; }
+}
+
+/* Lockup left, socials right, closed by a hairline. The columns then run
+   the full measure underneath rather than being pushed right by the mark. */
+.foot-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--s-5);
+  padding-bottom: clamp(28px, 3.4vw, 48px);
+  border-bottom: 1px solid var(--line);
+}
+
+.foot-mark {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-3);
+  flex: none;
+  color: var(--ink);
+  text-decoration: none;
+}
+.foot-mark img { display: block; width: 32px; height: 32px; border-radius: var(--r-sm); }
+
+/* Socials drop to the bottom of the footer body, left aligned under the
+   columns, with a deliberate run of empty space above them. */
+.foot-social { display: flex; gap: var(--s-2); }
+
 /* Brand starts at the left edge, the four link groups spread evenly
    across the rest, Legal ending at the right. space-between splits the
    leftover width into equal gaps rather than pooling it anywhere. */
-.foot-grid {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  flex-wrap: wrap;
-  gap: clamp(24px, 3vw, 48px);
+.foot-links {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(24px, 3vw, 56px);
+  margin-top: clamp(32px, 4vw, 56px);
 }
-
-/* the four link groups join .foot-grid's row directly */
-.foot-links { display: contents; }
 
 /* Rule per column rather than one continuous line across the footer,
    so each group reads as its own block. Straight from the reference,
@@ -2746,76 +2847,53 @@ a { color: inherit; }
 }
 
 .foot-col .label {
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  font-size: var(--t-ui);
+  font-weight: 600;
   color: var(--ink);
-  margin-bottom: var(--s-2);
+  margin-bottom: var(--s-3);
 }
 
 .foot-col a {
-  font-size: var(--t-xs);
-  color: var(--ink-2);
+  font-size: var(--t-sm);
+  color: var(--ink);
   text-decoration: none;
   transition: color 140ms ease;
 }
 
+/* Hover is a small nudge to the right plus a slight lift in weight, not
+   an underline. The links are already at full --ink, so a colour change
+   has nowhere to go and dimming them would read as disabled. */
 .foot-col > a:not(.brand) {
-  position: relative;
-  padding-block: 2px;
-  line-height: 1.4;
+  padding-block: 4px;
+  line-height: 1.5;
+  transition: transform 180ms cubic-bezier(0.22, 0.61, 0.36, 1), opacity 180ms ease;
 }
 
-.foot-col > a:not(.brand)::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 1px;
-  background: currentColor;
-  transform: scaleX(0);
-  transform-origin: left center;
-  transition: transform 280ms cubic-bezier(0.22, 0.61, 0.36, 1);
+.foot-col > a:not(.brand):hover {
+  transform: translateX(4px);
+  opacity: 0.68;
 }
-
-.foot-col a:hover { color: var(--ink); }
-.foot-col > a:not(.brand):hover::after { transform: scaleX(1); }
-
-/* leaving the link wipes the underline out to the right rather than
-   snapping it off, so the exit reads as deliberate as the entry */
-.foot-col > a:not(.brand):not(:hover)::after { transform-origin: right center; }
 
 @media (prefers-reduced-motion: reduce) {
-  .foot-col > a:not(.brand)::after { transition: none; }
-}
-
-.foot-col .brand-line {
-  font-size: 14px;
-  color: var(--ink-2);
-  max-width: 24ch;
+  .foot-col > a:not(.brand) { transition: none; }
+  .foot-col > a:not(.brand):hover { transform: none; }
 }
 
 /* Real brand marks (simple-icons paths) rather than lookalike glyphs.
    Nested inside .foot-col but not a direct child, so the link-underline
    hover does not apply to them. */
-.foot-social {
-  display: flex;
-  gap: 8px;
-  margin-top: var(--s-4);
-}
-
+/* quiet outlined marks rather than filled circles, matching the
+   reference's understated bottom-left cluster */
 .foot-social a {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 34px;
-  height: 34px;
-  border: 1px solid var(--line-strong);
-  border-radius: var(--r-btn);
-  color: var(--ink-2);
-  transition: color 180ms ease, background-color 180ms ease, border-color 180ms ease;
+  width: 36px;
+  height: 36px;
+  border: 1px solid rgba(43, 39, 34, 0.2);
+  border-radius: var(--r-sm);
+  color: var(--ink);
+  transition: color 160ms ease, background-color 160ms ease, border-color 160ms ease;
 }
 
 .foot-social a:hover {
@@ -2825,13 +2903,9 @@ a { color: inherit; }
 }
 
 .foot-social svg {
-  width: 15px;
-  height: 15px;
+  width: 17px;
+  height: 17px;
   fill: currentColor;
-}
-
-@media (max-width: 900px) {
-  .foot-grid { grid-template-columns: 1fr 1fr; }
 }
 
 /* Its own band at the base rather than a hairline inside the wrap,
@@ -2839,33 +2913,21 @@ a { color: inherit; }
    by tone instead of by a line, and full panel width so it reads as a
    base rather than another row of content. */
 .foot-strip {
-  margin-top: var(--sec-y);
+  margin-top: clamp(40px, 4vw, 64px);
   /* one quiet step below the footer so the base still separates by
      tone now that the footer itself is off-white */
   background: var(--beige-soft);
   border-top: 1px solid var(--line-strong);
 }
 
-.foot-strip .wrap {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: clamp(12px, 2.4vw, 32px);
-  flex-wrap: wrap;
-  text-align: center;
-  padding-block: var(--s-5);
+.foot-strip .wrap { padding-block: var(--s-5); text-align: left; }
+
+.foot-copy {
   font-family: var(--mono);
-  font-size: 11px;
+  font-size: var(--t-mono-lg);
   font-weight: 500;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--ink-3);
 }
 
-@media (max-width: 860px) {
-  .foot-grid { grid-template-columns: 1fr 1fr; }
-}
-
-@media (max-width: 560px) {
-  .foot-grid { grid-template-columns: 1fr; }
-}
