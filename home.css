@@ -2786,9 +2786,14 @@ a { color: inherit; }
   z-index: 0;
 }
 
+/* positioned so the ornament sits ABOVE the strip's top border rather
+   than straddling it: bottom:100% puts its lower edge on that line */
+.foot-strip { position: relative; }
+
 .foot-strip::before {
-  bottom: 0;
-  right: 0;
+  bottom: 100%;
+  /* stops where the ruled edge strip starts, so the two never overlap */
+  right: calc(var(--rule-strip) + 1px);
   -webkit-mask-image: radial-gradient(130% 130% at 100% 100%, #000 30%, transparent 100%);
           mask-image: radial-gradient(130% 130% at 100% 100%, #000 30%, transparent 100%);
 }
