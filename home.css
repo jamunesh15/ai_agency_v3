@@ -45,12 +45,17 @@
   --mono: "JetBrains Mono", ui-monospace, "SF Mono", monospace;
 
   --nav-h: 68px;
-  --panel-w: min(1680px, calc(100% - clamp(16px, 1.8vw, 28px)));
-  --wrap: 1320px;
-  --wrap-w: min(var(--wrap), calc(100% - clamp(56px, 12vw, 240px)));
+  /* full-bleed: the old version subtracted 16-28px, which left the
+     backdrop showing as a strip down both edges of every page */
+  --panel-w: min(1680px, 100%);
+  /* Content measure and its gutter. Narrower than the panel on purpose:
+     the panel runs full-bleed, so this is what keeps content off the
+     window edges. Raising the floor widens the gutter on small screens
+     too, not just on desktop. */
+  --wrap: 1180px;
+  --wrap-w: min(var(--wrap), calc(100% - clamp(72px, 13vw, 260px)));
   --r-btn: 7px;
   --r-card: 10px;
-  --r-sheet: 14px;
 
   /* ---- spacing scale -------------------------------------------
      Every gap on the page comes from one of these steps. If a value
@@ -72,7 +77,7 @@
   --sec-y-sm: clamp(34px, 3.4vw, 48px);
   --hero-top: clamp(20px, 2.2vw, 32px);
   --head-gap: clamp(34px, 3.6vw, 50px);
-  --stick-top: 96px;
+  --stick-top: calc(var(--nav-h) + 24px);
 
   /* ---- type scale ----------------------------------------------
      Six display steps and six UI steps. Each one is clearly apart
@@ -135,15 +140,10 @@ a { color: inherit; }
   width: var(--panel-w);
   margin: var(--nav-h) auto 0;
   background: var(--sheet);
-  border: 1px solid rgba(43, 39, 34, 0.05);
-  border-top: 0;
-  border-bottom: 0;
 }
 
 /* Side spacing was too tight, so sections ran almost edge to edge.
-   The gutter is now wide enough to read as deliberate framing, and
-   .rules draws a line down each side of it. Both use the same
-   width expression, so they can never drift apart. */
+   The gutter is now wide enough to read as deliberate framing. */
 .wrap {
   width: var(--wrap-w);
   margin-inline: auto;
@@ -154,30 +154,6 @@ a { color: inherit; }
    the wrap edges, so every section sits visibly inset inside a
    frame. Fixed, so they hold their place while the page scrolls,
    and they start below the nav rather than crossing it. */
-.rules {
-  /* Absolute inside .sheet, not fixed to the viewport. Two reasons:
-     the frame belongs to the content, so it must stop where the sheet
-     stops instead of running across the footer; and as a fixed element
-     its width resolved against the VIEWPORT while .wrap resolves
-     against the sheet, so on narrow screens the lines and the content
-     gutter drifted apart. Sharing a containing block keeps them
-     locked together at every width. */
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  /* deliberately WIDER than .wrap. Drawn at the wrap edge the lines
-     run straight through the text, because that edge is where the
-     content begins. The frame belongs outside the content. */
-  width: min(calc(var(--wrap-w) + clamp(48px, 5vw, 96px)), calc(100% - 24px));
-  border-left: 1px solid var(--rule);
-  border-right: 1px solid var(--rule);
-  pointer-events: none;
-  z-index: 2;
-}
-
-@media (max-width: 720px) { .rules { display: none; } }
 
 /* ---------- type -------------------------------------------- */
 
@@ -299,7 +275,6 @@ a { color: inherit; }
      underneath and headings ghosted through it near the footer.
      Side borders match .sheet and .foot so all three edges line up. */
   background: var(--sheet);
-  border: 1px solid rgba(43, 39, 34, 0.05);
   border-top: 0;
   box-shadow: 0 1px 0 rgba(43, 39, 34, 0.04), 0 16px 32px -28px rgba(43, 39, 34, 0.13);
 }
@@ -1270,21 +1245,21 @@ a { color: inherit; }
 .use {
   border-right: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
-  padding: 26px 26px 30px;
+  padding: 34px 32px 38px;
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
 
 .use-vis {
-  min-height: 176px;
+  min-height: 210px;
   display: flex;
   align-items: center;
   justify-content: center;
   margin-bottom: 8px;
 }
 
-.use-vis .card { width: 100%; max-width: 300px; }
+.use-vis .card { width: 100%; max-width: 340px; }
 
 .use h3 { font-size: 19px; }
 
@@ -1867,7 +1842,15 @@ a { color: inherit; }
   align-items: start;
 }
 
-.process-intro { position: sticky; top: var(--stick-top); }
+/* Sticky intro: it holds while its own section scrolls past, and adds
+   no scroll distance. Pinning the whole section did hold everything
+   still, but only by adding a screen-and-a-half of dead scroll. */
+.process-intro {
+  position: sticky;
+  top: var(--stick-top);
+  align-self: start;
+  will-change: auto;
+}
 
 .process-intro .h2 { margin-top: var(--s-4); }
 
@@ -1923,7 +1906,10 @@ a { color: inherit; }
    fixed stat cell on the left, two marquee rows of bordered
    cells on the right, one scrolling left, one scrolling right */
 
-.logos { padding: var(--sec-y-sm) 0; }
+/* Same --sec-y as .section so the marquee band sits with equal space above
+   and below it. At --sec-y-sm it gave 48px on its side of a section boundary
+   against the neighbouring section's 68px, which read as lopsided. */
+.logos { padding: var(--sec-y) 0; }
 
 .logo-band {
   display: flex;
@@ -2013,7 +1999,12 @@ a { color: inherit; }
   align-items: start;
 }
 
-.faq-intro { position: sticky; top: var(--stick-top); }
+.faq-intro {
+  position: sticky;
+  top: var(--stick-top);
+  align-self: start;
+  will-change: auto;
+}
 .faq-intro .h2 { margin-top: var(--s-4); }
 
 .faq-item { border-top: 1px solid var(--line); }
@@ -2725,55 +2716,24 @@ a { color: inherit; }
   /* off-white, continuing the sheet rather than stepping into beige */
   background: var(--sheet);
   overflow: hidden;
-  border: 1px solid rgba(43, 39, 34, 0.05);
-  border-top: 0;
-  border-radius: 0 0 var(--r-sheet) var(--r-sheet);
   box-shadow:
     0 1px 1px rgba(43, 39, 34, 0.03),
     0 32px 80px -32px rgba(43, 39, 34, 0.15);
 }
 
-.foot-cta { max-width: 720px; }
-
-/* Serif here, as in the reference. Scoped to this one headline rather
-   than every h2: it is the sign-off at the end of the page, so it can
-   carry a different voice without loosening the rule that serif
-   belongs to reading text. */
-.foot-cta .h2 {
-  margin-top: var(--s-4);
-  font-family: var(--serif);
-  font-weight: 600;
-  font-size: clamp(30px, 3.2vw, 46px);
-  line-height: 1.16;
-  letter-spacing: -0.015em;
-}
-
-.foot-cta .lede { margin-top: var(--s-4); max-width: 44ch; }
-
-/* Brand block left, link columns evenly distributed across the rest,
-   matching the reference footer's rhythm. */
+/* Brand starts at the left edge, the four link groups spread evenly
+   across the rest, Legal ending at the right. space-between splits the
+   leftover width into equal gaps rather than pooling it anywhere. */
 .foot-grid {
-  display: grid;
-  /* Narrow link columns on a tight pitch, brand and newsletter wider,
-     matching the reference. Equal 1fr tracks spread three short lists
-     across 400px each and read as scattered. */
-  grid-template-columns: max-content minmax(0, 1fr);
-  gap: clamp(28px, 4vw, 80px);
-  margin-top: var(--sec-y);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: clamp(24px, 3vw, 48px);
 }
 
-/* The three link columns are ONE tight cluster, not three columns
-   spread across the footer. In the reference they sit ~15px apart and
-   read as a single block; stretched to 1fr each with 76px gaps they
-   read as scattered pieces, which is what made ours look loose. */
-/* The four link groups are their own tight grid again. As equal 1fr
-   tracks of .foot-grid they each took ~250px and the lists drifted far
-   apart; capped tracks with a small gap keep them reading as a set. */
-.foot-links {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(104px, 168px));
-  gap: clamp(14px, 1.6vw, 28px);
-}
+/* the four link groups join .foot-grid's row directly */
+.foot-links { display: contents; }
 
 /* Rule per column rather than one continuous line across the footer,
    so each group reads as its own block. Straight from the reference,
@@ -2834,7 +2794,7 @@ a { color: inherit; }
 .foot-col .brand-line {
   font-size: 14px;
   color: var(--ink-2);
-  max-width: 30ch;
+  max-width: 24ch;
 }
 
 /* Real brand marks (simple-icons paths) rather than lookalike glyphs.
