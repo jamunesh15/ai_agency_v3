@@ -44,7 +44,10 @@
   --serif: "Source Serif 4", Charter, "Iowan Old Style", Georgia, serif;
   --mono: "JetBrains Mono", ui-monospace, "SF Mono", monospace;
 
-  --nav-h: 68px;
+  /* MUST stay a multiple of --rule-gap. The edge strips run an 8px line
+     pitch, and the nav's bottom edge is a horizontal line in that same
+     field; at 68px it landed mid-cell and read as a jog. */
+  --nav-h: 72px;
   /* full-bleed: the old version subtracted 16-28px, which left the
      backdrop showing as a strip down both edges of every page */
   --panel-w: min(1680px, 100%);
@@ -58,7 +61,10 @@
      Width, line pitch and line colour all live here. */
   --rule-strip: 88px;
   --rule-gap: 8px;
-  --rule-hair: rgba(43, 39, 34, 0.055);
+  /* Lighter, per the CEO. Not much lighter though: this was 0.055 once and
+     the strips disappeared entirely when the beige bands went and the ground
+     became uniform white. 0.07 is the floor that still reads. */
+  --rule-hair: rgba(43, 39, 34, 0.07);
 
   /* ONE corner radius for the whole site. Every panel, card, button and
      frame reads var(--r); only chips, tags, bars and checkboxes use the
@@ -166,10 +172,17 @@ a { color: inherit; }
 /* A narrow band of fine horizontal hairlines down each edge of the panel,
    closed by a vertical rule where the content area begins. Drawn on the
    nav as well as the sheet, because the nav is fixed and opaque and would
-   otherwise cut the band off at the top of the page. */
+   otherwise cut the band off at the top of the page.
+
+   NOT drawn on the footer. The footer used to be a sibling of the sheet
+   with its own copy of this pattern, and every pattern restarts at its own
+   element's top edge. The sheet's height is content-dependent and so is
+   almost never a multiple of --rule-gap, which put the footer's lines out
+   of phase and produced a visible DOUBLE LINE at the join. The footer now
+   lives inside the sheet, so there is one pattern for the whole page.
+   --nav-h is a multiple of --rule-gap for the same reason. */
 .sheet::before, .sheet::after,
-.nav::before, .nav::after,
-.foot::before, .foot::after {
+.nav::before, .nav::after {
   content: "";
   position: absolute;
   top: 0;
@@ -182,20 +195,14 @@ a { color: inherit; }
     transparent 1px var(--rule-gap));
 }
 
-.sheet::before, .nav::before, .foot::before { left: 0; border-right: 1px solid var(--line); }
-.sheet::after,  .nav::after,  .foot::after  { right: 0; border-left: 1px solid var(--line); }
-
-/* --nav-h is 68px, not a multiple of the 8px pitch, so the sheet's first
-   line is offset by the 4px remainder and the two bands read as one
-   continuous ruling at the top of the page. */
-.sheet::before, .sheet::after { background-position: 0 4px; }
+.sheet::before, .nav::before { left: 0; border-right: 1px solid var(--line); }
+.sheet::after,  .nav::after  { right: 0; border-left: 1px solid var(--line); }
 
 /* Below this the content gutter is narrower than the strip and they
    would collide. */
 @media (max-width: 1000px) {
   .sheet::before, .sheet::after,
-  .nav::before, .nav::after,
-  .foot::before, .foot::after { display: none; }
+  .nav::before, .nav::after { display: none; }
 }
 
 /* Side spacing was too tight, so sections ran almost edge to edge.
@@ -212,15 +219,6 @@ a { color: inherit; }
    and they start below the nav rather than crossing it. */
 
 /* ---------- type -------------------------------------------- */
-
-.kicker {
-  font-family: var(--mono);
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--ink-2);
-}
 
 .display {
   font-size: var(--t-title);
@@ -296,20 +294,6 @@ a { color: inherit; }
 
 .btn--sm { height: 40px; padding: 0 18px; font-size: 14px; }
 
-.tlink {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 15px;
-  font-weight: 600;
-  text-decoration: none;
-  padding-bottom: 3px;
-  border-bottom: 2px solid var(--accent);
-  transition: gap 160ms ease;
-}
-.tlink:hover { gap: 12px; }
-.tlink svg { width: 16px; height: 16px; }
-
 /* ---------- nav --------------------------------------------- */
 
 /* At the top of the page the bar is wide, flat and part of the sheet.
@@ -332,16 +316,20 @@ a { color: inherit; }
      Side borders match .sheet and .foot so all three edges line up. */
   background: var(--sheet);
   border-top: 0;
-  /* hairline plus a soft drop, so the bar separates from the hero instead
-     of blending into it now that both are pure white */
-  box-shadow: 0 1px 0 rgba(43, 39, 34, 0.07), 0 8px 20px -10px rgba(43, 39, 34, 0.16);
+  /* CEO, with the Questo reference: no shadow AND no bottom rule. The nav
+     spans the full panel, so any horizontal line here cuts across the ruled
+     edge strips, which is the same defect as the old beige bands. Nothing
+     bleeds through because the bar is opaque --sheet, and its own ::before
+     and ::after continue the strips across it. */
 }
 
 .nav-shell {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: var(--s-5);
+  /* this gap is now only links-to-CTA; .nav-links takes the slack from
+     the brand with margin-left: auto */
+  gap: var(--s-6);
   height: var(--nav-h);
 }
 
@@ -361,9 +349,12 @@ a { color: inherit; }
 
 .nav-links {
   display: flex;
-  /* the links carry their own horizontal padding now, so the gap is
-     the leftover: padding + gap together read as the old spacing. */
-  gap: clamp(4px, 1.4vw, 16px);
+  /* CEO: nav items sit on one side. Brand keeps the left edge, links and
+     the call-to-action group together on the right. */
+  margin-left: auto;
+  /* the links carry their own horizontal padding, so the space between two
+     labels is gap + 2x that padding. Keep both tight. */
+  gap: clamp(2px, 0.6vw, 6px);
 }
 
 .nav-links a {
@@ -371,7 +362,7 @@ a { color: inherit; }
   font-weight: 500;
   color: var(--ink-2);
   text-decoration: none;
-  padding: 7px 12px;
+  padding: 7px 10px;
   border-radius: var(--r-btn);
   background: transparent;
   transition: color 140ms ease, background-color 140ms ease;
@@ -384,10 +375,9 @@ a { color: inherit; }
   background: rgba(43, 39, 34, 0.06);
 }
 
-.nav-links a[aria-current="page"] {
-  color: var(--ink);
-  font-weight: 600;
-}
+/* CEO: the current page must NOT read darker or heavier than its siblings.
+   aria-current stays on the markup so screen readers still announce it;
+   there is deliberately no visual treatment. */
 
 .nav .btn--sm {
   height: 44px;
@@ -433,23 +423,12 @@ a { color: inherit; }
   margin-top: var(--s-6);
 }
 
-.hero-tags {
-  margin-top: var(--s-4);
-  font-family: var(--mono);
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--ink-3);
-}
-
 .actions {
   display: flex;
   flex-wrap: wrap;
   gap: var(--s-3);
   margin-top: var(--s-6);
 }
-
 
 /* still used by the services and contact heroes via
    .hero-shot--fit; the home page's bleed and slide-in went
@@ -492,7 +471,23 @@ a { color: inherit; }
 
 .hero--flow .actions { justify-content: center; }
 
+/* A centred hero with no visual of its own leaves a dead band before
+   the first section: the hero's bottom padding, the section's top
+   padding and the section head's gap all stack, and the page reads
+   half empty however good the copy is. So on that hero only, all
+   three collapse and the first framed diagram comes up to where the
+   home page's canvas sits.
 
+   Home is untouched: its canvas lives inside the hero, so the hero's
+   bottom padding is the gap under the canvas, not a hole. Contact and
+   pricing use .hero--big and never match this selector. */
+.hero--flow:not(:has(.flow-frame)) { padding-bottom: 0; }
+
+.hero--flow:not(:has(.flow-frame)) + .section { padding-top: var(--s-5); }
+
+.hero--flow:not(:has(.flow-frame)) + .section .sec-head {
+  margin-bottom: var(--s-6);
+}
 
 /* Gradient frame with the canvas floating on it, matching the CEO's
    reference where the gradient sits behind ONE solid card. The canvas
@@ -509,7 +504,10 @@ a { color: inherit; }
      and at 40px a busy texture reads as a stripe rather than a surface. */
   padding: clamp(24px, 2vw, 56px);
   border-radius: var(--r);
-  background-color: var(--ink);
+  /* light, not --ink: this is what shows in the band for the instant
+     before the texture paints, and charcoal read as a black flash */
+  background-color: var(--beige-deep);
+  /* home hero: the original green. Every frame carries its own texture. */
   background-image: url("new_backdrop.webp");
   background-size: cover;
   background-position: center;
@@ -519,52 +517,21 @@ a { color: inherit; }
    gap above it. The max-width carries the canvas's old 1140px plus the
    frame padding, so the gradient border stays even on both sides. */
 .flow-frame--sec {
+  background-image: url("b3.webp");   /* home agents: burgundy */
   margin-top: 0;
   max-width: 1248px;
   margin-inline: auto;
 }
 
-/* services hero: the canvas is 680px, not a full-width diagram, so the
-   frame is capped well below the section variant. Ground and frame
-   width come from .flow-frame. */
-.flow-frame--alt { max-width: 880px; }
-
-/* ---------- services hero -------------------------------------
-   Everything here is scoped with :has(.flow-frame--alt), the one
-   element unique to this hero. Contact and pricing also carry
-   .hero--big and .hero-shot--fit and must not move. */
-
-/* Its own measure, wider than the 1180px the rest of the page uses, but
-   on the SAME gutter as every other section. It briefly ran a narrower
-   8vw gutter to buy image width; once the ruled edge strips went in that
-   left the headline about 12px off the rule, so the gutter went back. */
-.hero--big:has(.flow-frame--alt) .wrap {
-  width: min(1280px, calc(100% - clamp(72px, 13vw, 260px)));
+/* the inputs diagram, framed like every other canvas on the site */
+.flow-frame--dia {
+  background-image: url("b4.webp");   /* home diagram: terracotta */
+  margin-top: var(--head-gap);
 }
 
-.hero-grid:has(.flow-frame--alt) {
-  grid-template-columns: minmax(320px, 45%) 1fr;
-  /* tighter than the shared 4vw: the ~12px it frees is what takes the
-     canvas over 720px */
-  gap: clamp(32px, 3.2vw, 52px);
-}
-
-/* Short headline, so it runs bigger than the shared --t-title-lg. NOT
-   done on the token: home, contact and pricing read it too, and home's
-   headline is long enough to break the two-line rule at this size. */
-.hero--big:has(.flow-frame--alt) .display {
-  font-size: clamp(42px, 4.7vw, 72px);
-}
-
-.hero-shot--fit:has(.flow-frame--alt) {
-  margin-top: clamp(8px, 1.2vw, 20px);
-}
-
-.flow-frame--alt .wf {
-  max-width: none;
-  border: 1px solid var(--line-strong);
-  border-radius: var(--r);
-  overflow: hidden;
+.flow-frame--rad {
+  background-image: url("b2.webp");   /* services: teal */
+  margin-top: var(--head-gap);
 }
 
 .flow {
@@ -598,22 +565,10 @@ a { color: inherit; }
   stroke-linecap: round;
 }
 
-.fnode rect { fill: var(--ink-3); }
-.fnode--out rect { fill: var(--accent); }
-
-.flow-zone {
-  position: absolute;
-  left: 2.4cqw;
-  font-family: var(--mono);
-  font-size: clamp(9px, 0.92cqw, 11px);
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--ink-3);
-}
-
-.flow-zone--top { top: 2cqw; }
-.flow-zone--bot { bottom: 2cqw; }
+/* CEO: the square markers pulled focus off the lines. Connectors only.
+   All three sets live on the home page: the hero flow canvas, the inputs
+   diagram, and the agents canvas. */
+.fnode { display: none; }
 
 /* 7px radius, not a round pill: the reference uses capsules but
    round-ended shapes are off the table on this site. */
@@ -754,10 +709,16 @@ a { color: inherit; }
 
 /* ---------- light section surfaces -------------------------- */
 
-.band {
+/* CEO, 2026-08-21: "if you add strips, you should remove these dividers,
+   otherwise the contrast look bad". So beige is a BOX, never a band. The
+   panel stops at the content measure and the ruled edge strips run past it
+   on clean white; a full-width band collided with them, a box cannot. */
+.band { background: transparent; }
+
+.band > .wrap {
+  padding: clamp(28px, 3.2vw, 56px);
   background: var(--band);
-  border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
+  border-radius: var(--r);
 }
 
 .ava {
@@ -772,7 +733,6 @@ a { color: inherit; }
   align-items: center;
   justify-content: center;
 }
-
 
 .card {
   background: var(--surface);
@@ -808,7 +768,6 @@ a { color: inherit; }
 
 .card-sub { font-size: 12px; line-height: 1.45; color: var(--ink-2); }
 
-
 .card-foot {
   display: flex;
   align-items: center;
@@ -831,10 +790,11 @@ a { color: inherit; }
 }
 .avas span + span { margin-left: -6px; }
 
-/* ---------- workflow canvas (services hero) -------------------
-   boxes appear one by one on a quiet canvas and explain the
-   service: work comes in, AI reads it, acts in your tools, and
-   you describe the next process. */
+/* ---------- hero visual slot ----------------------------------
+   Shared by the contact page's form. The services page used to
+   hold a canvas here too; its hero is centred like the home page
+   now, so the canvas, the run-trace card and the offer board that
+   followed it are all gone. */
 
 .hero-shot--fit {
   margin-right: 0;
@@ -842,174 +802,6 @@ a { color: inherit; }
      against it once the frame was added */
   margin-top: clamp(16px, 2.4vw, 44px);
   animation: none;
-}
-
-/* the contact page's form shares this class with the services-page
-   canvas, but shouldn't inherit the canvas's upward pull -- it reads
-   as the form being stuck against the nav instead of settled in. */
-.hero-shot--fit:has(.cform) {
-  margin-top: 0;
-  align-self: center;
-}
-
-/* Holds the supplied services artwork. The aspect ratio is the image's
-   own (1300x957), so it fills the card edge to edge with no letterbox
-   and the height is reserved before it loads. */
-.wf {
-  position: relative;
-  max-width: 680px;
-  margin-inline: auto;
-  aspect-ratio: 1300 / 957;
-  background-color: var(--surface);
-}
-
-.wf-img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
-
-.wf-svg { position: absolute; inset: 0; width: 100%; height: 100%; }
-
-.wf-wire {
-  fill: none;
-  stroke: var(--ink-3);
-  stroke-width: 1.2;
-  stroke-dasharray: 3 5;
-  opacity: 0;
-  animation: aa-wf-fade 280ms ease var(--bd, 0ms) both;
-}
-
-.wf-node {
-  fill: var(--accent);
-  opacity: 0;
-  animation: aa-wf-fade 280ms ease var(--bd, 0ms) both;
-}
-
-.wf-box {
-  position: absolute;
-  width: 48%;
-  /* Sized in pure cqw, not clamped, on purpose. The SVG wires assume a
-     box half-height of 38 viewBox units; 2.2cqw text on 3.2cqw padding
-     resolves to exactly that at any canvas width, so the connectors meet
-     the boxes instead of drifting. The px floors are a mobile backstop. */
-  padding: max(12px, 3.2cqw);
-  background: var(--surface);
-  border: 1px solid var(--ink-2);
-  font-family: var(--mono);
-  font-size: max(10px, 2.2cqw);
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  line-height: 1.6;
-  color: var(--ink);
-  opacity: 0;
-  animation: aa-wf-box 450ms cubic-bezier(0.22, 0.61, 0.36, 1) var(--bd, 0ms) both;
-}
-
-.wf-box .tok {
-  display: block;
-  color: var(--ink-3);
-  font-weight: 500;
-  /* if it has to wrap, split it evenly instead of orphaning one word */
-  text-wrap: balance;
-}
-
-/* the lead box is tinted to mark it as the input, but --accent-tint
-   is the deepest beige and read as a heavy block against the white
-   boxes below it. --band keeps the distinction at a lighter weight. */
-.wf-box--lead {
-  /* wider than the rest: its token line is the longest on the canvas
-     and at 47% it wrapped to three lines and unbalanced the top */
-  width: 54%;
-  background: var(--band);
-  border-color: var(--accent-text);
-}
-
-@keyframes aa-wf-box {
-  from { opacity: 0; transform: translate(-50%, calc(-50% + 12px)); }
-  to   { opacity: 1; transform: translate(-50%, -50%); }
-}
-
-@keyframes aa-wf-fade {
-  from { opacity: 0; }
-  to   { opacity: 1; }
-}
-
-/* status chip riding the box border */
-.wf-chip {
-  position: absolute;
-  top: -10px;
-  right: 10px;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  background: var(--surface);
-  border: 1px solid var(--line-strong);
-  padding: max(3px, 0.5cqw) max(6px, 1.35cqw);
-  font-size: max(9px, 1.75cqw);
-  letter-spacing: 0.1em;
-}
-
-.wf-chip i {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  display: block;
-}
-
-.wf-chip .ok, .wf-chip i.ok { background: var(--accent); }
-.wf-chip i.proc {
-  background: transparent;
-  box-shadow: inset 0 0 0 1.5px var(--ink);
-  animation: aa-wf-blink 1.1s steps(1) infinite;
-}
-.wf-chip i.mk { background: var(--ink-3); }
-
-@keyframes aa-wf-blink {
-  0%, 49% { opacity: 1; }
-  50%, 100% { opacity: 0.25; }
-}
-
-/* the create/input box */
-.wf-box--input { color: var(--ink-3); }
-
-.wf-caret {
-  display: inline-block;
-  width: max(6px, 1.1cqw);
-  height: max(10px, 1.9cqw);
-  background: var(--ink);
-  margin-right: 7px;
-  vertical-align: -1px;
-  animation: aa-wf-blink 1.05s steps(1) infinite;
-}
-
-.wf-enter {
-  position: absolute;
-  right: 10px;
-  bottom: 10px;
-  width: max(20px, 3.5cqw);
-  height: max(20px, 3.5cqw);
-  border-radius: var(--r-sm);
-  background: var(--ink);
-  color: var(--paper);
-  display: grid;
-  place-items: center;
-  opacity: 1;
-}
-
-.wf-enter svg { width: 12px; height: 12px; }
-
-@media (prefers-reduced-motion: reduce) {
-  .wf-box, .wf-wire, .wf-node { animation: none; opacity: 1; }
-  .wf-box { transform: translate(-50%, -50%); }
-  .wf-chip i.proc, .wf-caret { animation: none; }
-}
-
-@media (max-width: 960px) {
-  .wf { max-width: 480px; }
-  .wf-box { font-size: 10px; padding: 12px; }
 }
 
 /* ---------- sections ---------------------------------------- */
@@ -1034,6 +826,7 @@ a { color: inherit; }
   transition: background-color 160ms ease;
 }
 
+.svc:first-of-type { border-top: 0; }
 .svc:last-of-type { border-bottom: 1px solid var(--line); }
 
 .svc:hover { background: var(--band); }
@@ -1089,11 +882,14 @@ a { color: inherit; }
 
 /* ---------- flow diagram ------------------------------------ */
 
-.diagram { padding: var(--sec-y) 0; border-top: 1px solid var(--line); }
+.diagram { padding: var(--sec-y) 0; }
 
 .diagram-stage {
-  margin-top: var(--head-gap);
   overflow-x: auto;
+  padding: clamp(20px, 2.4vw, 36px) 0;
+  background: var(--frame);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--r);
 }
 
 .diagram-stage svg {
@@ -1103,23 +899,23 @@ a { color: inherit; }
   height: auto;
 }
 
+.dg-box {
+  fill: var(--surface);
+  stroke: var(--line-strong);
+  stroke-width: 1;
+}
+
+/* these read as ghost buttons now, so they take the button's type:
+   --sans 15px 600 at -0.01em, not the mono tag style */
 .dg-lab {
-  font-family: var(--mono);
-  font-size: 12px;
+  font-family: var(--sans);
+  font-size: 15px;
   font-weight: 600;
-  letter-spacing: 0.12em;
+  letter-spacing: -0.01em;
   fill: var(--ink-2);
 }
 
 .dg-lab--out { fill: var(--ink); }
-
-.dg-cap {
-  font-family: var(--mono);
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  fill: var(--ink-3);
-}
 
 .dg-wire {
   fill: none;
@@ -1132,8 +928,6 @@ a { color: inherit; }
   stroke: var(--accent);
   stroke-width: 1.6;
 }
-
-.dg-node { fill: var(--ink-3); }
 
 .dg-hub-ring {
   fill: none;
@@ -1155,6 +949,21 @@ a { color: inherit; }
   max-width: 1240px;
   margin-inline: auto;
   aspect-ratio: 1280 / 660;
+}
+
+/* Inside the painted frame, same treatment as the home page's agents
+   canvas: the frame supplies the width, the diagram supplies a solid
+   ground. --frame beige, not --surface: every node on top is a white
+   card, and white cards on a white ground read flat.
+   No overflow:hidden. The nodes are positioned from their centres and
+   the outer ones sit close to the edge, so clipping is a real risk and
+   a node cut off at the border is worse than one poking past it. */
+.flow-frame--rad .radial {
+  max-width: none;
+  margin-inline: 0;
+  background-color: var(--frame);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--r);
 }
 
 .radial-svg { position: absolute; inset: 0; width: 100%; height: 100%; }
@@ -1299,8 +1108,11 @@ a { color: inherit; }
 
 /* below this the columns get too narrow, so drop the spokes and
    show the same eight as a grid. tooltips are a hover thing, so
-   they go with the spokes. */
-@media (max-width: 1080px) {
+   they go with the spokes.
+   1200, not the old 1080: the painted frame takes ~70px out of the
+   measure, and at 1080 the outer nodes' 262px min-width put their
+   edges past the frame's border. */
+@media (max-width: 1200px) {
   .radial {
     aspect-ratio: auto;
     display: grid;
@@ -1326,18 +1138,22 @@ a { color: inherit; }
    left, each .use supplies its right and bottom. overflow:hidden is what
    lets the outer corners round, by clipping the cell borders to the curve
    while the internal grid lines stay straight. */
+/* The grid lines are 1px GAPS with the container's colour showing through,
+   not borders on the cells. Half-borders cannot form a rounded corner: two
+   straight cell edges meet the curve and leave it open. This closes cleanly
+   and stays correct at 3, 2 and 1 columns without per-cell exceptions. */
 .uses {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  border-top: 1px solid var(--line);
-  border-left: 1px solid var(--line);
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
   border-radius: var(--r);
   overflow: hidden;
 }
 
 .use {
-  border-right: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
+  background: var(--surface);
   padding: 34px 32px 38px;
   display: flex;
   flex-direction: column;
@@ -1481,8 +1297,10 @@ a { color: inherit; }
    rather than sitting flat. Inset inside .wrap on purpose: run
    full-bleed, the page gutter rules would cross it and vanish. */
 .tiers-stage {
-  background-color: var(--ink);
-  background-image: url("new_backdrop.webp");
+  /* light, not --ink: this is what shows in the band for the instant
+     before the texture paints, and charcoal read as a black flash */
+  background-color: var(--beige-deep);
+  background-image: url("b7.webp");   /* pricing: amber */
   background-size: cover;
   background-position: center;
   border-radius: var(--r);
@@ -1614,6 +1432,11 @@ a { color: inherit; }
   .tiers { grid-template-columns: 1fr; max-width: 480px; margin-inline: auto; }
 }
 
+@keyframes aa-wf-blink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0.25; }
+}
+
 /* ---------- agents-at-work canvas (home) ----------------------
    four agent cards on the drafting canvas, dashed connectors,
    reading dots, a filling progress bar and a self-ticking
@@ -1624,7 +1447,10 @@ a { color: inherit; }
   max-width: 1140px;
   margin-inline: auto;
   aspect-ratio: 1100 / 560;
-  background-color: var(--surface);
+  /* --frame, not --surface: the agent cards on top are white, so a beige
+     ground gives the same beige-and-white mix the hero flow canvas has.
+     White cards on a white ground read flat. */
+  background-color: var(--frame);
 }
 
 /* inside the gradient frame it fills the padding box and reads as one
@@ -1654,7 +1480,7 @@ a { color: inherit; }
   stroke-linecap: round;
 }
 
-.agents-svg rect { fill: var(--accent); }
+.agents-svg rect { display: none; }
 
 .acard {
   border-radius: var(--r);
@@ -1769,7 +1595,6 @@ a { color: inherit; }
 
 /* checklist card */
 .ack { display: flex; align-items: center; gap: 10px; margin-top: 9px; }
-
 
 .ack-label {
   flex: 1;
@@ -1935,7 +1760,7 @@ a { color: inherit; }
   max-width: 34ch;
 }
 
-.process-intro .tlink { margin-top: var(--s-5); }
+.process-intro .btn { margin-top: var(--s-5); }
 
 .step {
   display: grid;
@@ -1945,6 +1770,7 @@ a { color: inherit; }
   border-top: 1px solid var(--line);
 }
 
+.step:first-of-type { border-top: 0; }
 .step:last-of-type { border-bottom: 1px solid var(--line); }
 
 .step-meta {
@@ -2074,7 +1900,10 @@ a { color: inherit; }
 .faq-intro { align-self: start; }
 .faq-intro .h2 { margin-top: var(--s-4); }
 
+/* no rule above the first row: it lands under the section heading and
+   reads as a stray line across the section. Same on .svc and .step. */
 .faq-item { border-top: 1px solid var(--line); }
+.faq-item:first-of-type { border-top: 0; }
 .faq-item:last-of-type { border-bottom: 1px solid var(--line); }
 
 .aa-acc-trigger {
@@ -2142,6 +1971,10 @@ a { color: inherit; }
 .hero--blog .hero-copy { text-align: center; margin-inline: auto; }
 .hero--blog .display { font-size: var(--t-title-sm); }
 
+/* the button used to be a text link carrying an inline margin; the gap has
+   to be declared properly now that it is a real button */
+.bfeat .btn { margin-top: var(--s-5); }
+
 /* featured post: text left, cover art right */
 .bfeat {
   display: grid;
@@ -2149,7 +1982,6 @@ a { color: inherit; }
   gap: clamp(28px, 4.5vw, 72px);
   align-items: center;
   padding: var(--sec-y-sm) 0;
-  border-bottom: 1px solid var(--line);
 }
 
 .bfeat h2 {
@@ -2199,44 +2031,64 @@ a { color: inherit; }
    Size is driven by height, not width: the subject fills the full
    height of the source, so the container height is what decides how
    big the robot actually renders. */
-/* The drawing's real content sits in x 0-800, y 90-955 of the
-   1536x1024 file; the rest is empty ground. The frame below is that
-   box exactly, so the illustration fills it edge to edge instead of
-   rendering small inside a mostly-empty rectangle.
-   Height, not width, is the scarce resource: the headline, lede and
-   contact rows are fixed, so the image takes whatever the first
-   screen has left and never pushes the rows past the fold. */
-.cm-art {
-  position: relative;
+/* Cal.com inline embed. It is a panel like any other on this site:
+   white ground, one hairline, the shared radius, and overflow clipped
+   so the embed's own corners cannot poke out of it.
+
+   Height is fixed rather than flexible. The old illustration could take
+   whatever the first screen left over, but a month-view calendar has a
+   real minimum: squeeze it and Cal drops to its cramped narrow layout. */
+.cm-cal {
+  /* every CTA on the site is an anchor to #book, so the calendar has to
+     clear the fixed nav when the jump lands */
+  scroll-margin-top: var(--stick-top);
   width: 100%;
-  margin: var(--s-4) 0 0;
+  margin: var(--s-5) 0 0;
+  background: var(--surface);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--r);
   overflow: hidden;
-  /* no height of its own: it is the flexible row of the copy column
-     and takes whatever the fixed pieces around it leave. */
-  flex: 1 1 auto;
-  min-height: 150px;
+  min-height: 0;
 }
 
-/* The old rule pushed the image around with hand-measured offsets
-   tied to one specific file, and the brightness lift existed only to
-   burn a grey ground out to white. Neither applies now: the artwork
-   is supplied on the off-white theme ground and trimmed to its own
-   content at build time, so it just fits the box. No magic numbers to
-   re-measure if the file is replaced again. */
-.cm-art img {
-  position: absolute;
-  inset: 0;
+/* Skeleton. Cal's booker is a third-party app fetching availability, so
+   there is always some wait; an empty bordered box reads as broken. This
+   pulses underneath and Cal's iframe paints straight over it. */
+#cal-inline {
+  background:
+    linear-gradient(90deg, transparent 0%, rgba(43, 39, 34, 0.035) 50%, transparent 100%),
+    var(--band);
+  background-size: 200% 100%, auto;
+  background-repeat: no-repeat;
+  animation: aa-cal-wait 1.4s ease-in-out infinite;
+  border-radius: var(--r);
+}
+
+#cal-inline:has(iframe) { background: none; animation: none; }
+
+@keyframes aa-cal-wait {
+  from { background-position: -100% 0, 0 0; }
+  to   { background-position: 200% 0, 0 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #cal-inline { animation: none; }
+}
+
+#cal-inline {
   width: 100%;
-  height: 100%;
-  max-width: none;
-  object-fit: contain;
-  object-position: left center;
+  /* Full measure, so the month view has room for its side panel and the
+     time column without Cal dropping to its cramped narrow layout.
+
+     Deliberately NOT sized off the viewport. Fitting the whole panel into
+     the first screen meant squeezing the spacing around it, and the page
+     read cramped. Better that the visitor scrolls a little. */
+  height: clamp(660px, 76vh, 860px);
+  overflow: auto;
 }
 
 @media (max-width: 1100px) {
-  .cm-art { flex: none; height: 380px; }
-  .hero--contact .hero-copy,
-  .hero--contact .hero-shot--fit:has(.cform) { max-height: none; }
+  #cal-inline { height: 720px; }
 }
 
 /* contact hero: a narrower copy column and a wider form, so the
@@ -2246,122 +2098,25 @@ a { color: inherit; }
    screen without scrolling. */
 .hero--contact { padding-top: var(--s-3); }
 
-/* narrow form, wide copy side. The form is capped rather than given
-   a percentage so it stays a tall thin panel with one field per row
-   instead of spreading into a wide two-column block. */
-.hero--contact .hero-grid {
-  grid-template-columns: minmax(300px, 1fr) minmax(0, 570px);
-  gap: clamp(40px, 5vw, 80px);
-  align-items: stretch;
-}
+/* One column now: the form is gone and the calendar runs the whole
+   measure, so there is no grid left to balance. */
+.hero--contact .hero-copy { max-width: 760px; }
 
-/* headline runs at the standard title step, not the oversized one,
-   so it stays narrower than the illustration underneath it. */
+/* headline at the standard title step, not the oversized one: it is
+   sharing the first screen with a calendar that needs the height. */
 .hero--contact .display {
   font-size: var(--t-title);
   margin-top: 0;
 }
 
 .hero--contact .lede { margin-top: var(--s-3); }
-/* the two contact rows sit side by side: half the width each, and
-   half the height of the stack, which is height the illustration
-   gets back. */
-.hero--contact .cm-list {
-  margin-top: var(--s-4);
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--s-5);
-  max-width: 560px;
-}
-
-.hero--contact .cm-row {
-  padding: var(--s-2) 2px;
-  font-size: var(--t-ui);
-  border-bottom: 1px solid var(--line);
-}
-
-/* both sides run the full height of the row and finish level: the
-   image is sized off the viewport, and the form fills whatever that
-   leaves through its message box. */
-/* both columns are capped at the first screen instead of the image
-   being guessed at in vh: 78 nav + 12 hero padding + 20 breathing.
-   Whatever is left after the headline, lede and rows goes to the
-   image, so the rows can never fall past the fold. */
-/* NOTE the .hero-grid in the selector: the home-hero rule
-   `.hero-grid:has(.hero-visual, .hero-shot--fit) .hero-copy` scores
-   0,3,0 and centres this column. Without matching that score the
-   column never stretches, the image collapses to its min-height and
-   the whole block floats in the middle of the row. */
-.hero--contact .hero-grid .hero-copy,
-.hero--contact .hero-shot--fit:has(.cform) {
-  align-self: stretch;
-  max-height: calc(100vh - 110px);
-}
-
-.hero--contact .hero-grid .hero-copy {
-  display: flex;
-  flex-direction: column;
-  min-height: 0;
-}
-
-.hero--contact .hero-shot--fit:has(.cform) {
-  margin-top: 0;
-  display: flex;
-}
-
-.hero--contact .cform {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  /* without this a flex child cannot shrink past its content, so the
-     column overflows its viewport cap and the button lands on top of
-     the textarea instead of below it */
-  min-height: 0;
-}
-
-/* one field per row */
-/* Paired again, two per row. It was forced to one-per-row back when
-   the form had to stay short enough to fit beside the illustration;
-   pairing is what frees the height for the message field. */
-.hero--contact .field-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--s-3);
-  margin-top: var(--s-3);
-}
-
-@media (max-width: 560px) {
-  .hero--contact .field-row { grid-template-columns: 1fr; }
-}
-
-.hero--contact .cform .field { margin-top: var(--s-3); }
-
-.hero--contact .cform .field-msg {
-  flex: 1;
-  min-height: 0;
-  display: flex;
-  flex-direction: column;
-  min-height: 0;
-}
-
-/* deliberately short as a floor: the box flexes, so on a normal
-   screen it lands around 70px and on a tall one it grows. Any larger
-   a floor and the form outruns the copy column and pushes the
-   contact rows past the fold. */
-/* Taller than the old 56px floor, which the paired Email/Contact row
-   makes room for, but low enough that the form still fits its cap. */
-.hero--contact .cform .field-msg textarea {
-  flex: 1 1 0;
-  min-height: 96px;
-}
-
 /* every white document card in a cover gets a soft lift, so they
    read as floating pieces of a real system, not flat outlines */
 .cover svg rect[fill="#FDFBF7"] {
   filter: drop-shadow(0 3px 6px rgba(43, 39, 34, 0.12));
 }
 
-/* small status chip, same look as .wf-chip / .atag elsewhere */
+/* small status chip, same look as .atag elsewhere */
 .cov-chip rect { fill: var(--ink); }
 
 .cov-chip text {
@@ -2568,7 +2323,6 @@ a { color: inherit; }
 .toc {
   position: sticky;
   top: var(--stick-top);
-  border-right: 1px solid var(--line);
   padding-right: clamp(20px, 2.6vw, 36px);
 }
 
@@ -2580,7 +2334,6 @@ a { color: inherit; }
   text-transform: uppercase;
   color: var(--ink-2);
   padding-bottom: var(--s-3);
-  border-bottom: 1px solid var(--line);
 }
 
 /* no numbering: the headings these link to are not numbered, so a
@@ -2624,315 +2377,496 @@ a { color: inherit; }
 .post-col .art-body { margin-top: 0; }
 .post-col .art-body > p:first-child { margin-top: 0; }
 
-@media (max-width: 640px) {
-  .field-row { grid-template-columns: 1fr; }
-}
-
 @media (max-width: 960px) {
   .post-hd { grid-template-columns: 1fr; }
   .post-grid { grid-template-columns: 1fr; }
-  .toc { position: static; border-right: 0; padding-right: 0; border-bottom: 1px solid var(--line); padding-bottom: 20px; }
+  .toc { position: static; padding-right: 0; padding-bottom: 20px; }
   .toc-cta { display: none; }
 }
 
 /* ---------- contact page ------------------------------------- */
 
-.cm-list { margin-top: var(--s-6); }
-
-.cm-row {
-  display: flex;
-  align-items: center;
-  gap: var(--s-3);
-  padding: var(--s-5) 2px;
-  border-top: 1px solid var(--line);
-  text-decoration: none;
-  font-size: 15px;
-  font-weight: 600;
-  color: var(--ink);
-  transition: padding-left 160ms ease;
-}
-
-.cm-row:last-of-type { border-bottom: 1px solid var(--line); }
-
-.cm-row:hover { padding-left: 8px; }
-
-.cm-row .cm-ico,
-.cm-row svg.cm-ico {
-  width: 19px;
-  height: 19px;
-  flex: none;
-  color: var(--ink);
-}
-
-.cm-row svg { width: 16px; height: 16px; flex: none; }
-
-.cm-row svg.cm-ico { width: 19px; height: 19px; }
-
-.cm-row .go { margin-left: auto; color: var(--ink-3); }
-
-/* contact form panel */
-.cform {
-  border: 1px solid var(--line-strong);
-  border-radius: var(--r);
-  background: var(--surface);
-  box-shadow: 0 30px 80px -28px rgba(40, 40, 38, 0.35);
-  padding: var(--s-5);
-}
-
-.cform-hd {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  padding-bottom: var(--s-4);
-  border-bottom: 1px solid var(--line);
-  margin-bottom: var(--s-2);
-  font-size: 18px;
-  font-weight: 700;
-  letter-spacing: -0.01em;
-  color: var(--ink);
-}
-
-.cform-hd span:last-child { color: var(--ink-3); }
-
-.field { margin-top: var(--s-4); }
-
-/* Name+email and phone+company pair up instead of stacking, so
-   the form is meaningfully shorter, not just tighter padding */
-.field-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--s-3);
-  margin-top: var(--s-4);
-}
-
-.field-row .field { margin-top: 0; }
-
-.field label {
-  display: block;
-  font-size: var(--t-sm);
-  font-weight: 600;
-  color: var(--ink);
-  margin-bottom: var(--s-3);
-}
-
-.field input,
-.field textarea {
-  width: 100%;
-  border: 1px solid var(--line-strong);
-  border-radius: var(--r-btn);
-  padding: var(--s-3);
-  font-family: var(--sans);
-  font-size: var(--t-body);
-  color: var(--ink);
-  background: var(--surface);
-  transition: border-color 140ms ease;
-}
-
-.field input:focus,
-.field textarea:focus {
-  outline: none;
-  border-color: var(--ink);
-}
-
-.field ::placeholder { color: var(--ink-3); }
-
-.field textarea { min-height: 92px; resize: vertical; }
-
-.cform .btn { width: 100%; margin-top: var(--s-5); }
-
-
 /* ---------- footer (on the backdrop) ------------------------ */
 
 .foot {
-  position: relative;
-  /* MUST stay below .sheet. The fixed nav lives inside .sheet, and
-     .sheet's z-index makes it a stacking context, so the nav can never
-     paint above a sibling that outranks .sheet no matter how high its
-     own z-index is. At z-index 1 this footer tied with .sheet and won
-     on DOM order, painting straight over the nav bar at the bottom of
-     every page. Raising this breaks the nav again. */
-  z-index: 0;
-  width: var(--panel-w);
-  margin-inline: auto;
-  /* deeper than --sec-y on purpose: this is the base of the page, not
-     another section in the stack */
-  padding: clamp(44px, 4.4vw, 72px) 0 0;
-  /* off-white, continuing the sheet rather than stepping into beige */
+  /* Inside the sheet now, so it is a normal block: no width, no stacking
+     context, and no strips of its own. That z-index guard existed because
+     it used to be a positioned sibling that painted over the fixed nav. */
+  /* Modest top padding. It stacks with the bottom padding of whatever
+     section ends the page, so a big value here compounds into the run of
+     empty white the CEO flagged. */
+  padding: clamp(24px, 2.4vw, 40px) 0 clamp(28px, 2.8vw, 44px);
   background: var(--sheet);
-  overflow: hidden;
-  box-shadow:
-    0 1px 1px rgba(43, 39, 34, 0.03),
-    0 32px 80px -32px rgba(43, 39, 34, 0.15);
+}
+
+/* No card. Beige was tried here and rejected, then a white card with the
+   reference's border and shadow, also rejected. The footer just sits on the
+   sheet now. Padding stays, because the columns still need to be inset from
+   the measure the same way the card had them. */
+.foot .wrap {
+  padding-inline: clamp(0px, 1vw, 16px);
 }
 
 /* Moneda-style footer: mark and link columns on top, an oversized
    wordmark as the body, then a base bar carrying socials, legal and
    the copyright. */
-/* Corner ornament, per the TechUp Labs footer: a dashed 64px grid whose
-   lines run through the tile centre, so the cross lands exactly on each
-   intersection and the squares read as squares. Faded toward the middle
-   of the page so it stays a corner mark and never becomes a graph-paper
-   background. Bottom right only.
-   .foot-strip is not itself positioned, so this resolves against .foot
-   and can sit at the corner of the whole footer. */
-.foot-strip::before {
-  content: "";
-  position: absolute;
-  width: clamp(240px, 34vw, 520px);
-  height: clamp(220px, 28vw, 440px);
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64'%3E%3Cpath d='M0 32.5H64M32.5 0V64' stroke='%232B2722' stroke-opacity='.13' stroke-dasharray='3 5'/%3E%3Cpath d='M32.5 26v13M26 32.5h13' stroke='%232B2722' stroke-opacity='.3'/%3E%3C/svg%3E");
-  pointer-events: none;
-  z-index: 0;
-}
-
-/* positioned so the ornament sits ABOVE the strip's top border rather
-   than straddling it: bottom:100% puts its lower edge on that line */
-.foot-strip { position: relative; }
-
-.foot-strip::before {
-  bottom: 100%;
-  /* stops where the ruled edge strip starts, so the two never overlap */
-  right: calc(var(--rule-strip) + 1px);
-  -webkit-mask-image: radial-gradient(130% 130% at 100% 100%, #000 30%, transparent 100%);
-          mask-image: radial-gradient(130% 130% at 100% 100%, #000 30%, transparent 100%);
-}
-
-/* content sits above the ornament */
-.foot-strip .wrap { position: relative; z-index: 1; }
-
-@media (max-width: 1000px) {
-  .foot-strip::before { display: none; }
-}
-
 /* Lockup left, socials right, closed by a hairline. The columns then run
    the full measure underneath rather than being pushed right by the mark. */
-.foot-head {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: var(--s-5);
-  padding-bottom: clamp(28px, 3.4vw, 48px);
-  border-bottom: 1px solid var(--line);
-}
+/* Two rows only: brand plus three link columns, then a base row. The old
+   build stacked a head row, a column row and a full-width strip, which made
+   the footer taller than any section on the page. */
+/* ---------- legal pages (privacy, terms) ---------------------
+   Prose reuses .art-body, so these pick up the article's typography
+   instead of a second set of rules. Everything here is layout only. */
 
-.foot-mark {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--s-3);
-  flex: none;
-  color: var(--ink);
-  text-decoration: none;
-}
-.foot-mark img { display: block; width: 32px; height: 32px; border-radius: var(--r-sm); }
+.hero--legal { padding-bottom: 0; }
 
-/* Socials drop to the bottom of the footer body, left aligned under the
-   columns, with a deliberate run of empty space above them. */
-.foot-social { display: flex; gap: var(--s-2); }
+.hero--legal .hero-copy { max-width: 760px; }
 
-/* Brand starts at the left edge, the four link groups spread evenly
-   across the rest, Legal ending at the right. space-between splits the
-   leftover width into equal gaps rather than pooling it anywhere. */
-.foot-links {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: clamp(24px, 3vw, 56px);
-  margin-top: clamp(32px, 4vw, 56px);
-}
+.hero--legal .display { font-size: var(--t-title); }
 
-/* Rule per column rather than one continuous line across the footer,
-   so each group reads as its own block. Straight from the reference,
-   in our beige. */
-.foot-col {
-  display: flex;
-  flex-direction: column;
-  gap: 1px;
-  align-items: flex-start;
-}
-
-.foot-col .label {
-  font-size: var(--t-ui);
-  font-weight: 600;
-  color: var(--ink);
-  margin-bottom: var(--s-3);
-}
-
-.foot-col a {
-  font-size: var(--t-sm);
-  color: var(--ink);
-  text-decoration: none;
-  transition: color 140ms ease;
-}
-
-/* Hover is a small nudge to the right plus a slight lift in weight, not
-   an underline. The links are already at full --ink, so a colour change
-   has nowhere to go and dimming them would read as disabled. */
-.foot-col > a:not(.brand) {
-  padding-block: 4px;
-  line-height: 1.5;
-  transition: transform 180ms cubic-bezier(0.22, 0.61, 0.36, 1), opacity 180ms ease;
-}
-
-.foot-col > a:not(.brand):hover {
-  transform: translateX(4px);
-  opacity: 0.68;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .foot-col > a:not(.brand) { transition: none; }
-  .foot-col > a:not(.brand):hover { transform: none; }
-}
-
-/* Real brand marks (simple-icons paths) rather than lookalike glyphs.
-   Nested inside .foot-col but not a direct child, so the link-underline
-   hover does not apply to them. */
-/* quiet outlined marks rather than filled circles, matching the
-   reference's understated bottom-left cluster */
-.foot-social a {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 36px;
-  height: 36px;
-  border: 1px solid rgba(43, 39, 34, 0.2);
-  border-radius: var(--r-sm);
-  color: var(--ink);
-  transition: color 160ms ease, background-color 160ms ease, border-color 160ms ease;
-}
-
-.foot-social a:hover {
-  color: var(--paper);
-  background: var(--ink);
-  border-color: var(--ink);
-}
-
-.foot-social svg {
-  width: 17px;
-  height: 17px;
-  fill: currentColor;
-}
-
-/* Its own band at the base rather than a hairline inside the wrap,
-   as in the reference. One step deeper than the footer so it separates
-   by tone instead of by a line, and full panel width so it reads as a
-   base rather than another row of content. */
-.foot-strip {
-  margin-top: clamp(40px, 4vw, 64px);
-  /* one quiet step below the footer so the base still separates by
-     tone now that the footer itself is off-white */
-  background: var(--beige-soft);
-  border-top: 1px solid var(--line-strong);
-}
-
-.foot-strip .wrap { padding-block: var(--s-5); text-align: left; }
-
-.foot-copy {
+.legal-date {
+  margin-top: var(--s-4);
   font-family: var(--mono);
   font-size: var(--t-mono-lg);
   font-weight: 500;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--ink-3);
+}
+
+/* index left, prose right. Same two-column shape as the blog article, so
+   a legal page does not read as a different site. */
+.legal-grid {
+  display: grid;
+  grid-template-columns: minmax(180px, 240px) minmax(0, 1fr);
+  gap: clamp(32px, 5vw, 80px);
+  align-items: start;
+}
+
+/* The blog TOC is the only sticky element left on the site and the CEO
+   asked for no more, so this one is a plain index that scrolls away. */
+.legal-toc .label {
+  font-family: var(--mono);
+  font-size: var(--t-mono);
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin-bottom: var(--s-4);
+}
+
+.legal-toc ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.legal-toc a {
+  display: block;
+  padding-block: 5px;
+  font-size: var(--t-sm);
+  color: var(--ink-2);
+  text-decoration: none;
+  transition: color 140ms ease, transform 180ms cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+.legal-toc a:hover { color: var(--ink); transform: translateX(3px); }
+
+/* the prose column already carries .art-body's own top margin */
+.legal .art-body { margin-top: 0; }
+.legal .art-body h2:first-child { margin-top: 0; }
+
+/* anchors have to clear the fixed nav when a TOC link jumps to them */
+.legal .art-body h2 { scroll-margin-top: var(--stick-top); }
+
+@media (max-width: 860px) {
+  .legal-grid { grid-template-columns: 1fr; gap: var(--s-6); }
+}
+
+/* ---------- footer, built from moventa-ai-footer-component ------
+   Structure is the reference's, palette and voice are ours.
+
+   Their spans, verbatim: 2 / 5 / 2 / 3 on a 12-column grid. The lanes
+   are separated by gap alone. The reference has NO vertical dividers,
+   which is what I had wrong before: its only rules are the pair that
+   closes the wordmark row. */
+.foot-main {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  align-items: stretch;
+}
+
+/* Padding on the lane rather than a grid gap, so the divider runs the full
+   height of the band instead of stopping at the tallest column's content. */
+.foot-main > * { padding: 0 clamp(20px, 2.4vw, 40px) clamp(28px, 3vw, 44px); }
+/* No first-child override. Every lane takes the same padding from the rule
+   above, so the text in each one sits at the same distance from its own
+   divider. The first lane used to run 10px tighter, which is small but
+   enough to make Site read as sitting apart from the group.
+   The last lane stays flush right so the button lines up with the content
+   boundary the CEO set. */
+/* Site is centred in its lane. Its links are the shortest in the footer, so
+   left-aligned they sat hard against one edge with the whole void on the
+   other side. Centring splits that space and the lane reads as balanced.
+   The anchors stay inline-block, so the hover underline still tracks the
+   width of each label rather than the lane. */
+.foot-main > *:first-child { padding-left: 0; text-align: center; }
+.foot-main > *:last-child { padding-right: 0; }
+.foot-main > * + * { border-left: 1px solid var(--line); }
+
+/* Four identical lanes. Content-matched spans (2/4/2/4) made What we build
+   read as twice the size of its neighbours, so every lane is now the same
+   width and only the content inside them differs. */
+.foot-col--2,
+.foot-col--5,
+.foot-col--3 { grid-column: span 3; }
+
+.foot-col ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-1);
+}
+
+/* Bold caps headers, as the reference has them, but in --sans at full
+   --ink rather than their black: Inter Tight is the voice of every
+   heading on this site. */
+/* reference: text-[12px] sm:text-[13px] font-bold tracking-[0.08em]
+   uppercase mb-4 sm:mb-5 */
+.foot-col .label {
+  margin: 0 0 clamp(16px, 1.7vw, 20px);
+  font-size: clamp(12px, 1.05vw, 13px);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+/* reference: text-[13px] sm:text-[14px] text-neutral-800 font-normal
+   tracking-tight py-1, going to font-medium and full black on hover */
+.foot-col a:not(.btn) {
+  position: relative;
+  display: inline-block;
+  padding-block: 4px;
+  font-size: clamp(13px, 1.15vw, 14px);
+  font-weight: 400;
+  letter-spacing: -0.025em;
+  color: var(--ink-2);
+  text-decoration: none;
+  transition: color 200ms ease;
+}
+
+.foot-col a:not(.btn):hover { color: var(--ink); font-weight: 500; }
+
+/* their motion.span: a 1.5px rule growing from 0 to full width in 200ms.
+   Sits at the element's own baseline, so it tracks the label width. */
+.foot-col a:not(.btn)::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 2px;
+  height: 1.5px;
+  width: 0;
+  background: var(--ink);
+  transition: width 200ms ease;
+}
+
+.foot-col a:not(.btn):hover::after { width: 100%; }
+
+@media (prefers-reduced-motion: reduce) {
+  .foot-col a:not(.btn)::after { transition: none; }
+}
+
+/* ---- contact lane ---- */
+/* reference: text-[11px] font-bold uppercase tracking-wider mb-0.5 */
+.foot-lbl {
+  margin: 0 0 2px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+/* reference: the address itself is text-[13px] text-neutral-700 */
+.foot-mailrow a { font-size: 13px; }
+
+.foot-mailrow { display: inline-flex; align-items: center; gap: var(--s-2); }
+
+/* their copy affordance: hidden until the row is hovered */
+.foot-copy-btn {
+  display: inline-flex;
+  padding: 2px;
+  border: 0;
+  background: none;
+  color: var(--ink-3);
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 140ms ease, color 140ms ease;
+}
+
+.foot-inq:hover .foot-copy-btn,
+.foot-copy-btn:focus-visible { opacity: 1; }
+.foot-copy-btn:hover { color: var(--ink); }
+.foot-copy-btn svg { width: 14px; height: 14px; }
+.foot-copy-btn.is-copied { opacity: 1; color: var(--ink); }
+
+/* Button and socials share one line. Both are inline-flex so they sit in the
+   lane's inline flow; no wrapper element needed in the markup. */
+.foot-btns {
+  margin-top: var(--s-6);
+  display: inline-flex;
+  vertical-align: middle;
+}
+
+/* Real brand marks (simple-icons paths), not lookalike glyphs. Outlined
+   boxes rather than filled circles: the CEO rejected both the filled
+   version and a beige-on-beige one. */
+.foot-social {
+  margin-top: var(--s-6);
+  margin-left: var(--s-2);
+  display: inline-flex;
+  vertical-align: middle;
+  gap: 6px;
+}
+
+/* .foot-col scoping is required, not decoration. The social links sit inside
+   the contact lane, so `.foot-col a:not(.btn)` (0,2,1) outranks a plain
+   `.foot-social a` (0,1,1) and was forcing display:block, 4px block padding
+   and the hover underline onto them: 17px glyphs jammed into the top-left
+   corner of a 36px box with a rule under each. */
+.foot-col .foot-social a {
+  display: inline-flex;
+  padding: 0;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border: 1px solid rgba(43, 39, 34, 0.2);
+  border-radius: var(--r-sm);
+  color: var(--ink);
+  transition: color 160ms ease, background-color 160ms ease, border-color 160ms ease;
+}
+
+.foot-col .foot-social a:hover {
+  color: var(--paper);
+  background: var(--ink);
+  border-color: var(--ink);
+}
+
+.foot-col .foot-social svg {
+  width: 15px;
+  height: 15px;
+  fill: currentColor;
+}
+
+/* no growing underline on an icon */
+.foot-col .foot-social a::after { content: none; }
+
+/* reference: py-2.5 px-4, text-[11px] sm:text-[12px] font-bold
+   tracking-[0.06em] uppercase, whileHover scale 1.02, whileTap 0.98 */
+/* .btn hard-codes height: 48px, so padding alone cannot shrink it. The
+   button and the three icon boxes have to share a 237px lane, which is what
+   sets these numbers: 120 + 102 + the 12px gap. */
+.foot-btns .btn {
+  justify-content: center;
+  height: 34px;
+  padding: 0 13px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  transition: transform 200ms ease, background-color 160ms ease, color 160ms ease;
+}
+
+.foot-btns .btn:hover { transform: scale(1.02); }
+.foot-btns .btn:active { transform: scale(0.98); }
+
+@media (prefers-reduced-motion: reduce) {
+  .foot-btns .btn:hover, .foot-btns .btn:active { transform: none; }
+}
+
+/* ---- wordmark row: closed by a rule top and bottom, as the reference
+   has it. Their demo-only hover indicator is left out. ---- */
+/* reference: py-4 md:py-6, border top and bottom, justify-between, and the
+   title container is flex-1 and CENTRED. Mine was hard left, which is why
+   the row read as half empty. */
+.foot-word {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* cqw, not vw. The wrap caps at --wrap while the viewport keeps growing,
+     so a vw-based size overshoots the measure on a wide screen. Sizing
+     against this container makes the wordmark fill the row exactly. */
+  container-type: inline-size;
+  /* Guard. The wordmark is sized by a ratio and a ratio can be wrong; this
+     keeps a bad value clipped inside the row instead of bleeding across
+     the page, which is exactly what happened at 17.4cqw. */
+  overflow: hidden;
+  margin-top: clamp(32px, 3.4vw, 52px);
+  padding: clamp(16px, 2vw, 24px) 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  color: var(--ink);
+  text-decoration: none;
+}
+
+/* Same 700 / -0.02em as the .brand-name lockup in the nav, only larger.
+   The reference runs 900 at -0.04em, but 800 is the heaviest Inter Tight
+   weight we load and a different tracking read as a different typeface
+   sitting under the same name in the header. */
+/* reference: 38px climbing to 124px, font-[900], leading-none,
+   tracking-[-0.04em]. 800 is the heaviest Inter Tight weight we load. */
+/* ---- morph banner, from FooterLogo.tsx --------------------------
+   Their AnimatePresence swaps two motion.divs: the outgoing one leaves
+   on opacity 0 / y -24 / blur 4, the incoming arrives from opacity 0 /
+   y 24 / scale .95 / blur 4, over 0.38s on [0.16, 1, 0.3, 1].
+
+   Done with two stacked spans and a hover, so it costs no JS and both
+   states are always laid out: no reflow, nothing to measure. */
+.fw {
+  position: relative;
+  flex: 1;
+  display: grid;
+  place-items: center;
+  min-height: 12cqw;
+}
+
+.fw-a,
+.fw-b {
+  grid-area: 1 / 1;
+  white-space: nowrap;
+  /* 620ms, not the reference's 380. Theirs is a click-to-toggle demo where a
+     snappy swap reads well; ours fires on hover on a real page, where the
+     eye needs time to register that the words changed at all. */
+  transition: opacity 620ms cubic-bezier(0.16, 1, 0.3, 1),
+              transform 620ms cubic-bezier(0.16, 1, 0.3, 1),
+              filter 620ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Syne 900, the reference's own wordmark face, at their tracking-[-0.04em].
+   Both states use it: the reference swaps Syne for Cinzel between them, but
+   the letterforms are visibly different (the "I" alone gives it away) and
+   the CEO wants one voice. Sized so both occupy the same optical width. */
+.fw-a {
+  font-family: "Syne", "Inter Tight", sans-serif;
+  font-size: clamp(30px, 7.4vw, 96px);   /* fallback where cqw is unsupported */
+  font-size: 10.6cqw;
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+/* Same face, weight and tracking as .fw-a. Sized a touch below it because
+   "SINCE 2016" is the longer string and carries the emblem and two gaps,
+   so it lands at the same optical width. */
+.fw-b {
+  display: flex;
+  align-items: center;
+  gap: clamp(8px, 1.4vw, 26px);
+  font-family: "Syne", "Inter Tight", sans-serif;
+  font-size: clamp(26px, 6vw, 78px);   /* fallback where cqw is unsupported */
+  font-size: 8.8cqw;
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  /* Syne defaults to oldstyle figures, where 6 carries an ascender and 0
+     and 1 sit at x-height. Next to the caps of SINCE that made the 6 look
+     oversized. Lining figures put every digit on the cap line. */
+  font-variant-numeric: lining-nums;
+  font-feature-settings: "lnum" 1, "onum" 0;
+  line-height: 1;
+  text-transform: uppercase;
+  opacity: 0;
+  transform: translateY(24px) scale(0.95);
+  filter: blur(4px);
+}
+
+.fw-em {
+  width: 3.4cqw;
+  height: auto;
+  fill: var(--ink);
+  transform: rotate(-45deg) scale(0);
+  transition: transform 700ms cubic-bezier(0.16, 1, 0.3, 1) 180ms;
+}
+
+.foot-word:hover .fw-a,
+.foot-word:focus-visible .fw-a {
+  opacity: 0;
+  transform: translateY(-24px);
+  filter: blur(4px);
+}
+
+.foot-word:hover .fw-b,
+.foot-word:focus-visible .fw-b {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  filter: blur(0);
+}
+
+.foot-word:hover .fw-em,
+.foot-word:focus-visible .fw-em { transform: rotate(0) scale(1); }
+
+/* The reference also fires this morph when its BOOK DEMO button is hovered
+   (handleBookDemoHover). Deliberately NOT copied: the CEO wants the banner
+   to answer only to the banner. */
+
+@media (prefers-reduced-motion: reduce) {
+  .fw-a, .fw-b, .fw-em { transition: none; }
+}
+
+/* ---- base row, three parts ---- */
+.foot-base {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--s-4) clamp(24px, 3vw, 56px);
+  padding-top: clamp(20px, 2.4vw, 30px);
+}
+
+.foot-tag {
+  font-size: var(--t-mono-lg);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+.foot-legal { display: flex; gap: clamp(20px, 2.4vw, 40px); }
+
+.foot-legal a,
+.foot-copy {
+  font-size: var(--t-mono-lg);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  text-decoration: none;
+}
+
+.foot-legal a { transition: color 140ms ease; }
+.foot-legal a:hover { color: var(--ink); }
+
+@media (max-width: 1000px) {
+  .foot-main { grid-template-columns: repeat(6, 1fr); }
+  .foot-col--2, .foot-col--3 { grid-column: span 3; }
+  .foot-col--5 { grid-column: span 6; }
+  .fw-a { font-size: 10.2cqw; }
+  .fw-b { font-size: 8.4cqw; }
+  .foot-main > * { padding: 0 0 clamp(28px, 4vw, 40px); }
+  .foot-main > * + * { border-left: 0; }
+}
+
+@media (max-width: 560px) {
+  .foot-main { grid-template-columns: 1fr; }
+  .foot-col--2, .foot-col--3, .foot-col--5 { grid-column: span 1; }
+  .foot-base { justify-content: flex-start; }
 }
 

@@ -437,6 +437,42 @@
      screens up should not be burning frames, and a background tab
      should not be queueing them. */
 
+  /* ---------- 9. copy ------------------------------------------
+     data-copy="<text>" puts that text on the clipboard and confirms it
+     on the button itself for a moment. From the reference footer's
+     contact block.
+
+     Clipboard writes need a secure context, so this is feature-detected
+     rather than assumed: on plain http the button simply does not
+     appear, instead of appearing and silently failing. */
+
+  function setupCopy(scope, teardowns) {
+    var els = $$('[data-copy]', scope);
+    if (!els.length) return;
+
+    if (!navigator.clipboard || !navigator.clipboard.writeText) {
+      els.forEach(function (el) { el.style.display = 'none'; });
+      return;
+    }
+
+    els.forEach(function (el) {
+      var timer = null;
+      function onClick() {
+        navigator.clipboard.writeText(el.getAttribute('data-copy')).then(function () {
+          el.classList.add('is-copied');
+          el.setAttribute('aria-label', 'Copied');
+          clearTimeout(timer);
+          timer = setTimeout(function () {
+            el.classList.remove('is-copied');
+            el.setAttribute('aria-label', 'Copy email address');
+          }, 1800);
+        });
+      }
+      el.addEventListener('click', onClick);
+      teardowns.push(function () { clearTimeout(timer); el.removeEventListener('click', onClick); });
+    });
+  }
+
   function setupLoop(scope, observers, teardowns) {
     var els = $$('[data-loop]', scope);
     if (!els.length) return;
@@ -501,6 +537,7 @@
     setupNav(root, teardowns);
     setupAccordion(root, teardowns);
     setupLoop(root, observers, teardowns);
+    setupCopy(scope, teardowns);
 
     return function teardown() {
       observers.forEach(function (io) { if (io) io.disconnect(); });
