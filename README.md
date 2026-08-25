@@ -66,6 +66,13 @@ python dev-server.py
 Serves on `http://localhost:8899` with no-store headers, so a refresh always
 shows the current file.
 
+## Repository
+
+`origin` is **github.com/jamunesh15/ai_agency_v3** and it is the one Vercel
+deploys. `old-v1` is the abandoned `ai_agency_website` repo, kept only for
+history. A plain `git push` goes to the live repo; nothing should ever be
+pushed to `old-v1` again.
+
 ## Deploying
 
 `vercel.json` sets `cleanUrls`, so `/services.html` serves as `/services`.
