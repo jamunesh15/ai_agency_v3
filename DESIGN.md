@@ -53,10 +53,14 @@ site once carried is gone from every file.
 
 ### Type
 
-- `--sans` **Inter Tight**, weights 400 to 800. Every heading and all UI.
-- `--serif` **Source Serif 4**. Article and legal prose only.
+- `--sans` **Inter Tight**, weights 400 to 800. **Everything**: headings, UI
+  and prose alike. One voice across the site.
 - `--mono` **JetBrains Mono**. Labels, kickers, copyright, small caps.
 - **Syne** 800/900. The footer wordmark only, nothing else.
+
+**There is no serif.** Source Serif 4 was used for article and legal prose and
+was removed: it read as dated next to everything else, and a single voice is
+the point. Do not reintroduce one.
 
 Scale: `--t-title-lg` `--t-title` `--t-title-sm` `--t-head` `--t-sub` `--t-row`
 `--t-num`, then `--t-lede-lg` `--t-lede` `--t-card` `--t-body` `--t-sm`

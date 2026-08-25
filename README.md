@@ -27,8 +27,8 @@ and it works.
   `data-nav`, `data-accordion`, `data-marquee`, `data-typewriter`,
   `data-loop`, `data-copy`.
 
-Icons come from Lucide over CDN. Fonts are Inter Tight, Source Serif 4,
-JetBrains Mono and Syne.
+Icons come from Lucide over CDN. Fonts are Inter Tight for everything,
+JetBrains Mono for labels, and Syne for the footer wordmark only.
 
 `styles.css` and `aa-map.js` are the old v1 design and are no longer loaded by
 any page. They can be deleted.

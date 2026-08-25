@@ -41,7 +41,6 @@
   --accent-tint: #F1EDE3;
 
   --sans: "Inter Tight", system-ui, -apple-system, "Segoe UI", sans-serif;
-  --serif: "Source Serif 4", Charter, "Iowan Old Style", Georgia, serif;
   --mono: "JetBrains Mono", ui-monospace, "SF Mono", monospace;
 
   /* MUST stay a multiple of --rule-gap. The edge strips run an 8px line
@@ -1995,11 +1994,11 @@ a { color: inherit; }
 .bfeat h2 a { text-decoration: none; }
 .bfeat h2 a:hover { box-shadow: inset 0 -3px var(--accent); }
 
+/* The blog index reads in the site's normal voice, like every other page. */
 .bfeat .exc {
-  font-family: var(--serif);
   margin-top: var(--s-3);
   font-size: var(--t-lede);
-  line-height: 1.6;
+  line-height: 1.55;
   color: var(--ink-2);
   max-width: 52ch;
 }
@@ -2194,10 +2193,9 @@ a { color: inherit; }
 }
 
 .bcard .exc {
-  font-family: var(--serif);
   margin-top: var(--s-2);
   font-size: var(--t-sm);
-  line-height: 1.55;
+  line-height: 1.5;
   color: var(--ink-2);
 }
 
@@ -2226,12 +2224,15 @@ a { color: inherit; }
 
 .art-body { margin-top: var(--s-6); }
 
+/* Sans, like the rest of the site. The serif was the one thing making the
+   reading pages feel dated, and a single voice is the point.
+   18px not 19: Inter Tight has a much larger x-height than Source Serif 4,
+   so the same px value reads noticeably bigger. */
 .art-body p {
-  font-family: var(--serif);
   margin-top: var(--s-5);
-  font-size: 19px;
-  line-height: 1.75;
-  color: var(--ink);
+  font-size: 18px;
+  line-height: 1.7;
+  color: var(--ink-2);
 }
 
 .art-body h2 {
@@ -2244,18 +2245,18 @@ a { color: inherit; }
 .art-body ul { margin-top: var(--s-5); padding-left: var(--s-5); }
 
 .art-body li {
-  font-family: var(--serif);
   margin-top: var(--s-2);
-  font-size: 19px;
+  font-size: 18px;
   line-height: 1.7;
-  color: var(--ink);
+  color: var(--ink-2);
 }
 
 .art-body li::marker { color: var(--accent-text); }
 
+/* no italic either: Inter Tight's italic is a slant, and a slanted grotesque
+   pull-quote reads as a mistake. Weight and the rule carry it instead. */
 .art-body blockquote {
-  font-family: var(--serif);
-  font-style: italic;
+  font-weight: 500;
   margin-top: var(--s-5);
   border-left: 2px solid var(--accent);
   padding: 4px 0 4px 20px;
@@ -2509,12 +2510,9 @@ a { color: inherit; }
    enough to make Site read as sitting apart from the group.
    The last lane stays flush right so the button lines up with the content
    boundary the CEO set. */
-/* Site is centred in its lane. Its links are the shortest in the footer, so
-   left-aligned they sat hard against one edge with the whole void on the
-   other side. Centring splits that space and the lane reads as balanced.
-   The anchors stay inline-block, so the hover underline still tracks the
-   width of each label rather than the lane. */
-.foot-main > *:first-child { padding-left: 0; text-align: center; }
+/* Every lane is left-aligned, so each label and the links beneath it share
+   one vertical edge and the four lanes read as one row. */
+.foot-main > *:first-child { padding-left: 0; }
 .foot-main > *:last-child { padding-right: 0; }
 .foot-main > * + * { border-left: 1px solid var(--line); }
 
@@ -2821,7 +2819,7 @@ a { color: inherit; }
   .fw-a, .fw-b, .fw-em { transition: none; }
 }
 
-/* ---- base row, three parts ---- */
+/* ---- base row: copyright left, legal links right ---- */
 .foot-base {
   display: flex;
   align-items: center;
@@ -2829,14 +2827,6 @@ a { color: inherit; }
   flex-wrap: wrap;
   gap: var(--s-4) clamp(24px, 3vw, 56px);
   padding-top: clamp(20px, 2.4vw, 30px);
-}
-
-.foot-tag {
-  font-size: var(--t-mono-lg);
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--ink);
 }
 
 .foot-legal { display: flex; gap: clamp(20px, 2.4vw, 40px); }
