@@ -2334,7 +2334,12 @@ a { color: inherit; }
    button sits on. */
 .post-grid {
   display: grid;
-  grid-template-columns: 220px minmax(0, 1fr) 250px;
+  /* The right rail is 272, not 250, so the article's right edge lands on the
+     same vertical as the Services item in the nav. 250 + the 44 gap put it
+     290px in from the wrap's edge while Services sits 316px in, which is the
+     26px overhang that read as the text crossing a line. Costs 3 characters
+     of measure, 68 down to 65, and the CTA card gets the width back. */
+  grid-template-columns: 220px minmax(0, 1fr) 272px;
   gap: clamp(28px, 3vw, 44px);
   align-items: start;
   padding-top: var(--sec-y-sm);
@@ -2436,10 +2441,21 @@ a { color: inherit; }
 
 @media (max-width: 960px) {
   .post-hd { grid-template-columns: 1fr; }
+}
+
+/* The three columns cost 220 + 250 of rails plus two gaps before the article
+   gets anything, so they only earn their place once the wrap can still leave
+   it a real measure. Below 1280 it could not: at a 1000px viewport the two
+   rails left the article 340px, which is 37 characters to a line.
+
+   One column below that instead, capped at a reading measure rather than
+   filling the wrap. 640px is about 70 characters at this 18px body, inside
+   the 60-75 that reads comfortably. It was 720, which ran to 78. */
+@media (max-width: 1279px) {
   .post-grid { grid-template-columns: 1fr; }
   .toc, .post-side { position: static; }
   .toc { padding-bottom: 20px; }
-  .post-col { max-width: 720px; }
+  .post-col { max-width: 640px; }
   /* stacked, the CTA lands under the article where it reads as the closing
      ask rather than as a third rail */
   .post-side { margin-top: var(--s-7); }
