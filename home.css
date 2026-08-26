@@ -192,6 +192,13 @@ a { color: inherit; }
     to bottom,
     var(--rule-hair) 0 1px,
     transparent 1px var(--rule-gap));
+  /* Pinned to the viewport, so the rules hold still while the page moves
+     under them instead of riding up with it. It also removes a phase
+     problem that was there all along: the nav is fixed and the sheet is
+     not, so their two copies of this pattern were anchored to different
+     origins. Anchored to the viewport, both start from the same place and
+     cannot fall out of step. */
+  background-attachment: fixed;
 }
 
 .sheet::before, .nav::before { left: 0; border-right: 1px solid var(--line); }
@@ -444,7 +451,7 @@ a { color: inherit; }
    where the contrast behind the artwork comes from. Do not put a
    white canvas on the white sheet again, it disappears.
 
-   .flow-stage is a fixed 1200x720 box scaled with cqw. Because the
+   .flow-stage is a fixed 1200x660 box scaled with cqw. Because the
    SVG and the HTML pills live in that same box, a pill at --x:50%
    always lands on the line drawn at x="600", at every width. */
 
@@ -536,7 +543,14 @@ a { color: inherit; }
 .flow {
   position: relative;
   container-type: inline-size;
-  aspect-ratio: 1200 / 820;
+  /* CEO 2026-08-25: scroll down once and the WHOLE diagram has to be in
+     view, outcome row included. At 1200x820 it never was: a 1475px frame
+     made it 956px tall, and under a fixed 72px bar that overruns the
+     viewport. So the tangle, the hub and the two outcome rows were re-laid
+     out flatter rather than scaled down, because scaling down is what
+     makes the labels illegible. Change this and every --y in index.html
+     has to move with it. */
+  aspect-ratio: 1200 / 660;
   overflow: hidden;
   background: var(--frame);
   border: 1px solid var(--line-strong);
@@ -613,8 +627,8 @@ a { color: inherit; }
   transform: translate(-50%, -50%);
   display: grid;
   place-items: center;
-  width: 8.7cqw;
-  height: 8.7cqw;
+  width: 7.2cqw;
+  height: 7.2cqw;
   background: var(--surface);
   border: 1px solid var(--line-strong);
   border-radius: var(--r-card);
@@ -622,7 +636,7 @@ a { color: inherit; }
   z-index: 2;
 }
 
-.fhub img { width: 3.9cqw; height: auto; }
+.fhub img { width: 3.3cqw; height: auto; }
 
 /* ---------- phones: the same story, read down ------------------
    A diagram scaled to a 375px screen is 4px type, so phones get a
@@ -819,14 +833,11 @@ a { color: inherit; }
   grid-template-columns: 72px 1fr minmax(240px, 360px) 40px;
   align-items: center;
   gap: var(--s-3) var(--s-6);
-  padding: var(--s-5) var(--s-2);
-  border-top: 1px solid var(--line);
+  padding: var(--s-2) var(--s-2);
   text-decoration: none;
   transition: background-color 160ms ease;
 }
 
-.svc:first-of-type { border-top: 0; }
-.svc:last-of-type { border-bottom: 1px solid var(--line); }
 
 .svc:hover { background: var(--band); }
 
@@ -1765,12 +1776,8 @@ a { color: inherit; }
   display: grid;
   grid-template-columns: 128px 1fr;
   gap: var(--s-4) var(--s-6);
-  padding: var(--s-5) 0;
-  border-top: 1px solid var(--line);
+  padding: var(--s-2) 0;
 }
-
-.step:first-of-type { border-top: 0; }
-.step:last-of-type { border-bottom: 1px solid var(--line); }
 
 .step-meta {
   display: flex;
@@ -2042,11 +2049,7 @@ a { color: inherit; }
      clear the fixed nav when the jump lands */
   scroll-margin-top: var(--stick-top);
   width: 100%;
-  margin: var(--s-5) 0 0;
-  background: var(--surface);
-  border: 1px solid var(--line-strong);
-  border-radius: var(--r);
-  overflow: hidden;
+  margin: 0;
   min-height: 0;
 }
 
@@ -2082,8 +2085,12 @@ a { color: inherit; }
      Deliberately NOT sized off the viewport. Fitting the whole panel into
      the first screen meant squeezing the spacing around it, and the page
      read cramped. Better that the visitor scrolls a little. */
-  height: clamp(660px, 76vh, 860px);
+  height: clamp(640px, 70vh, 790px);
   overflow: auto;
+  /* No negative pull any more. Cal paints roughly 60px of its own padding
+     above the booker, inside the iframe; -40 of that was cancelling almost
+     all of it and the panel ended up nearly touching the lede. That 60px is
+     now the whole gap, which is about right, and it needs no hack to hold. */
 }
 
 @media (max-width: 1100px) {
@@ -2096,6 +2103,11 @@ a { color: inherit; }
    because the image and the form both have to land in the first
    screen without scrolling. */
 .hero--contact { padding-top: var(--s-3); }
+
+/* The booker is the end of this page's first act, and the section under it
+   opens with its own top padding. The hero's full --sec-y on top of that put
+   about 140px of nothing between them. */
+.hero--contact { padding-bottom: var(--s-5); }
 
 /* One column now: the form is gone and the calendar runs the whole
    measure, so there is no grid left to balance. */
@@ -2312,19 +2324,26 @@ a { color: inherit; }
 
 .post-hd .standfirst { margin-top: var(--s-4); }
 
-/* body: sticky table of contents left, article right */
+/* Body: contents left, article centre, call to action right. Three columns
+   rather than two, so the CTA rides alongside the article instead of
+   hanging under the contents list where it scrolled out of reach after the
+   first screen.
+
+   The measure is the grid's, not the article's: the whole thing sits inside
+   .wrap, so the article can never run past the same right edge the nav's
+   button sits on. */
 .post-grid {
   display: grid;
-  grid-template-columns: 270px 1fr;
-  gap: clamp(36px, 5vw, 80px);
+  grid-template-columns: 220px minmax(0, 1fr) 250px;
+  gap: clamp(28px, 3vw, 44px);
   align-items: start;
   padding-top: var(--sec-y-sm);
 }
 
-.toc {
+.toc,
+.post-side {
   position: sticky;
   top: var(--stick-top);
-  padding-right: clamp(20px, 2.6vw, 36px);
 }
 
 .toc-lab {
@@ -2343,46 +2362,87 @@ a { color: inherit; }
   list-style: none;
   padding: 0;
   margin-top: var(--s-4);
+  /* the rail: one hairline down the full list, per the reference. The active
+     item's own 2px bar sits over it, so the mark reads as a segment of the
+     rail lighting up rather than as a separate tick beside it. */
+  border-left: 1px solid var(--line);
 }
 
 .toc ol a {
   display: block;
-  padding: var(--s-2) 0;
+  /* the 2px bar is always in the box, transparent until the section is the
+     one being read, so nothing shifts sideways when it lights up */
+  padding: var(--s-2) 0 var(--s-2) var(--s-4);
+  /* -2px pulls the item's own border over the ol's 1px rail so the lit
+     segment covers it exactly instead of doubling up beside it */
+  margin-left: -2px;
+  border-left: 2px solid transparent;
   font-size: var(--t-ui);
   line-height: 1.45;
-  color: var(--ink-2);
+  color: var(--ink-3);
   text-decoration: none;
+  transition: color 140ms ease, border-color 140ms ease;
 }
 
-.toc ol a:hover { color: var(--ink); }
+.toc ol a:hover { color: var(--ink-2); }
 
+/* Set by the scroll spy in aa-motion.js, not by the browser: :target only
+   fires when someone actually clicks a contents link, so it says nothing
+   about where the reader has scrolled to. Colour and a bar, not a weight
+   change, because going bold rewraps the label in a 220px column. */
+.toc ol a[aria-current] {
+  color: var(--ink);
+  border-left-color: var(--ink);
+}
+
+/* White, on the sheet's own white. The beige fill was the thing that read as
+   foreign here, not the box, so the box stays and only the fill changes.
+
+   What carries the card is the button, the way the reference's card is
+   carried by its black button rather than by its green panel: one dark,
+   full-width block at the bottom of an otherwise quiet card. The shadow is
+   what keeps white-on-white from disappearing; the hairline alone read as
+   flat. */
 .toc-cta {
   border-radius: var(--r);
-  margin-top: var(--s-5);
-  border: 1px solid var(--line);
-  background: var(--band);
-  padding: var(--s-5);
+  margin-top: 0;
+  padding: var(--s-6);
+  background: var(--sheet);
+  border: 1px solid var(--line-strong);
+  box-shadow: 0 12px 30px -20px rgba(43, 39, 34, 0.3);
 }
 
 .toc-cta b {
   display: block;
-  font-size: 15px;
+  font-size: 17px;
   font-weight: 600;
-  letter-spacing: -0.01em;
-  line-height: 1.35;
+  letter-spacing: -0.015em;
+  line-height: 1.3;
+  color: var(--ink);
 }
 
-.toc-cta .btn { width: 100%; margin-top: var(--s-4); }
+.toc-cta p {
+  margin-top: var(--s-3);
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--ink-2);
+}
 
-.post-col { min-width: 0; max-width: 760px; }
+.toc-cta .btn { width: 100%; margin-top: var(--s-5); }
+
+.post-col { min-width: 0; }
 .post-col .art-body { margin-top: 0; }
 .post-col .art-body > p:first-child { margin-top: 0; }
 
 @media (max-width: 960px) {
   .post-hd { grid-template-columns: 1fr; }
   .post-grid { grid-template-columns: 1fr; }
-  .toc { position: static; padding-right: 0; padding-bottom: 20px; }
-  .toc-cta { display: none; }
+  .toc, .post-side { position: static; }
+  .toc { padding-bottom: 20px; }
+  .post-col { max-width: 720px; }
+  /* stacked, the CTA lands under the article where it reads as the closing
+     ask rather than as a third rail */
+  .post-side { margin-top: var(--s-7); }
 }
 
 /* ---------- contact page ------------------------------------- */
@@ -2514,14 +2574,61 @@ a { color: inherit; }
    one vertical edge and the four lanes read as one row. */
 .foot-main > *:first-child { padding-left: 0; }
 .foot-main > *:last-child { padding-right: 0; }
-.foot-main > * + * { border-left: 1px solid var(--line); }
 
-/* Four identical lanes. Content-matched spans (2/4/2/4) made What we build
-   read as twice the size of its neighbours, so every lane is now the same
-   width and only the content inside them differs. */
-.foot-col--2,
-.foot-col--5,
-.foot-col--3 { grid-column: span 3; }
+/* Brand lane, then three link lanes, 4/3/2/3 across the twelve. The brand
+   takes the widest slot because it holds a lockup and a line of copy, not a
+   list; the link lanes are sized to their longest label. */
+.foot-brand      { grid-column: span 4; }
+.foot-col--build { grid-column: span 3; }
+.foot-col--site  { grid-column: span 2; }
+.foot-col--contact { grid-column: span 3; }
+
+/* ---------- brand lane ---------------------------------------
+   The mark moved here from the oversized wordmark row that used to be the
+   footer's body. Same lockup as the masthead, so the top and bottom of the
+   page close with the same object. */
+.foot-mark {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: clamp(19px, 1.7vw, 23px);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.foot-mark img { width: 34px; height: 34px; border-radius: var(--r-sm); }
+
+.foot-note {
+  margin-top: var(--s-4);
+  max-width: 30ch;
+  font-size: clamp(13px, 1.15vw, 14px);
+  line-height: 1.6;
+  color: var(--ink-3);
+}
+
+/* ---------- the two supplied drawings -------------------------
+   These arrived named .svg but each was a single base64 PNG inside an <svg>
+   wrapper, no vector paths at all. So they are raster, and they are files
+   rather than inline markup: 402KB and 92KB of base64 across eight pages is
+   about 4MB of HTML that no browser can cache between pages. Re-encoded to
+   WebP q92 they are 22.5KB and 6.4KB, fetched once and cached.
+
+   Being raster, they cannot follow the palette tokens the way the drawn
+   canvases do. Decoration only, so both are hidden from assistive tech and
+   carry empty alt. */
+.foot-flow {
+  margin-top: clamp(24px, 2.6vw, 40px);
+  width: min(100%, 309px);
+}
+
+.foot-net {
+  margin-top: clamp(12px, 1.2vw, 20px);
+}
+
+.foot-flow img,
+.foot-net img { display: block; width: 100%; height: auto; }
 
 .foot-col ul {
   list-style: none;
@@ -2549,53 +2656,52 @@ a { color: inherit; }
 /* reference: text-[13px] sm:text-[14px] text-neutral-800 font-normal
    tracking-tight py-1, going to font-medium and full black on hover */
 .foot-col a:not(.btn) {
-  position: relative;
   display: inline-block;
-  padding-block: 4px;
+  /* The plate needs a box to sit in. The horizontal padding is cancelled by
+     an equal negative margin, so the text still lines up with its lane's
+     label and only the plate reaches into the gutter. */
+  padding: 4px 10px;
+  margin-inline-start: -10px;
+  border-radius: var(--r-btn);
   font-size: clamp(13px, 1.15vw, 14px);
   font-weight: 400;
   letter-spacing: -0.025em;
   color: var(--ink-2);
   text-decoration: none;
-  transition: color 200ms ease;
+  background: transparent;
+  transition: color 140ms ease, background-color 140ms ease;
 }
 
-.foot-col a:not(.btn):hover { color: var(--ink); font-weight: 500; }
-
-/* their motion.span: a 1.5px rule growing from 0 to full width in 200ms.
-   Sits at the element's own baseline, so it tracks the label width. */
-.foot-col a:not(.btn)::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: 2px;
-  height: 1.5px;
-  width: 0;
-  background: var(--ink);
-  transition: width 200ms ease;
-}
-
-.foot-col a:not(.btn):hover::after { width: 100%; }
-
-@media (prefers-reduced-motion: reduce) {
-  .foot-col a:not(.btn)::after { transition: none; }
+/* The nav's tinted plate, same value. Not an underline, and not the old
+   jump to font-medium, which reflowed the label every time the pointer
+   crossed it. */
+.foot-col a:not(.btn):hover {
+  color: var(--ink);
+  background: rgba(43, 39, 34, 0.06);
 }
 
 /* ---- contact lane ---- */
 /* reference: text-[11px] font-bold uppercase tracking-wider mb-0.5 */
 .foot-lbl {
-  margin: 0 0 2px;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.05em;
+  margin: 0 0 6px;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--ink);
+  color: var(--ink-3);
 }
 
 /* reference: the address itself is text-[13px] text-neutral-700 */
 .foot-mailrow a { font-size: 13px; }
 
-.foot-mailrow { display: inline-flex; align-items: center; gap: var(--s-2); }
+/* flex, not inline-flex: as an inline box this row sat on a line box and
+   did not start hard on the lane's edge like everything above and below it */
+.foot-mailrow { display: flex; align-items: center; gap: var(--s-2); }
+
+/* belt and braces: nothing in this lane carries a left offset of its own */
+.foot-col--contact .foot-inq,
+.foot-col--contact .foot-btns,
+.foot-col--contact .foot-social { margin-left: 0; }
 
 /* their copy affordance: hidden until the row is hovered */
 .foot-copy-btn {
@@ -2618,20 +2724,18 @@ a { color: inherit; }
 /* Button and socials share one line. Both are inline-flex so they sit in the
    lane's inline flow; no wrapper element needed in the markup. */
 .foot-btns {
-  margin-top: var(--s-6);
-  display: inline-flex;
-  vertical-align: middle;
+  margin-top: var(--s-5);
+  display: flex;
 }
 
 /* Real brand marks (simple-icons paths), not lookalike glyphs. Outlined
    boxes rather than filled circles: the CEO rejected both the filled
    version and a beige-on-beige one. */
+/* under the button, not beside it */
 .foot-social {
-  margin-top: var(--s-6);
-  margin-left: var(--s-2);
-  display: inline-flex;
-  vertical-align: middle;
-  gap: 6px;
+  margin-top: var(--s-3);
+  display: flex;
+  gap: 8px;
 }
 
 /* .foot-col scoping is required, not decoration. The social links sit inside
@@ -2642,11 +2746,12 @@ a { color: inherit; }
 .foot-col .foot-social a {
   display: inline-flex;
   padding: 0;
+  margin-inline-start: 0;
   align-items: center;
   justify-content: center;
-  width: 30px;
-  height: 30px;
-  border: 1px solid rgba(43, 39, 34, 0.2);
+  width: 34px;
+  height: 34px;
+  border: 1px solid var(--line);
   border-radius: var(--r-sm);
   color: var(--ink);
   transition: color 160ms ease, background-color 160ms ease, border-color 160ms ease;
@@ -2663,9 +2768,6 @@ a { color: inherit; }
   height: 15px;
   fill: currentColor;
 }
-
-/* no growing underline on an icon */
-.foot-col .foot-social a::after { content: none; }
 
 /* reference: py-2.5 px-4, text-[11px] sm:text-[12px] font-bold
    tracking-[0.06em] uppercase, whileHover scale 1.02, whileTap 0.98 */
@@ -2709,8 +2811,6 @@ a { color: inherit; }
   overflow: hidden;
   margin-top: clamp(32px, 3.4vw, 52px);
   padding: clamp(16px, 2vw, 24px) 0;
-  border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
   color: var(--ink);
   text-decoration: none;
 }
@@ -2826,10 +2926,14 @@ a { color: inherit; }
   justify-content: space-between;
   flex-wrap: wrap;
   gap: var(--s-4) clamp(24px, 3vw, 56px);
+  margin-top: clamp(28px, 3vw, 44px);
   padding-top: clamp(20px, 2.4vw, 30px);
+  border-top: 1px solid var(--line);
 }
 
-.foot-legal { display: flex; gap: clamp(20px, 2.4vw, 40px); }
+.foot-sep { color: var(--line-strong); }
+
+.foot-legal { display: flex; align-items: center; gap: clamp(14px, 1.8vw, 26px); }
 
 .foot-legal a,
 .foot-copy {
@@ -2846,17 +2950,19 @@ a { color: inherit; }
 
 @media (max-width: 1000px) {
   .foot-main { grid-template-columns: repeat(6, 1fr); }
-  .foot-col--2, .foot-col--3 { grid-column: span 3; }
-  .foot-col--5 { grid-column: span 6; }
-  .fw-a { font-size: 10.2cqw; }
-  .fw-b { font-size: 8.4cqw; }
+  .foot-brand { grid-column: span 6; }
+  .foot-col--build { grid-column: span 3; }
+  .foot-col--site { grid-column: span 3; }
+  .foot-col--contact { grid-column: span 6; }
   .foot-main > * { padding: 0 0 clamp(28px, 4vw, 40px); }
-  .foot-main > * + * { border-left: 0; }
 }
 
 @media (max-width: 560px) {
   .foot-main { grid-template-columns: 1fr; }
-  .foot-col--2, .foot-col--3, .foot-col--5 { grid-column: span 1; }
+  .foot-brand,
+  .foot-col--build,
+  .foot-col--site,
+  .foot-col--contact { grid-column: span 1; }
   .foot-base { justify-content: flex-start; }
 }
 

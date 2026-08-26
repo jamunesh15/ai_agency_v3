@@ -19,6 +19,7 @@
      data-count="1240"          number counts up
      data-nav                   header shrinks past the fold
      data-accordion             open / close a disclosure
+     data-spy                   marks the contents link being read
    ============================================================ */
 
 (function (root, factory) {
@@ -523,6 +524,65 @@
     teardowns.push(function () { els.forEach(stop); });
   }
 
+  /* ---------- data-spy: which section am I reading ----------
+     Put it on the contents <ol>. Every <a href="#id"> inside it that points
+     at a real element gets watched, and the one being read carries
+     aria-current="true".
+
+     Deliberately NOT IntersectionObserver. A long section can fill the
+     viewport with neither its start nor its end intersecting anything, and
+     two short ones can be on screen at once, so "is it visible" is the
+     wrong question. The right one is "which heading did I last scroll
+     past", which is a position test.
+
+     This is a reading indicator, not scroll behaviour: it never moves the
+     page and never intercepts a scroll. */
+  function setupSpy(root, teardowns) {
+    var list = (root || document).querySelector('[data-spy]');
+    if (!list) return;
+
+    var marks = [];
+    Array.prototype.forEach.call(list.querySelectorAll('a[href^="#"]'), function (a) {
+      var el = document.getElementById(a.getAttribute('href').slice(1));
+      if (el) marks.push({ a: a, el: el });
+    });
+    if (!marks.length) return;
+
+    var nav = document.querySelector('.nav');
+    var current = null;
+
+    function update() {
+      // the read line: just under the fixed bar, where the eye actually is
+      var line = (nav ? nav.getBoundingClientRect().height : 72) + 88;
+      var found = marks[0];
+      for (var i = 0; i < marks.length; i++) {
+        if (marks[i].el.getBoundingClientRect().top <= line) found = marks[i];
+      }
+      // past the end of the article the last heading stays lit, which is
+      // what a reader expects; nothing else is in view to claim it
+      if (found === current) return;
+      if (current) current.a.removeAttribute('aria-current');
+      current = found;
+      current.a.setAttribute('aria-current', 'true');
+    }
+
+    var queued = false;
+    function onScroll() {
+      if (queued) return;
+      queued = true;
+      requestAnimationFrame(function () { queued = false; update(); });
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll, { passive: true });
+    update();
+
+    teardowns.push(function () {
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onScroll);
+    });
+  }
+
   function initMotion(scope) {
     var root = scope || document;
     var observers = [];
@@ -538,6 +598,7 @@
     setupAccordion(root, teardowns);
     setupLoop(root, observers, teardowns);
     setupCopy(scope, teardowns);
+    setupSpy(root, teardowns);
 
     return function teardown() {
       observers.forEach(function (io) { if (io) io.disconnect(); });

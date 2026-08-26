@@ -56,7 +56,6 @@
         <a href="services.html">Services</a>
         <a href="pricing.html">Pricing</a>
         <a href="blog.html" aria-current="page">Blog</a>
-        <a href="contact.html">Contact</a>
       </nav>
 
       <a class="btn btn--primary btn--sm" href="contact.html#book">Schedule a call</a>
@@ -229,113 +228,90 @@
 
   <div class="wrap">
 
-    <!-- 12-COLUMN BAND, 2 / 5 / 2 / 3, exactly the reference's spans.
-         Separated by gap, NOT by rules: the reference's only horizontal
-         rules are the pair around the wordmark row. -->
+    <!-- Brand lane first, then three link lanes. The oversized wordmark row
+         that used to be the footer's body is gone: the mark belongs at the
+         top left, next to the columns, and the bottom of the footer is now
+         the artwork instead. -->
     <div class="foot-main">
 
-      <!-- the reference's wide lane: one header, two link groups beneath it.
-           REPLACE: these all land on services.html today. They become real
+      <div class="foot-brand">
+        <a class="foot-mark" href="index.html">
+          <img src="aiagency_logo.png" alt="" width="34" height="34">
+          <span>AI Agency</span>
+        </a>
+        <p class="foot-note">We scope it, build it, and hand it over.</p>
+
+        <div class="foot-flow" aria-hidden="true">
+          <img src="footer_workflow.webp" alt="" width="309" height="206" loading="lazy" decoding="async">
+        </div>
+      </div>
+
+      <!-- REPLACE: these all land on services.html today. They become real
            deep links the moment the per-sector pages exist. -->
-      <div class="foot-col foot-col--5">
+      <div class="foot-col foot-col--build">
         <h3 class="label">What we build</h3>
         <ul>
-          <li><a href="services.html#all">Workflow automation</a></li>
-          <li><a href="services.html#all">Custom AI agents</a></li>
-          <li><a href="services.html#all">Assistants and chat</a></li>
-          <li><a href="services.html#all">Data integration</a></li>
-          <li><a href="services.html#all">AI strategy</a></li>
-          <li><a href="services.html#all">Web and mobile apps</a></li>
-        </ul>
+            <li><a href="services.html#all">Workflow automation</a></li>
+            <li><a href="services.html#all">Custom AI agents</a></li>
+            <li><a href="services.html#all">Assistants and chat</a></li>
+            <li><a href="services.html#all">Data integration</a></li>
+            <li><a href="services.html#all">AI strategy</a></li>
+            <li><a href="services.html#all">Web and mobile apps</a></li>
+          </ul>
       </div>
 
-      <div class="foot-col foot-col--2">
+      <div class="foot-col foot-col--site">
         <h3 class="label">Site</h3>
         <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="services.html">Services</a></li>
-          <li><a href="pricing.html">Pricing</a></li>
-          <li><a href="blog.html">Blog</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="pricing.html">Pricing</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
       </div>
 
-      <div class="foot-col foot-col--2">
-        <h3 class="label">Company</h3>
-        <ul>
-          <li><a href="blog.html">Blog</a></li>
-          <li><a href="contact.html">Contact</a></li>
-          <li><a href="privacy.html">Privacy</a></li>
-          <li><a href="terms.html">Terms</a></li>
-        </ul>
-      </div>
-
-      <!-- CONTACT lane: the reference's labelled group with its copy-to-
-           clipboard affordance, then the stacked call to action. Kept to
-           the one address and the one button, per the CEO. -->
-      <div class="foot-col foot-col--3">
+      <!-- Socials stay in this lane, deliberately. The reference puts them
+           bottom right; the CEO wants them here, with the address and the
+           button, because all three are contact channels. -->
+      <div class="foot-col foot-col--contact">
         <h3 class="label">Contact</h3>
 
         <div class="foot-inq">
           <p class="foot-lbl">General enquiries</p>
           <span class="foot-mailrow">
-            <a href="mailto:hello@aiagency.so">hello@aiagency.so</a>
-            <button class="foot-copy-btn" type="button" data-copy="hello@aiagency.so" aria-label="Copy email address">
+            <a href="mailto:contact@aiagency.so">contact@aiagency.so</a>
+            <button class="foot-copy-btn" type="button" data-copy="contact@aiagency.so" aria-label="Copy email address">
               <i data-lucide="copy"></i>
             </button>
           </span>
         </div>
 
         <div class="foot-btns">
-          <a class="btn btn--primary" href="contact.html#book">Schedule a call</a>
+          <a class="btn btn--primary" href="contact.html#book">Schedule a call <i data-lucide="arrow-up-right"></i></a>
         </div>
 
         <!-- REPLACE: real LinkedIn and X profile URLs. WhatsApp reuses the
-             same placeholder number as the CTA. Socials sit in the contact
-             lane rather than the base row: they are contact channels, and it
-             keeps the base row at the reference's three parts. -->
+             same placeholder number as the CTA. -->
         <div class="foot-social">
-        <a href="https://wa.me/000000000000" aria-label="WhatsApp" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413"/></svg>
-        </a>
-        <a href="https://www.linkedin.com/company/REPLACE" aria-label="LinkedIn" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-        </a>
-        <a href="https://x.com/REPLACE" aria-label="X" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/></svg>
-        </a>
+          <a href="https://wa.me/000000000000" aria-label="WhatsApp" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413"/></svg></a>
+          <a href="https://www.linkedin.com/company/REPLACE" aria-label="LinkedIn" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+          <a href="https://x.com/REPLACE" aria-label="X" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/></svg></a>
         </div>
       </div>
 
     </div>
 
-    <!-- WORDMARK ROW. The reference's centrepiece: closed by a rule top and
-         bottom, mark on the left, the name at display size. Their demo-only
-         "hover / click" indicator is left out. -->
-    <a class="foot-word" href="index.html">
+    <div class="foot-net" aria-hidden="true">
+      <img src="footer_agents.webp" alt="" width="1543" height="197" loading="lazy" decoding="async">
+    </div>
 
-      <!-- Morph banner, from FooterLogo.tsx. Hovering the row swaps the name
-           for the second state, the way theirs swaps to SINCE 2013.
-           2016 is the founding year the CEO gave. It reads as a factual
-           claim to every visitor, so it must stay accurate.
-           Both states are in the DOM and cross-fade, so there is no layout
-           jump and no JS. -->
-      <span class="fw">
-        <span class="fw-a">AI Agency</span>
-        <span class="fw-b" aria-hidden="true">
-          <span>Since</span>
-          <svg class="fw-em" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2L14.5 8.5L21 9.2L16 13.8L17.5 20.3L12 17L6.5 20.3L8 13.8L3 9.2L9.5 8.5L12 2Z"/></svg>
-          <span>2016</span>
-        </span>
-      </span>
-    </a>
-
-    <!-- BASE ROW, three parts -->
     <div class="foot-base">
       <span class="foot-copy">&copy; 2026 AI Agency. All rights reserved.</span>
 
-      <nav class="foot-legal">
+      <nav class="foot-legal" aria-label="Legal">
         <a href="terms.html">Terms &amp; conditions</a>
+        <span class="foot-sep" aria-hidden="true">|</span>
         <a href="privacy.html">Privacy policy</a>
       </nav>
     </div>
