@@ -827,13 +827,29 @@ a { color: inherit; }
 
 /* ---------- services: numbered rows ------------------------- */
 
+/* Two columns. Stacking the description under its title made each row a
+   block, which was right, but it also meant the whole section lived in the
+   left half of a 1450px measure with nothing in the other half. Four items
+   in a 2x2 use the width, and it is a different shape from the process list
+   further down the page rather than a second vertical run of numbers. */
+.svc-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(20px, 2.2vw, 34px) clamp(32px, 4vw, 64px);
+}
+
+@media (max-width: 860px) {
+  .svc-list { grid-template-columns: 1fr; }
+}
+
 .svc {
   position: relative;
   display: grid;
-  grid-template-columns: 72px 1fr minmax(240px, 360px) 40px;
-  align-items: center;
-  gap: var(--s-3) var(--s-6);
-  padding: var(--s-2) var(--s-2);
+  grid-template-columns: 56px auto minmax(0, 1fr);
+  align-items: start;
+  gap: 0 var(--s-5);
+  padding: var(--s-5) var(--s-3);
+  border-radius: var(--r-btn);
   text-decoration: none;
   transition: background-color 160ms ease;
 }
@@ -842,6 +858,10 @@ a { color: inherit; }
 .svc:hover { background: var(--band); }
 
 .svc-num {
+  grid-column: 1;
+  grid-row: 1;
+  /* the title's line box, so the two texts centre against each other */
+  line-height: calc(var(--t-row) * 1.5);
   font-family: var(--mono);
   font-size: 12px;
   font-weight: 600;
@@ -850,19 +870,30 @@ a { color: inherit; }
 }
 
 .svc-title {
+  grid-column: 2;
+  grid-row: 1;
   font-size: var(--t-row);
   font-weight: 600;
   letter-spacing: -0.02em;
 }
 
 .svc-desc {
+  grid-column: 2 / -1;
+  grid-row: 2;
+  margin-top: 6px;
+  /* a measure, not the width of the page */
+  max-width: 62ch;
   font-size: var(--t-sm);
   line-height: 1.55;
   color: var(--ink-2);
 }
 
 .svc-arrow {
-  justify-self: end;
+  grid-column: 3;
+  grid-row: 1;
+  justify-self: start;
+  /* centred in the title's line box, same as the number */
+  margin-top: calc((var(--t-row) * 1.5 - 20px) / 2);
   color: var(--ink-3);
   transition: color 160ms ease, transform 160ms ease;
 }
@@ -1776,7 +1807,7 @@ a { color: inherit; }
   display: grid;
   grid-template-columns: 128px 1fr;
   gap: var(--s-4) var(--s-6);
-  padding: var(--s-2) 0;
+  padding: var(--s-3) 0;
 }
 
 .step-meta {
@@ -1908,9 +1939,8 @@ a { color: inherit; }
 
 /* no rule above the first row: it lands under the section heading and
    reads as a stray line across the section. Same on .svc and .step. */
-.faq-item { border-top: 1px solid var(--line); }
-.faq-item:first-of-type { border-top: 0; }
-.faq-item:last-of-type { border-bottom: 1px solid var(--line); }
+/* No dividers, as with .step and .svc. The trigger's own hover and its open
+   state are what separate one question from the next. */
 
 .aa-acc-trigger {
   width: 100%;
@@ -2472,7 +2502,7 @@ a { color: inherit; }
   /* Modest top padding. It stacks with the bottom padding of whatever
      section ends the page, so a big value here compounds into the run of
      empty white the CEO flagged. */
-  padding: clamp(24px, 2.4vw, 40px) 0 clamp(28px, 2.8vw, 44px);
+  padding: clamp(18px, 1.8vw, 28px) 0 clamp(20px, 2vw, 30px);
   background: var(--sheet);
 }
 
@@ -2579,7 +2609,7 @@ a { color: inherit; }
 
 /* Padding on the lane rather than a grid gap, so the divider runs the full
    height of the band instead of stopping at the tallest column's content. */
-.foot-main > * { padding: 0 clamp(20px, 2.4vw, 40px) clamp(28px, 3vw, 44px); }
+.foot-main > * { padding: 0 clamp(20px, 2.4vw, 40px) clamp(18px, 1.8vw, 28px); }
 /* No first-child override. Every lane takes the same padding from the rule
    above, so the text in each one sits at the same distance from its own
    divider. The first lane used to run 10px tighter, which is small but
@@ -2634,16 +2664,10 @@ a { color: inherit; }
    Being raster, they cannot follow the palette tokens the way the drawn
    canvases do. Decoration only, so both are hidden from assistive tech and
    carry empty alt. */
-.foot-flow {
-  margin-top: clamp(24px, 2.6vw, 40px);
-  width: min(100%, 309px);
-}
-
 .foot-net {
   margin-top: clamp(12px, 1.2vw, 20px);
 }
 
-.foot-flow img,
 .foot-net img { display: block; width: 100%; height: auto; }
 
 .foot-col ul {
@@ -2740,16 +2764,24 @@ a { color: inherit; }
 /* Button and socials share one line. Both are inline-flex so they sit in the
    lane's inline flow; no wrapper element needed in the markup. */
 .foot-btns {
-  margin-top: var(--s-5);
+  margin-top: var(--s-1);
   display: flex;
 }
+
+.foot-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.foot-cta svg { width: 14px; height: 14px; }
 
 /* Real brand marks (simple-icons paths), not lookalike glyphs. Outlined
    boxes rather than filled circles: the CEO rejected both the filled
    version and a beige-on-beige one. */
-/* under the button, not beside it */
+/* under the call to action, not beside it */
 .foot-social {
-  margin-top: var(--s-3);
+  margin-top: var(--s-2);
   display: flex;
   gap: 8px;
 }
@@ -2785,28 +2817,7 @@ a { color: inherit; }
   fill: currentColor;
 }
 
-/* reference: py-2.5 px-4, text-[11px] sm:text-[12px] font-bold
-   tracking-[0.06em] uppercase, whileHover scale 1.02, whileTap 0.98 */
-/* .btn hard-codes height: 48px, so padding alone cannot shrink it. The
-   button and the three icon boxes have to share a 237px lane, which is what
-   sets these numbers: 120 + 102 + the 12px gap. */
-.foot-btns .btn {
-  justify-content: center;
-  height: 34px;
-  padding: 0 13px;
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  transition: transform 200ms ease, background-color 160ms ease, color 160ms ease;
-}
 
-.foot-btns .btn:hover { transform: scale(1.02); }
-.foot-btns .btn:active { transform: scale(0.98); }
-
-@media (prefers-reduced-motion: reduce) {
-  .foot-btns .btn:hover, .foot-btns .btn:active { transform: none; }
-}
 
 /* ---- wordmark row: closed by a rule top and bottom, as the reference
    has it. Their demo-only hover indicator is left out. ---- */
@@ -2942,14 +2953,11 @@ a { color: inherit; }
   justify-content: space-between;
   flex-wrap: wrap;
   gap: var(--s-4) clamp(24px, 3vw, 56px);
-  margin-top: clamp(28px, 3vw, 44px);
-  padding-top: clamp(20px, 2.4vw, 30px);
-  border-top: 1px solid var(--line);
+  margin-top: clamp(18px, 1.8vw, 28px);
+  padding-top: clamp(14px, 1.6vw, 22px);
 }
 
-.foot-sep { color: var(--line-strong); }
-
-.foot-legal { display: flex; align-items: center; gap: clamp(14px, 1.8vw, 26px); }
+.foot-legal { display: flex; align-items: center; gap: clamp(20px, 2.4vw, 40px); }
 
 .foot-legal a,
 .foot-copy {
