@@ -192,6 +192,7 @@ a { color: inherit; }
     to bottom,
     var(--rule-hair) 0 1px,
     transparent 1px var(--rule-gap));
+  background-position: 0 calc(var(--rule-gap) / 2);
   /* Pinned to the viewport, so the rules hold still while the page moves
      under them instead of riding up with it. It also removes a phase
      problem that was there all along: the nav is fixed and the sheet is
@@ -333,9 +334,14 @@ a { color: inherit; }
   display: flex;
   align-items: center;
   justify-content: space-between;
-  /* this gap is now only links-to-CTA; .nav-links takes the slack from
-     the brand with margin-left: auto */
-  gap: var(--s-6);
+  /* Links-to-CTA only; .nav-links takes the slack from the brand with
+     margin-left: auto.
+
+     Two labels are separated by the list's gap plus their 10px of padding
+     either side. Blog to the button is that same 10px plus THIS gap, so to
+     match it has to be the list's gap plus one 10px. Derived, not a fixed
+     value, so the two stay equal as the clamp moves. */
+  gap: calc(clamp(2px, 0.6vw, 6px) + 10px);
   height: var(--nav-h);
 }
 
@@ -531,7 +537,7 @@ a { color: inherit; }
 
 /* the inputs diagram, framed like every other canvas on the site */
 .flow-frame--dia {
-  background-image: url("b4.webp");   /* home diagram: terracotta */
+  background-image: url("b8.webp");   /* home diagram: the new one */
   margin-top: var(--head-gap);
 }
 
@@ -560,6 +566,17 @@ a { color: inherit; }
 .flow-stage { position: absolute; inset: 0; }
 
 .flow-svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+
+/* Hidden until the row is hovered or focused. Four arrows sitting there at
+   rest read as decoration; on hover it is an affordance. Opacity, not
+   display, so the row's layout never shifts. */
+.svc-arrow {
+  opacity: 0;
+  transition: opacity 160ms ease, color 160ms ease, transform 160ms ease;
+}
+
+.svc:hover .svc-arrow,
+.svc:focus-visible .svc-arrow { opacity: 1; }
 
 /* the mess above the hub is drawn heavier than the clean routes
    below it, so the eye reads tangle first and order second */
@@ -854,20 +871,22 @@ a { color: inherit; }
   transition: background-color 160ms ease;
 }
 
-
 .svc:hover { background: var(--band); }
 
-.svc-num {
+.svc-icon {
   grid-column: 1;
   grid-row: 1;
-  /* the title's line box, so the two texts centre against each other */
-  line-height: calc(var(--t-row) * 1.5);
-  font-family: var(--mono);
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  color: var(--accent-text);
+  display: flex;
+  align-items: center;
+  /* the title's line box, so the icon centres against the title */
+  height: calc(var(--t-row) * 1.5);
+  color: var(--ink-3);
+  transition: color 160ms ease;
 }
+
+.svc-icon svg { width: 26px; height: 26px; }
+
+.svc:hover .svc-icon { color: var(--ink); }
 
 .svc-title {
   grid-column: 2;
@@ -915,7 +934,7 @@ a { color: inherit; }
       "num desc  arrow";
     padding: 22px 4px;
   }
-  .svc-num   { grid-area: num; }
+  .svc-icon  { grid-area: num; height: auto; }
   .svc-title { grid-area: title; }
   .svc-desc  { grid-area: desc; margin-top: 6px; }
   .svc-arrow { grid-area: arrow; }
@@ -2496,9 +2515,7 @@ a { color: inherit; }
 /* ---------- footer (on the backdrop) ------------------------ */
 
 .foot {
-  /* Inside the sheet now, so it is a normal block: no width, no stacking
-     context, and no strips of its own. That z-index guard existed because
-     it used to be a positioned sibling that painted over the fixed nav. */
+  /* Inside the sheet, so no width of its own and no strips of its own. */
   /* Modest top padding. It stacks with the bottom padding of whatever
      section ends the page, so a big value here compounds into the run of
      empty white the CEO flagged. */
@@ -2664,12 +2681,6 @@ a { color: inherit; }
    Being raster, they cannot follow the palette tokens the way the drawn
    canvases do. Decoration only, so both are hidden from assistive tech and
    carry empty alt. */
-.foot-net {
-  margin-top: clamp(12px, 1.2vw, 20px);
-}
-
-.foot-net img { display: block; width: 100%; height: auto; }
-
 .foot-col ul {
   list-style: none;
   margin: 0;
@@ -2722,14 +2733,6 @@ a { color: inherit; }
 
 /* ---- contact lane ---- */
 /* reference: text-[11px] font-bold uppercase tracking-wider mb-0.5 */
-.foot-lbl {
-  margin: 0 0 6px;
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--ink-3);
-}
 
 /* reference: the address itself is text-[13px] text-neutral-700 */
 .foot-mailrow a { font-size: 13px; }
@@ -2816,7 +2819,6 @@ a { color: inherit; }
   height: 15px;
   fill: currentColor;
 }
-
 
 
 /* ---- wordmark row: closed by a rule top and bottom, as the reference
